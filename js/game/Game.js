@@ -1,4 +1,3 @@
-
 var Main = Main || {};
 
 Main.Game = function()
@@ -13,6 +12,8 @@ Main.Game.prototype.create = function ()
 		graphics.beginFill(0x0000FF, 1);
 		graphics.drawCircle(300, 300, 100);
 	}
+
+	Main.game.add.sprite(200,100, 'chicken');
 };
 
 Main.Game.prototype.preRender = function ()

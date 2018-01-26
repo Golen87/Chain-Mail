@@ -7,6 +7,7 @@ Main.Preload = function() {};
 Main.Preload.prototype = {
 	preload: function () {
 		this.game.stage.backgroundColor = '#00ff00';
+		this.game.load.image('chicken', 'assets/chicken.jpg');
 	},
 	create: function () {
 		this.state.start( 'MainMenu' );
