@@ -1,0 +1,13 @@
+body {
+	background: white;
+	margin: auto;
+	padding: 1em;
+	text-align: center;
+	overflow: hidden;
+}
+
+canvas {
+	margin: auto;
+	cursor: none;
+	width: 100%;
+}
