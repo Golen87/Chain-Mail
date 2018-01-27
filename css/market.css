@@ -1,0 +1,65 @@
+#marketplace{
+    width: 500px;
+    left: 150px;
+    top: 20px;
+}
+
+#shop_list{
+    overflow: auto;
+    height: 300px;
+    margin: 10px;
+}
+
+.shop_item{
+    margin-bottom: 10px;
+    display: block;
+    height: 100px;
+
+    background-color: #A0A0A0;
+
+    padding: 5px;
+    text-align: left;
+
+    border: 5px solid #505050;
+    border-radius: 7px;
+}
+
+.buy_btn{
+    background-color: #15c435;
+    display: inline-block;
+    cursor:pointer;
+
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+
+    border-color: #2de24e;
+    border-style: solid;
+    border-width: 4px;
+}
+
+.buy_btn:hover{
+    background-color: #2de24e;
+}
+
+.buy_btn:active{
+    background-color: #329144;
+}
+
+.shop_right{
+    float: right;
+    text-align: right;
+}
+
+.store_left{
+    float:left;
+    width: 300px;
+}
+
+.store_right p{
+    margin: 3px;
+    font-weight: bold;
+}
+
+.shop_item h4{
+    margin: 3px;
+}

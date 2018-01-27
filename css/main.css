@@ -1,0 +1,31 @@
+body {
+	background: white;
+	margin: auto;
+	padding: 1em;
+	text-align: center;
+	overflow: hidden;
+}
+
+canvas {
+	margin: auto;
+	cursor: none;
+	width: 100%;
+}
+
+#desktop{
+	position: relative;
+	width: 800px;
+	margin: auto;
+}
+
+#wallpaper{
+	width: 800px;
+}
+
+#taskbar{
+	position:absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	background-color: #255fdc;  /*XP Blue*/
+}
