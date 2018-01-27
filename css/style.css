@@ -107,6 +107,12 @@ canvas {
 	border-radius: 5px 5px 0px 0px;
 }
 
+.window_body{
+	width: 100%;
+	position: absolute;
+	top: 20px;
+}
+
 .window_close{
 	position: absolute;
 	background-color: red;
