@@ -4,7 +4,7 @@ ChainMail = function()
 	this.letter = Choose(letters);
 
 	// The available words
-	this.words = {
+	this.words = [
 		Person(),
 		Person(),
 		Person(),
