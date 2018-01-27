@@ -34,9 +34,7 @@ canvas {
 	width: 100px;
 	height: 100%;
 	float: right;
-	background-color: #44b2fc;
-
-	border-radius: 15px 0px 0px 0px;
+	background-color: #0f8fe8; /* XP Clock Light Blue */
 }
 
 #time{
