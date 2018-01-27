@@ -12,21 +12,21 @@ function updateGraph() {
 
     let datasets = [];
     for (let i = sent_mails.length - 1; i >= 0; i--) {
-        let data = [];
+        let datapoints = [];
 
         for (let time = globalTick - historyLength; time < globalTick; time++) {
             if (true) { //time >= 0
                 if (sent_mails[i].startTime > time) {
-                    data.push(null);
+                    datapoints.push(null);
                 } else {
                     let index = time - sent_mails[i].startTime;
-                    data.push( sent_mails[i].graphData[index] );
+                    datapoints.push( sent_mails[i].graphData[index] );
                 }
             }
         }
 
         datasets.push({
-            data: data,
+            data: datapoints,
             borderColor: sent_mails[i].graphColor,
             fill: false
         });
@@ -59,9 +59,8 @@ function makeGraph(datasets, labels) {
             scales: {
                 xAxes: [{
                     ticks: {
-                        max: N,
-                        min: 0,
-                        stepSize: 1
+                        autoskip: true,
+                        autoSkipPadding: 10
                     }
                 }]
             },
