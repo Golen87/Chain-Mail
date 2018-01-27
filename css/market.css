@@ -15,34 +15,16 @@
     display: block;
     height: 100px;
 
-    background-color: #A0A0A0;
+    background-color: white;
 
     padding: 5px;
     text-align: left;
 
-    border: 5px solid #505050;
-    border-radius: 7px;
+    border: 1px solid #7c9ebc; /* XP Yellow-Blue */
 }
 
 .buy_btn{
-    background-color: #15c435;
     display: inline-block;
-    cursor:pointer;
-
-    padding: 10px 50px 10px 50px;
-    border-radius: 5px;
-
-    border-color: #2de24e;
-    border-style: solid;
-    border-width: 4px;
-}
-
-.buy_btn:hover{
-    background-color: #2de24e;
-}
-
-.buy_btn:active{
-    background-color: #329144;
 }
 
 .shop_right{

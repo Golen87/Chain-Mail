@@ -85,28 +85,3 @@
     height: 50px;
     padding: 5px 190px 0 190px;
 }
-
-#mail_gen .send_button {
-    background-color: white;
-    border: 1px solid #043e74; /* XP Dark Blue*/
-    border-radius: 3px;
-    color: black;
-
-    height: 19px;
-    width: 62px;
-    text-align:center;
-
-    cursor:pointer;
-}
-
-#mail_gen .send_button .inner {
-    border: 2px solid #dcdcdc; /* Xp Light Grey */
-    border-radius: 2px;
-    height: 14px;
-    width: 58px;
-    font-size: 13px;
-    padding-top: 1px;
-}
-#mail_gen .send_button .inner:hover {
-    border-color: #fcb234; /* XP Gold */
-}
