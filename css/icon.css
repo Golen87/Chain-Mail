@@ -1,0 +1,31 @@
+.icon p{
+    font-size: 10px;
+    font-family: sans-serif;
+
+    margin-top: 5px;
+}
+
+.icon img{
+    width: 100%;
+}
+
+.icon img:hover{
+    width: 110%;
+}
+
+.icon{
+    position: absolute;
+    left: 40px;
+
+    width: 50px;
+
+    cursor: pointer;
+}
+
+#icon1{
+    top: 20px;
+}
+
+#icon2{
+    top: 105px;
+}

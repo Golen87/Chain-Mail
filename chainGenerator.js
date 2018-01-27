@@ -46,6 +46,19 @@ if ( !String.prototype.format ) {
 	};
 }
 
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+};
+
+function phoneNumber(){
+	var number = (Math.random()*10000000000000).toString();
+	number = number.replaceAt(0, "0")
+	number = number.replaceAt(3, "-");
+	number = number.replaceAt(7, "-")
+	number = number.substr(0, 12);
+
+	return number;
+}
 
 
 /* Word replacements */
@@ -124,7 +137,7 @@ Part.prototype.insertRandomTags = function() {
 
 //	[ spread, serious, text ]
 
-var chainOpening = [
+const chainOpening = [
 	[ 1.0, 0.0, "BEWARE" ],
 	[ 1.0, 0.0, "U WILL {Verb} DEAD IF YOU STOP READING" ],
 	[ 1.0, 0.0, "PLEEEEEEEEEEASE READ! it was on the news!" ],
@@ -147,7 +160,7 @@ var chainOpening = [
 	[ 0.5, 0.5, "*****PLEASE FORWARD THIS TO HELP THIS LITTLE GIRL***** \n Dear All, \n I just received this mail from my friend." ],
 ];
 
-var chainContent = [
+const chainContent = [
 	[ 0.5, 0.5, "Hi there!! This chain letter has been in existence since 1897. This is absolutely incredible because there was no email then and probably not as many sad pricks with nothing better to do. So this is how it works: Pass this on to 15,067 people in the next 7 minutes or something horrible will happen to you like" ],
 	[ 0.5, 0.5, "If you get some chain letter that's threatening to leave you shagless or luckless for the rest of your life, delete it. If it's funny, send it on. \ Don't piss people off by making them feel guilty about a leper in Botswana with no teeth, who's been tied to a dead elephant for 27 years, whose only saviour is the 5 cents per letter he'll receive if you forward this mail, otherwise you'll end up like Miranda. Right?" ],
 	[ 0.5, 0.5, "We have rented an email tracker for the next 3 months! We at RH Power Inc. want to see how many people our email can reach in this time! If you forward this mail, you will be PAID MONEY!!!!" ],
@@ -156,7 +169,7 @@ var chainContent = [
 	[ 0.5, 0.5, "Because of the sudden rush of people signing up to Hotmail, it has come to our attention that we are vastly running out of resources. So, within a month's time, anyone who does not receive this email with the exact subject heading, will be deleted off our server. Please forward this email so that we know you are still using this account." ],
 
 	//Money
-	[0.0,0.0, "Hello Disney fans, And thank you for signing up for Bill Gates' Beta Email Tracking My name is {Name}. Here at Disney we are working with Microsoft which has just compiled an e-mail tracing program that tracks everyone to whom this message is forwarded to. It does this through an unique IP (Internet Protocol) address log book database. We are experimenting with this and need your help."],
+	[0.0, 0.0, "Hello Disney fans, And thank you for signing up for Bill Gates' Beta Email Tracking My name is {Name}. Here at Disney we are working with Microsoft which has just compiled an e-mail tracing program that tracks everyone to whom this message is forwarded to. It does this through an unique IP (Internet Protocol) address log book database. We are experimenting with this and need your help. "],
 
 	// Horror
 	[ 0.5, 0.5, "{Person} was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, fell into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. Not only did she smell nasty, she died. This Could Happen To You!!!" ],
@@ -196,9 +209,9 @@ var chainContent = [
 	[ 0.5, 0.5, "One guy sent this to 500 people !!!! So, I know that we can send it to at least 5 or 6. Come on you guys.... and if you're too selfish to take 10-15 minutes scrolling this and forwarding it to EVERYONE, then you are one sick person. Just think it could be you one day.It's not even your $money$, just your time!!!" ],
 	[ 0.5, 0.5, "WE URGE YOU TO MAKE COPIES OF THIS AND PASS IT ON TO AS MANY PEOPLE AS POSSIBLE. THIS NEEDS TO STOP. LIZ CLAIRBORNE ALSO PROFESSES TO WORSHIP SATAN AND RECENTLY OPENLY ADMITTED ON THE OPRAH WINFREY SHOW THAT HALF OF HER PROFITS GO TOWARDS THE CHURCH OF SATAN. " ],
 	[ 0.5, 0.5, "He stated that a large portion of his profits from Procter & Gamble Products goes to support this satanic church. When asked by Sally Jesse if stating this on t.v. would hurt his business, he replied, \"THERE ARE NOT ENOUGH CHRISTIANS IN THE UNITED STATES TO MAKE A DIFFERENCE.\"" ],
-]
+];
 
-var chainEnding = [
+const chainEnding = [
 	[ 0.5, 0.5, "Now pass this on! If you don't, you'll never have sex ever again." ],
 	[ 0.5, 0.5, "Forward this for good luck!" ],
 	[ 0.5, 0.5, "Now forward this to everyone you know otherwise you'll find your balls missing tomorrow morning." ],

@@ -4,7 +4,12 @@
 	<title>Chain Mail</title>
 	<meta charset="utf-8">
 
-	<link href="css/style.css" type="text/css" rel="stylesheet" />
+	<link href="css/main.css" type="text/css" rel="stylesheet" />
+	<link href="css/icon.css" type="text/css" rel="stylesheet" />
+	<link href="css/window.css" type="text/css" rel="stylesheet" />
+	<link href="css/mailgen.css" type="text/css" rel="stylesheet" />
+	<link href="css/market.css" type="text/css" rel="stylesheet" />
+	<link href="css/stats.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 	<script src="Chart.bundle.min.js"></script>
@@ -30,12 +35,12 @@
 		</div>
 
 		<div class="icon" id="icon1">
-			<image src="assets/chicken.jpg">
+			<image src="assets/mail_icon.png">
 			<p>Chain Mail Generator</p>
 		</div>
 
 		<div class="icon" id="icon2">
-			<image src="assets/chicken.jpg">
+			<image src="assets/market_icon.png">
 			<p>Dark Web Marketplace</p>
 		</div>
 
@@ -60,7 +65,9 @@
 					<div class="text">Empty</div>
 					<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
 				</div>
-				<div class="send_button choice" onclick="javascript:sendMail();"><p>Send</p></div>
+				<div class="send_section choice">
+					<div class="send_button" onclick="javascript:sendMail();"><p>Send</p></div>
+				</div>
 			</div>
 		</div>
 
@@ -78,7 +85,7 @@
 				</div>
 				<div id="shop_list">
 					<div class="shop_item">
-						<h4>500 E-Mail Adresses</h4>
+						<h4><span class="adresses">500</span> E-Mail Adresses</h4>
 						<div class="store_left">
 							<p>500 e-mail adresses from hacked databases. Perfect for spreading your important messages!</p>
 						</div>
@@ -88,7 +95,7 @@
 						</div>
 					</div>
 					<div class="shop_item">
-						<h4>1000 E-Mail Adresses!</h4>
+						<h4><span class="adresses">1000</span> E-Mail Adresses!</h4>
 						<div class="store_left">
 							<p>1000 e-mail adresses from hacked databases. Perfect for spreading your important messages!</p>
 						</div>
@@ -98,7 +105,7 @@
 						</div>
 					</div>
 					<div class="shop_item">
-						<h4>3000 E-Mail Adresses</h4>
+						<h4><span class="adresses">3000</span> E-Mail Adresses</h4>
 						<div class="store_left">
 							<p>3000 e-mail adresses from hacked databases. Perfect for spreading your important messages!</p>
 						</div>
@@ -118,6 +125,7 @@
 			<div class="window_body">
 				<p>People reached: <span id="people_disp">0</span> </p>
 				<p>Balance: <span id="money_disp">0</span> $</p>
+				<p>E-Mail Adresses: <span id="mail_disp">0</span></p>
 				<canvas id="chart"></canvas>
 			</div>
 		</div>

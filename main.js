@@ -1,5 +1,6 @@
-let money = 0;
+let money = 10000;
 let shares = 0;
+let mail_addresses = 10;
 
 function PutOnTop(windowId) {
     var newTop = $(windowId);
@@ -56,10 +57,37 @@ $(document).ready(() => {
 
     $(".popup").draggable({handle: ".window_top"});
 
+    $(".buy_btn").click(function(){
+        let parent = $(this).closest(".shop_item");
+        let cost = parent.find(".cost").html();
+        let adress_c = parent.find(".adresses").html();
+
+        cost = parseInt(cost);
+        adress_c = parseInt(adress_c);
+
+        if(money >= cost){
+            money -= cost;
+            mail_addresses += adress_c;
+        }
+
+        updateStats();
+    });
+
+    //update stats on page Preload
+    updateStats();
+
     let ctx = document.getElementById("chart").getContext('2d');
     let data = makeSpread(200, 0.7, 10);
     makeGraph(ctx, data);
 });
+
+function updateStats(){
+    $("#people_disp").text(shares);
+    $("#money_disp").text(money);
+    $("#mail_disp").text(mail_addresses);
+
+    console.log("ran");
+}
 
 function makeGraph(canvas, data){
     let N = data.length;
