@@ -26,10 +26,13 @@ function PutOnTop(windowId) {
 
 
 const tickTime = 100;
+let globalTick = 0;
 let hour = 0;
 let minute = 0;
 
 function timeTick(){
+    globalTick += 1;
+
     if(minute == 59){
         minute = 0;
         hour += 1;
@@ -55,8 +58,10 @@ function timeTick(){
     $("#hour").text(hourStr);
     $("#minute").text(minuteStr);
 
-    tickMails();
-    updateGraph();
+    if (minute % 10 == 0) {
+        tickMails();
+        updateGraph();
+    }
 }
 
 $(document).ready(() => {

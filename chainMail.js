@@ -26,8 +26,10 @@ ChainMail = function() {
 	this.startPeople = 0;
 	this.peopleReached = 0;
 
+	this.alive = true;
 	this.popularity = RandFloat(0.0, 1.0);
 
+	this.graphData = [];
 	this.graphColor = takeGraphColor();
 };
 
@@ -47,27 +49,19 @@ ChainMail.prototype.finish = function() {
 };
 
 ChainMail.prototype.tick = function() {
-	this.time += 1;
-	//this.peopleReached
-};
+	if (this.alive) {
+		this.time += 1;
 
-// 0 < popularity < 1
-ChainMail.prototype.getGraphData = function() {
-	let startPoint = 200;
-	let limit = 100;
+		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.popularity) * Math.pow(Math.E, -0.1*this.time) );
 
-	let data = [0];
-	let i = 1;
+		this.peopleReached += newPeople;
+		this.graphData.push(this.peopleReached);
 
-	// data[i - 1] > limit
-	while (i < this.time) {
-		data[i] = startPoint*Math.pow(i, this.popularity)*Math.pow(Math.E, -0.1*i);
-		i++;
+		if (newPeople <= 0) {
+			this.alive = false;
+		}
 	}
-
-	return data;
-}
-
+};
 
 
 function createChainMail() {

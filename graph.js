@@ -13,7 +13,7 @@ function updateGraph() {
     var datasets = [];
     for (var i = sent_mails.length - 1; i >= 0; i--) {
         datasets.push({
-            data: sent_mails[i].getGraphData(),
+            data: sent_mails[i].graphData,
             borderColor: sent_mails[i].graphColor,
             fill: false
         });
@@ -24,7 +24,7 @@ function updateGraph() {
 
 function makeGraph(canvas, datasets) {
     //let N = dataArr[0].length;
-    let N = 10;
+    let N = globalTick/10;
 
     let labels = Array.apply(null, {length: N}).map(Number.call, Number);
 
@@ -49,6 +49,11 @@ function makeGraph(canvas, datasets) {
             },
             legend: {
                 display: false
+            },
+            elements: {
+                point: {
+                    radius: 0
+                }
             },
             animation: false
         }
