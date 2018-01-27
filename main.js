@@ -26,6 +26,7 @@ $(document).ready(() => {
     $("#icon1").click(() => {
         $("#mail_gen").show();
         PutOnTop("#mail_gen");
+        createChainMail();
     });
 
     $("#icon2").click(() => {

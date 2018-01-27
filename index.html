@@ -42,32 +42,32 @@
 		<div class="popup" id="mail_gen">
 			<div class="window_top">
 				<div class="window_title">Chain Mail Generator</div>
-				<div class="window_close" id="mail_close">X</div>
+				<div class="window_close" id="mail_close">&#10006;</div>
 			</div>
-			<div class="window_body selection_body">
-				<div class="opening_choice choice">
-					<div class="prev_button"></div>
-					<div class="text">Hej bror! asdasgdohasgdaosgdsahg asda sjhdgas dgaskd ashjgd askjhdg aksdgaskd gaskjhd kjasgd hsgdkagsd klhgaskd gaksjhgd agskdgas jdhasjkd hsagd ashgd alshghdlj asgdlawgdalsj gdsakjdg awljdg ajlhsdg awhgd alsgdk ajwgd ad  sdgaskdg kasgdk agsdk gsdkashgd kashjgd</div>
-					<div class="next_button"></div>
+			<div class="window_body" id="selection_body">
+				<div class="choice" id="opening_choice">
+					<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
+					<div class="text">Empty</div>
+					<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
 				</div>
-				<div class="content_choice choice">
-					<div class="prev_button"></div>
-					<div class="text">Hej bror!</div>
-					<div class="next_button"></div>
+				<div class="choice" id="content_choice">
+					<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
+					<div class="text">Empty</div>
+					<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
 				</div>
-				<div class="ending_choice choice">
-					<div class="prev_button"></div>
-					<div class="text">Hej bror!</div>
-					<div class="next_button"></div>
+				<div class="choice" id="ending_choice">
+					<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
+					<div class="text">Empty</div>
+					<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
 				</div>
-				<div class="send_button choice"><p>Send</p></div>
+				<div class="send_button choice" onclick="javascript:sendMail();"><p>Send</p></div>
 			</div>
 		</div>
 
 		<div class="popup" id="marketplace">
 			<div class="window_top">
 				<div class="window_title">Dark Web Marketplace</div>
-				<div class="window_close" id="market_close">X</div>
+				<div class="window_close" id="market_close">&#10006;</div>
 			</div>
 			<div class="window_body">
 				<div class="header">
