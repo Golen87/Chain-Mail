@@ -33,7 +33,6 @@ canvas {
 .icon p{
 	font-size: 9px;
 	font-family: sans-serif;
-	font: Arial;
 
 	margin-top: 5px;
 }
@@ -65,7 +64,8 @@ canvas {
 	position: absolute;
 	top: 50px;
 
-	background-color: grey;
+	font-family: sans-serif;
+	background-color: lightgrey;
 
 	height: 300px;
 	display: none;
@@ -76,15 +76,23 @@ canvas {
 	border-width: 3px;
 }
 
+.popup .header{
+	font-size: 25px;
+	font-weight: bolder;
+}
+
+.popup .subheader{
+	font-size: 20px;
+}
+
 #mail_gen{
 	width: 500px;
-
 	left: 100px;
+	text-align: center;
 }
 
 #marketplace{
 	width: 500px;
-
 	left: 150px;
 	top: 70px;
 }
