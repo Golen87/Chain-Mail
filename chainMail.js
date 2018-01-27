@@ -42,8 +42,7 @@ ChainMail.prototype.tick = function() {
  0 < popularity < 1
 */
 function makeSpread(startPoint, popularity, limit){
-	spread = [];
-
+	spread = [0];
 	let i = 1;
 
 	do{

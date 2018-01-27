@@ -69,7 +69,7 @@ canvas {
 	font-family: sans-serif;
 	background-color: lightgrey;
 
-	height: 300px;
+	height: 400px;
 	display: none;
 
 	border-radius: 10px;
@@ -85,16 +85,10 @@ canvas {
 	font-size: 20px;
 }
 
-#mail_gen{
-	width: 500px;
-	left: 100px;
-	text-align: center;
-}
-
 #marketplace{
 	width: 500px;
 	left: 150px;
-	top: 70px;
+	top: 20px;
 }
 
 .window_top{
@@ -154,6 +148,134 @@ canvas {
 	margin: 6px;
 }
 
-#chart{
+#chart {
 	width: 100%;
+	cursor: default;
+}
+
+#shop_list{
+	overflow: auto;
+	height: 300px;
+	margin: 10px;
+}
+
+.shop_item{
+	margin-bottom: 10px;
+	display: block;
+	height: 100px;
+
+	background-color: #A0A0A0;
+
+	padding: 5px;
+	text-align: left;
+
+	border: 5px solid #505050;
+	border-radius: 7px;
+}
+
+.buy_btn{
+	background-color: #15c435;
+	display: inline-block;
+	cursor:pointer;
+
+	padding: 10px 50px 10px 50px;
+	border-radius: 5px;
+
+	border-color: #2de24e;
+	border-style: solid;
+	border-width: 4px;
+}
+.buy_btn:hover{
+	background-color: #2de24e;
+}
+.buy_btn:active{
+	background-color: #329144;
+}
+
+.shop_right{
+	float: right;
+	text-align: right;
+}
+
+.store_left{
+	float:left;
+	width: 300px;
+}
+
+.store_right p{
+	margin: 3px;
+	font-weight: bold;
+}
+
+.shop_item h4{
+	margin: 3px;
+}
+
+/* Mail Generator */
+
+#mail_gen {
+	width: 500px;
+	left: 100px;
+	text-align: center;
+
+	height: 400px;
+}
+
+.selection_body {
+	display: flex;
+	flex-direction: column;
+}
+
+.choice {
+	display: flex;
+	flex-direction: row;
+
+	margin: 8px 5px 8px 5px;
+}
+
+#mail_gen .text {
+	background-color: white;
+
+	height: 80px;
+	margin-left: 7px;
+	margin-right: 7px;
+	overflow: auto;
+	flex-grow: 1;
+
+	text-align: left;
+}
+#mail_gen .prev_button {
+	/* CSS triangle left */
+	width: 0;
+	height: 0;
+	border-top: 40px solid transparent;
+	border-bottom: 40px solid transparent;
+	border-right: 30px solid grey;
+}
+#mail_gen .prev_button:hover {
+	 border-right: 30px solid dimgrey;
+ }
+
+#mail_gen .next_button {
+	/* CSS triangle right */
+	width: 0;
+	height: 0;
+	border-top: 40px solid transparent;
+	border-bottom: 40px solid transparent;
+	border-left: 30px solid grey;
+}
+#mail_gen .next_button:hover {
+	border-left: 30px solid dimgrey;
+}
+
+#mail_gen .send_button {
+	height: 50px;
+	background-color: #255fdc; /* XP Blue */
+	border-radius: 5px;
+}
+
+#mail_gen .send_button p {
+	color: white;
+
+	text-align: right;
 }
