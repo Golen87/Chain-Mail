@@ -68,5 +68,9 @@
 
 #mail_gen .send_section {
     height: 50px;
-    padding: 5px 190px 0 190px;
+    padding: 5px 162px 0 162px;
+}
+
+#shareButton {
+    margin-left: 30px;
 }

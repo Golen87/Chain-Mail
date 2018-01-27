@@ -8,32 +8,9 @@
     <script src="facebookApiExample.js"></script>
 </head>
 <body>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : '147277622586147',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v2.11'
-        });
-      };
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/all.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <div class="page-header">
-        <h1>Share Dialog</h1>
-    </div>
-
-    <p>Click the button below to trigger a Share Dialog</p>
-
-    <div id="buttonDiv" class="btn btn-success clearfix"><button id='shareBtn' onsubmit="">Share</button></div>
     <div id="message"></div>
+
+    <div><a href="https://golen87.github.io/Chain-Mail/">To play the game and generate your own chain mails, click here!</a> </div>
 </body>
 </html>

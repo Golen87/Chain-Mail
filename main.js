@@ -118,7 +118,37 @@ $(document).ready(() => {
         }
 
         updateStats();
+
+
     });
+
+    function postToFacebook(){
+        var url = "https://golen87.github.io/Chain-Mail/facebookApiExample.html?message=";
+        if(current_mail) {
+            current_mail.finish();
+
+            var message = current_mail.message.replace(/<p>/gi, "");
+
+            console.log(message);
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                quote: message,
+                href: url + current_mail.message,
+            }, function (response) {
+            });
+        }
+    }
+
+    var shareButton = document.getElementById('shareButton');
+
+    if (shareButton){
+        shareButton.onclick = postToFacebook;
+    }else {
+        alert("No button");
+    }
+
+
 
     window.onresize = function(event) {
         setGameHeight();
