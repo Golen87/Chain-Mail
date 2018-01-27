@@ -6,6 +6,34 @@ function Choose(arr) {
 	return arr[Math.floor(Math.random()*arr.length)];
 }
 
+// Returns multiple unique elements from an array at random.
+function MultiChoose(arr, count) {
+	if (count > arr.length)
+		count = arr.length;
+
+	var i = 0;
+	var result = [];
+	while (result.length < count) {
+    	var rndIndex = Math.floor(Math.random()*arr.length);
+    	if (result.indexOf(arr[rndIndex]) > -1) continue;
+    	result[result.length] = arr[rndIndex];
+	}
+
+	return result;
+}
+
+// Returns an element from an array at random according to a weight.
+	// A weight of 2 means the first element will be picked roughly twice as often as the second; a weight of 0.5 means half as often. A weight of 1 gives a flat, even distribution.
+function WeightedChoose(arr, weightChoose) {
+	if ( weightChoose <= 0 || weightChoose == undefined) weightChoose = 1;
+	return arr[Math.floor(Math.pow(Math.random(),weightChoose) * arr.length)];
+}
+
+//Return a number between min and max, included.
+function Rand(min, max) {
+	return parseFloat(Math.floor(Math.random()*(max-min+1)))+parseFloat(min);
+}
+
 if ( !String.prototype.format ) {
 	String.prototype.format = function() {
 		var args = arguments;
@@ -35,6 +63,17 @@ function Treasure() {
 	return "{0} {1} of {2}".format(count, Unit(), Mineral());
 }
 
+function Name() {
+	var gender = Choose([0,1]);
+	var str = "";
+	if (gender == 0) str += WeightedChoose(["Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley","Cynthia","Angela","Melissa","Brenda","Amy","Anna","Rebecca","Virginia","Kathleen","Pamela","Martha","Debra","Amanda","Stephanie","Carolyn","Christine","Marie","Janet","Catherine","Frances","Ann","Joyce","Diane","Alice","Julie","Heather","Teresa","Doris","Gloria","Evelyn","Jean","Cheryl","Mildred","Katherine","Joan","Ashley","Judith","Rose","Janice","Kelly","Nicole","Judy","Christina","Kathy","Theresa","Beverly","Denise","Tammy","Irene","Jane","Lori","Rachel","Marilyn","Andrea","Kathryn","Louise","Sara","Anne","Jacqueline","Wanda","Bonnie","Julia","Ruby","Lois","Tina","Phyllis","Norma","Paula","Diana","Annie","Lillian","Emily","Robin"], 1.2);
+	else if (gender == 1) str += WeightedChoose(["James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Jeffrey","Frank","Scott","Eric","Stephen","Andrew","Raymond","Gregory","Joshua","Jerry","Dennis","Walter","Patrick","Peter","Harold","Douglas","Henry","Carl","Arthur","Ryan","Roger","Joe","Juan","Jack","Albert","Jonathan","Justin","Terry","Gerald","Keith","Samuel","Willie","Ralph","Lawrence","Nicholas","Roy","Benjamin","Bruce","Brandon","Adam","Harry","Fred","Wayne","Billy","Steve","Louis","Jeremy","Aaron","Randy","Howard","Eugene","Carlos","Russell","Bobby","Victor","Martin","Ernest","Phillip","Todd","Jesse","Craig","Alan","Shawn","Clarence","Sean","Philip","Chris","Johnny","Earl","Jimmy","Antonio"], 1.2);
+	str += " ";
+	if (Rand(0,30) == 1) str += "Mc";
+	str += WeightedChoose(["Smith","Johnson","Williams","Brown","Jones","Miller","Davis","Garcia","Rodriguez","Wilson","Martinez","Anderson","Taylor","Thomas","Hernandez","Moore","Martin","Jackson","Thompson","White","Lopez","Lee","Gonzalez","Harris","Clark","Lewis","Robinson","Walker","Perez","Hall","Young","Allen","Sanchez","Wright","King","Scott","Green","Baker","Adams","Nelson","Hill","Ramirez","Campbell","Mitchell","Roberts","Carter","Phillips","Evans","Turner","Torres","Parker","Collins","Edwards","Stewart","Flores","Morris","Nguyen","Murphy","Rivera","Cook","Rogers","Morgan","Peterson","Cooper","Reed","Bailey","Bell","Gomez","Kelly","Howard","Ward","Cox","Diaz","Richardson","Wood","Watson","Brooks","Bennett","Gray","James","Reyes","Cruz","Hughes","Price","Myers","Long","Foster","Sanders","Ross","Morales","Powell","Sullivan","Russell","Ortiz","Jenkins","Gutierrez","Perry","Butler","Barnes","Fisher","Henderson","Coleman","Simmons","Patterson","Jordan","Reynolds","Hamilton","Graham","Kim","Gonzales","Alexander","Ramos","Wallace","Griffin","West","Cole","Hayes","Chavez","Gibson","Bryant","Ellis","Stevens","Murray","Ford","Marshall","Owens","Mcdonald","Harrison","Ruiz","Kennedy","Wells","Alvarez","Woods","Mendoza","Castillo","Olson","Webb","Washington","Tucker","Freeman","Burns","Henry","Vasquez","Snyder","Simpson","Crawford","Jimenez","Porter","Mason","Shaw","Gordon","Wagner","Hunter","Romero","Hicks","Dixon","Hunt","Palmer","Robertson","Black","Holmes","Stone","Meyer","Boyd","Mills","Warren","Fox","Rose","Rice","Moreno","Schmidt","Patel","Ferguson","Nichols","Herrera","Medina","Ryan","Fernandez","Weaver","Daniels","Stephens","Gardner","Payne","Kelley","Dunn","Pierce","Arnold","Tran","Spencer","Peters","Hawkins","Grant","Hansen","Castro","Hoffman","Hart","Elliott","Cunningham","Knight","Bradley"], 2);
+	return str;
+}
+
 function Person() {
 	return Choose([
 		"God",
@@ -54,7 +93,7 @@ function Person() {
 
 
 
-/* Section of a chain mail. Opening/Middle/Ending */
+/* Section of a chain mail. */
 
 // @spreadFactor (spread) - The chance of the mail being passed on
 // @seriousFactor (money) - The chance of the mail being taken seriously
@@ -64,45 +103,52 @@ Part = function(spreadFactor, seriousFactor, text)
 	this.spreadFactor = spreadFactor;
 	this.seriousFactor = seriousFactor;
 	this.text = text;
+
+	this.insertRandomTags();
 };
 
-Part.prototype.myFunction = function()
-{
+Part.prototype.insertRandomTags = function() {
+	// Todo: Replace {People}, or alike with random function calls
 };
 
 
-//	new Part( spread, serious, text ),
+//	[ spread, serious, text ]
+
 var chainOpening = [
-	// Interesting but not serious
-	new Part( 1.0, 0.0, "U WILL DIE DEAD IF YOU STOP READING" ),
-	new Part( 1.0, 0.0, "PLEEEEEEEEEEASE READ! it was on the news!" ),
-	new Part( 1.0, 0.0, "THIS IS SOOOOOOOOO COOL!!?" ),
+	//[ 1.0, 0.0, "U WILL DIE DEAD IF YOU STOP READING" ],
+	//[ 1.0, 0.0, "PLEEEEEEEEEEASE READ! it was on the news!" ],
+	//[ 1.0, 0.0, "THIS IS SOOOOOOOOO COOL!!?" ],
 
+	//[ 0.5, 0.5, "This letter is about an opportunity to make an incredible amount of Money (CASH!!!) in a very short time." ],
+	//[ 0.5, 0.5, "Help save {person}!!" ],
+	//[ 0.5, 0.5, "From {person}" ],
 
-	new Part( 0.5, 0.5, "This letter is about an opportunity to make an incredible amount of Money (CASH!!!) in a very short time." ),
-	new Part( 0.0, 1.0, "Dear Friend," ),
-	new Part( 0.5, 0.5, "Help save {person}!!" ),
-	new Part( 0.5, 0.5, "From {person}" ),
-	new Part( 0.0, 1.0, "Hello, and thank you for reading this letter." ),
+	[ 0.0, 1.0, "Dear Friend," ],
+	[ 0.0, 0.0, "boring opening" ],
+	[ 0.0, 0.0, "boring opening" ],
 ];
 
 var chainContent = [
-	new Part( 0.5, 0.5, "Hi there!! This chain letter has been in existence since 1897. This is absolutely incredible because there was no email then and probably not as many sad pricks with nothing better to do. So this is how it works: Pass this on to 15,067 people in the next 7 minutes or something horrible will happen to you like" ),
-	new Part( 0.5, 0.5, "If you get some chain letter that's threatening to leave you shagless or luckless for the rest of your life, delete it. If it's funny, send it on. \ Don't piss people off by making them feel guilty about a leper in Botswana with no teeth, who's been tied to a dead elephant for 27 years, whose only saviour is the 5 cents per letter he'll receive if you forward this mail, otherwise you'll end up like Miranda. Right?" ),
+	//[ 0.5, 0.5, "Hi there!! This chain letter has been in existence since 1897. This is absolutely incredible because there was no email then and probably not as many sad pricks with nothing better to do. So this is how it works: Pass this on to 15,067 people in the next 7 minutes or something horrible will happen to you like" ],
+	//[ 0.5, 0.5, "If you get some chain letter that's threatening to leave you shagless or luckless for the rest of your life, delete it. If it's funny, send it on. \ Don't piss people off by making them feel guilty about a leper in Botswana with no teeth, who's been tied to a dead elephant for 27 years, whose only saviour is the 5 cents per letter he'll receive if you forward this mail, otherwise you'll end up like Miranda. Right?" ],
 
 	// Horror
-	new Part( 0.5, 0.5, "Miranda Pinsley was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, fell into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. Not only did she smell nasty, she died. This Could Happen To You!!!" ),
-	new Part( 0.5, 0.5, "Dexter Bip, a 13 year old boy, got a chain letter in his mail and ignored it. Later that day, he was hit by a car and so was his boyfriend (hey, some people swing that way). They both died and went to hell and were cursed to eat adorable kittens every day for eternity. This Could Happen To You Too!!! \ Remember, you could end up just like Pinsley and Bip. Just send this letter to all of your loser friends, and everything will be okay." ),
-	new Part( 0.5, 0.5, "Kelly Sedey had one wish, for her boyfriend of three years, David Marsden, to propose to her. Then one day when she was out to lunch David proposed! she accepted, but then had to leave because she had a meeting in 20 min. When she got to her office, she noticed on her computer she had some e-mail's. She checked it, the usual stuff from her friends, but then she saw one that she had never gotten before. It was this poem. She simply deleted it without even reading all of it. \ BIG MISTAGE! Later that evening, she received a phone call from the police. It was about DAVID! He had been in an accident with an 18 wheeler. He didn't survive!" ),
-	new Part( 0.5, 0.5, "Take Katie Robinsson. She received this e-mail and being the believer that she was, she sent it to a few of her friends, but didn't have enough e-mail addresses to send out the full 10 that you must. Three days later, Katie went to a masquerade ball. Later that night when she left to get to her car, she was killed in that spot by a hit-and-run drunk driver." ),
-	new Part( 0.5, 0.5, "Hello, and thank you for reading this letter. You see, there is a starving little boy in Baklaliviatatlaglooshen who has no arms, no legs, no parents, and no goats. This little boy's life could be saved, because for every time you pass this on, a dollar will be donated to the Little Starving Legless Armless Goatless Boy from Baklaliviatatlaglooshen Fund. Oh, and remember, we have absolutely no way of counting the emails sent and this is all a complete load of bullshit. So go on, reach out. Send this to 5 people in the next 47 seconds. Oh, and a reminder - if you accidentally send this to 4 or 6 people, you will die instantly." ),
+	[ 0.5, 0.5, "Miranda Pinsley was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, fell into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. Not only did she smell nasty, she died. This Could Happen To You!!!" ],
+	[ 0.0, 0.0, "boring content" ],
+	[ 0.0, 0.0, "boring content" ],
+	//[ 0.5, 0.5, "Kelly Sedey had one wish, for her boyfriend of three years, David Marsden, to propose to her. Then one day when she was out to lunch David proposed! she accepted, but then had to leave because she had a meeting in 20 min. When she got to her office, she noticed on her computer she had some e-mail's. She checked it, the usual stuff from her friends, but then she saw one that she had never gotten before. It was this poem. She simply deleted it without even reading all of it. \ BIG MISTAGE! Later that evening, she received a phone call from the police. It was about DAVID! He had been in an accident with an 18 wheeler. He didn't survive!" ],
+	//[ 0.5, 0.5, "Dexter Bip, a 13 year old boy, got a chain letter in his mail and ignored it. Later that day, he was hit by a car and so was his boyfriend (hey, some people swing that way). They both died and went to hell and were cursed to eat adorable kittens every day for eternity. This Could Happen To You Too!!! \ Remember, you could end up just like Pinsley and Bip. Just send this letter to all of your loser friends, and everything will be okay." ],
+	//[ 0.5, 0.5, "Take Katie Robinsson. She received this e-mail and being the believer that she was, she sent it to a few of her friends, but didn't have enough e-mail addresses to send out the full 10 that you must. Three days later, Katie went to a masquerade ball. Later that night when she left to get to her car, she was killed in that spot by a hit-and-run drunk driver." ],
+	//[ 0.5, 0.5, "Hello, and thank you for reading this letter. You see, there is a starving little boy in Baklaliviatatlaglooshen who has no arms, no legs, no parents, and no goats. This little boy's life could be saved, because for every time you pass this on, a dollar will be donated to the Little Starving Legless Armless Goatless Boy from Baklaliviatatlaglooshen Fund. Oh, and remember, we have absolutely no way of counting the emails sent and this is all a complete load of bullshit. So go on, reach out. Send this to 5 people in the next 47 seconds. Oh, and a reminder - if you accidentally send this to 4 or 6 people, you will die instantly." ],
 
-	new Part( 0.5, 0.5, "You see, there is a starving little boy in Baklaliviatatlaglooshen who has no arms, no legs, no parents, and no goats. This little boy's life could be saved, because for every time you pass this on, a dollar will be donated to the Little Starving Legless Armless Goatless Boy from Baklaliviatatlaglooshen Fund. Oh, and remember, we have absolutely no way of counting the emails sent and this is all a complete load of bullshit. So go on, reach out. Send this to 5 people in the next 47 seconds. Oh, and a reminder - if you accidentally send this to 4 or 6 people, you will die instantly." ),
+	//[ 0.5, 0.5, "Now, to make you feel guilty, here's what I'll do. First of all, if you don't send this to 5096 people in the next 5 seconds, you will be raped by a mad goat and thrown off a high building into a pile of manure. It's true! Because, THIS letter isn't like all of those fake ones, THIS one is TRUE!! Really!!! Here's how it goes:" ],
 ]
 
 var chainEnding = [
-	new Part( 0.5, 0.5, "Forward this for good luck!" ),
-	new Part( 0.5, 0.5, "Now pass this on! If you don't, you'll never have sex ever again." ),
-	new Part( 0.5, 0.5, "Now forward this to everyone you know otherwise you'll find your balls missing tomorrow morning." ),
-	new Part( 0.5, 0.5, "Try this! ...It really works. If you take this e-mail and forward it to at least 5 people, including the person that sent it to you, a person will appear standing on this bridge. \ Let me know if you know the person? OKAY!" ),
+	[ 0.5, 0.5, "Now pass this on! If you don't, you'll never have sex ever again." ],
+	[ 0.0, 0.0, "boring ending" ],
+	[ 0.0, 0.0, "boring ending" ],
+	//[ 0.5, 0.5, "Forward this for good luck!" ],
+	//[ 0.5, 0.5, "Now forward this to everyone you know otherwise you'll find your balls missing tomorrow morning." ],
+	//[ 0.5, 0.5, "Try this! ...It really works. If you take this e-mail and forward it to at least 5 people, including the person that sent it to you, a person will appear standing on this bridge. \ Let me know if you know the person? OKAY!" ],
 ];
