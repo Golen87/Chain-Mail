@@ -29,3 +29,23 @@ canvas {
 	height: 40px;
 	background-color: #255fdc;  /*XP Blue*/
 }
+
+#clock{
+	width: 100px;
+	height: 100%;
+	float: right;
+	background-color: #44b2fc;
+
+	border-radius: 15px 0px 0px 0px;
+}
+
+#time{
+	padding: 7px;
+
+	font-size: 23px;
+	color: white;
+	font-family: sans-serif;
+	font: Arial;
+
+	margin: 0px;
+}
