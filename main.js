@@ -132,4 +132,5 @@ function updateStats(){
     $("#people_disp").text(shares);
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
+    $("#mail_receivers").text(mail_addresses);
 }
