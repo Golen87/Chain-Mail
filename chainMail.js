@@ -89,6 +89,7 @@ function sendMail() {
 		console.log("Mail sent!");
 
 		current_mail.startPeople = mail_addresses;
+		current_mail.startTime = globalTick;
 
 		sent_mails.push(current_mail);
 		current_mail = null;
@@ -104,7 +105,7 @@ function tickMails() {
 	}
 }
 
-for (var i = 0; i < 10; i++) {
-	createChainMail();
-	sendMail();
-}
+//for (var i = 0; i < 10; i++) {
+//	createChainMail();
+//	sendMail();
+//}

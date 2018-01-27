@@ -31,8 +31,6 @@ let hour = 0;
 let minute = 0;
 
 function timeTick(){
-    globalTick += 1;
-
     if(minute == 59){
         minute = 0;
         hour += 1;
@@ -58,7 +56,10 @@ function timeTick(){
     $("#hour").text(hourStr);
     $("#minute").text(minuteStr);
 
+
     if (minute % 10 == 0) {
+        globalTick += 1;
+
         tickMails();
         updateGraph();
     }
