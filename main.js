@@ -96,7 +96,7 @@ $(document).ready(() => {
         $("#marketplace").hide();
     });
 
-    $(".popup").draggable({handle: ".window_top"});
+    $(".window").draggable({handle: ".window_top"});
 
     $(".buy_btn").click(function(){
         let parent = $(this).closest(".shop_item");

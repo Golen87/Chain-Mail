@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 
 	<link href="css/main.css" type="text/css" rel="stylesheet" />
+	<link href="css/xp.css" type="text/css" rel="stylesheet" />
 	<link href="css/icon.css" type="text/css" rel="stylesheet" />
 	<link href="css/window.css" type="text/css" rel="stylesheet" />
 	<link href="css/mailgen.css" type="text/css" rel="stylesheet" />
@@ -48,14 +49,14 @@
 			<p>Dark Web Marketplace</p>
 		</div>
 
-		<div class="popup" id="mail_gen">
+		<div class="window" id="mail_gen">
 			<div class="window_top">
 				<div class="window_title">Chain Mail Generator</div>
 				<div class="window_close" id="mail_close">&#10006;</div>
 			</div>
 			<div class="window_body" id="selection_body">
-				<div class="field receivers">Receivers: <span id="mail_receivers">0</span></div>
-				<div class="field message">
+				<div class="xp_field receivers">Receivers: <span id="mail_receivers">0</span></div>
+				<div class="xp_field message">
 					<div class="choice" id="opening_choice">
 						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
 						<div class="text">Empty</div>
@@ -80,7 +81,7 @@
 			</div>
 		</div>
 
-		<div class="popup" id="marketplace">
+		<div class="window" id="marketplace">
 			<div class="window_top">
 				<div class="window_title">Dark Web Marketplace</div>
 				<div class="window_close" id="market_close">&#10006;</div>
@@ -93,7 +94,7 @@
 					- We always reach a compromise -
 				</div>
 				<div id="shop_list">
-					<div class="shop_item">
+					<div class="xp_field shop_item">
 						<h4><span class="adresses">20</span> E-Mail Addresses</h4>
 						<div class="store_left">
 							<p>20 e-mail addresses I stole from my friend. Do what you want with them.</p>
@@ -103,7 +104,7 @@
 							<div class="buy_btn button"><div class="inner">Buy!</div></div>
 						</div>
 					</div>
-					<div class="shop_item">
+					<div class="xp_field shop_item">
 						<h4><span class="adresses">100</span> E-Mail Addresses</h4>
 						<div class="store_left">
 							<p>100 e-mail addresses I found on some forum. Pls no spam.</p>
@@ -113,7 +114,7 @@
 							<div class="buy_btn button"><div class="inner">Buy!</div></div>
 						</div>
 					</div>
-					<div class="shop_item">
+					<div class="xp_field shop_item">
 						<h4><span class="adresses">500</span> E-Mail Addresses</h4>
 						<div class="store_left">
 							<p>500 e-mail addresses from a big data breach. Use with care!</p>
@@ -123,7 +124,7 @@
 							<div class="buy_btn button"><div class="inner">Buy!</div></div>
 						</div>
 					</div>
-					<div class="shop_item">
+					<div class="xp_field shop_item">
 						<h4><span class="adresses">1000</span> E-Mail Addresses!</h4>
 						<div class="store_left">
 							<p>1000 e-mail addresses from hacked databases. Perfect for spreading your important messages!</p>
@@ -133,7 +134,7 @@
 							<div class="buy_btn button"><div class="inner">Buy!</div></div>
 						</div>
 					</div>
-					<div class="shop_item">
+					<div class="xp_field shop_item">
 						<h4><span class="adresses">3000</span> E-Mail Addresses</h4>
 						<div class="store_left">
 							<p>3000 e-mail addresses fresh off NSA's servers. Remember, with great spamming comes great responsibility.</p>
@@ -147,15 +148,17 @@
 			</div>
 		</div>
 
-		<div class="popup" id="stats_window">
+		<div class="window" id="stats_window">
 			<div class="window_top">
 				<div class="window_title">Statistics</div>
 			</div>
 			<div class="window_body">
 				<p>People reached: <span id="people_disp">0</span> </p>
 				<p>Balance: $<span id="money_disp">0</span></p>
-				<p>E-Mail Adresses: <span id="mail_disp">0</span></p>
-				<canvas id="chart"></canvas>
+				<p>E-Mail Addresses: <span id="mail_disp">0</span></p>
+				<div class="xp_field">
+					<canvas id="chart"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
