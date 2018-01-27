@@ -11,3 +11,46 @@ canvas {
 	cursor: none;
 	width: 100%;
 }
+
+#desktop{
+	position: relative;
+	width: 1300px;
+	margin: auto;
+}
+
+#wallpaper{
+	width: 1300px;
+}
+
+#taskbar{
+	position:absolute;
+	bottom: 0px;
+	width: 1300px;
+	height: 50px;
+	background-color: blue;
+}
+
+.icon p{
+	font-size: 15px;
+	font-family: sans-serif;
+	font: Arial;
+
+	margin-top: 5px;
+}
+
+.icon img{
+	width: 100px;
+}
+
+.icon{
+	position: absolute;
+	left: 40px;
+}
+
+#icon1{
+	top: 20px;
+}
+
+#icon2{
+	top: 200px;
+}
