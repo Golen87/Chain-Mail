@@ -4,10 +4,8 @@ window.onload = function () {
     var url = new URL(url_string);
     var a = url.searchParams.get("message");
 
-    a = a.replace(/%/gi, " ");
+    document.getElementById("message").innerHTML = a;
 
-    console.log(a);
-    
     function postToFacebook(){
         var url = "https://golen87.github.io/Chain-Mail/";
         var message = "He ho asodiasdhji";
