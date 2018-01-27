@@ -1,5 +1,5 @@
 window.onload = function () {
-    alert("Hello")
+    alert("Hello");
     var url_string = window.location.href;
     var url = new URL(url_string);
     var a = url.searchParams.get("opening");
