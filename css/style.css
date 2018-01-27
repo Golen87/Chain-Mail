@@ -85,12 +85,6 @@ canvas {
 	font-size: 20px;
 }
 
-#mail_gen{
-	width: 500px;
-	left: 100px;
-	text-align: center;
-}
-
 #marketplace{
 	width: 500px;
 	left: 150px;
@@ -152,4 +146,59 @@ canvas {
 
 #stats_window p{
 	margin: 6px;
+}
+
+
+/* Mail Generator */
+
+#mail_gen {
+	width: 500px;
+	left: 100px;
+	text-align: center;
+}
+
+.selection_body {
+	display: flex;
+	flex-direction: column;
+}
+
+.choice {
+	display: flex;
+	flex-direction: row;
+
+	margin: 15px 5px 0 5px;
+}
+
+#mail_gen .text {
+	background-color: white;
+
+	height: 80px;
+
+	overflow: auto;
+	flex-grow: 1;
+	margin-left: 7px;
+	margin-right: 7px;
+}
+#mail_gen .prev_button {
+	/* CSS triangle left */
+	width: 0;
+	height: 0;
+	border-top: 40px solid transparent;
+	border-bottom: 40px solid transparent;
+	border-right: 30px solid grey;
+}
+#mail_gen .prev_button:hover {
+	 border-right: 30px solid dimgrey;
+ }
+
+#mail_gen .next_button {
+	/* CSS triangle right */
+	width: 0;
+	height: 0;
+	border-top: 40px solid transparent;
+	border-bottom: 40px solid transparent;
+	border-left: 30px solid grey;
+}
+#mail_gen .next_button:hover {
+	border-left: 30px solid dimgrey;
 }
