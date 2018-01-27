@@ -127,13 +127,13 @@ $(document).ready(() => {
         if(current_mail) {
             current_mail.finish();
 
-            current_mail.message = current_mail.message.replace(/<p>/gi, "");
+            var message = current_mail.message.replace(/<p>/gi, "");
 
-            console.log(url + current_mail.message);
+            console.log(message);
             FB.ui({
                 method: 'share',
                 display: 'popup',
-                quote: current_mail.message,
+                quote: message,
                 href: url + current_mail.message,
             }, function (response) {
             });
