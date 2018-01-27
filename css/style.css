@@ -33,7 +33,6 @@ canvas {
 .icon p{
 	font-size: 15px;
 	font-family: sans-serif;
-	font: Arial;
 
 	margin-top: 5px;
 }
@@ -63,7 +62,8 @@ canvas {
 	position: absolute;
 	top: 50px;
 
-	background-color: grey;
+	font-family: sans-serif;
+	background-color: lightgrey;
 
 	height: 300px;
 	display: none;
