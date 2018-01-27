@@ -18,5 +18,5 @@ Main.MainMenu.prototype = {
 	startGame: function ()
 	{
 		this.state.start( 'Game' );
-	},
+	}
 };
