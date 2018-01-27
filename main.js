@@ -14,4 +14,6 @@ $(document).ready(() => {
     $("#market_close").click(() => {
         $("#marketplace").hide();
     });
+
+    $(".popup").draggable({handle: ".window_top"});
 });
