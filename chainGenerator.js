@@ -34,5 +34,6 @@ var chainOpening = [
 	"This letter is about an opportunity to make an incredible amount of Money (CASH!!!) in a very short time.",
 	"Dear Friend,",
 	"Help save {person}!!",
-	"From {person}",
-]
+	"From {person}"
+];
+
