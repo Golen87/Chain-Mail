@@ -125,7 +125,6 @@ Part.prototype.insertRandomTags = function() {
 //	[ spread, serious, text ]
 
 var chainOpening = [
-<<<<<<< HEAD
 	[ 1.0, 0.0, "BEWARE" ],
 	[ 1.0, 0.0, "U WILL {Verb} DEAD IF YOU STOP READING" ],
 	[ 1.0, 0.0, "PLEEEEEEEEEEASE READ! it was on the news!" ],
