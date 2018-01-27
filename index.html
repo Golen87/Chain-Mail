@@ -50,20 +50,23 @@
 				<div class="window_close" id="mail_close">&#10006;</div>
 			</div>
 			<div class="window_body" id="selection_body">
-				<div class="choice" id="opening_choice">
-					<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
-					<div class="text">Empty</div>
-					<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
-				</div>
-				<div class="choice" id="content_choice">
-					<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
-					<div class="text">Empty</div>
-					<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
-				</div>
-				<div class="choice" id="ending_choice">
-					<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
-					<div class="text">Empty</div>
-					<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
+				<div class="field receivers">Receivers: 425</div>
+				<div class="field message">
+					<div class="choice" id="opening_choice">
+						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
+						<div class="text">Empty</div>
+						<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
+					</div>
+					<div class="choice" id="content_choice">
+						<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
+						<div class="text">Empty</div>
+						<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
+					</div>
+					<div class="choice" id="ending_choice">
+						<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
+						<div class="text">Empty</div>
+						<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
+					</div>
 				</div>
 				<div class="send_section choice">
 					<div class="send_button" onclick="javascript:sendMail();"><p>Send</p></div>
