@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="facebookApiExample.js"></script>
 </head>
 <body>
     <script>
@@ -33,34 +34,6 @@
     <p>Click the button below to trigger a Share Dialog</p>
 
     <div id="buttonDiv" class="btn btn-success clearfix"><button id='shareBtn' onsubmit="">Share</button></div>
-
-    <script>
-
-    function postToFacebook(){
-        var url = "https://golen87.github.io/Chain-Mail/";
-        var message = "He ho asodiasdhji";
-
-        FB.ui({
-            method: 'share',
-            display: 'popup',
-            quote: message,
-            href: url,
-          }, function(response){});
-    }
-
-    window.onload = function(){
-
-        var shareButton = document.getElementById('shareBtn');
-
-        if (shareButton){
-            shareButton.onclick = postToFacebook;
-        }else {
-            alert("No button");
-        }
-
-    }
-
-    </script>
 
 </body>
 </html>

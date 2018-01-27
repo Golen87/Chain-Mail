@@ -9,7 +9,7 @@ function PutOnTop(windowId) {
     var newTop = $(windowId);
 
     // TODO: Update when new windows are implemented
-    var WINDOWS = [$("#mail_gen"), $("#marketplace"), $("#stats_window")];
+    var WINDOWS = [$("#mail_gen"), $("#marketplace"), $("#stats_window"), $("#bank_window")];
 
     // Move down windows on top
     var newTopZ = newTop.css('z-index');
@@ -31,8 +31,6 @@ let hour = 0;
 let minute = 0;
 
 function timeTick(){
-    globalTick += 1;
-
     if(minute === 59){
         minute = 0;
         hour += 1;
@@ -59,8 +57,11 @@ function timeTick(){
     $("#minute").text(minuteStr);
 
     if (minute % 10 === 0) {
+        globalTick += 1;
+
         tickMails();
         updateGraph();
+        updateStats();
     }
 }
 
@@ -76,6 +77,11 @@ $(document).ready(() => {
         PutOnTop("#marketplace");
     });
 
+    $("#icon3").click(() => {
+        $("#bank_window").show();
+        PutOnTop("#bank_window");
+    });
+
     $("#mail_gen").mousedown(() => {
         PutOnTop("#mail_gen");
     });
@@ -88,12 +94,12 @@ $(document).ready(() => {
         PutOnTop("#stats_window");
     });
 
-    $("#mail_close").click(() => {
-        $("#mail_gen").hide();
+    $("#bank_window").mousedown(() => {
+        PutOnTop("#bank_window");
     });
 
-    $("#market_close").click(() => {
-        $("#marketplace").hide();
+    $(".window_close").click(function(){
+        $(this).closest(".window").hide()
     });
 
     $(".window").draggable({handle: ".window_top"});

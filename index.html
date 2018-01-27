@@ -10,6 +10,7 @@
 	<link href="css/window.css" type="text/css" rel="stylesheet" />
 	<link href="css/mailgen.css" type="text/css" rel="stylesheet" />
 	<link href="css/market.css" type="text/css" rel="stylesheet" />
+	<link href="css/bank.css" type="text/css" rel="stylesheet" />
 	<link href="css/stats.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
@@ -49,10 +50,15 @@
 			<p>Dark Web Marketplace</p>
 		</div>
 
+		<div class="icon" id="icon3">
+			<img src="assets/market_icon.png">
+			<p>Bank Account</p>
+		</div>
+
 		<div class="window" id="mail_gen">
 			<div class="window_top">
 				<div class="window_title">Chain Mail Generator</div>
-				<div class="window_close" id="mail_close">&#10006;</div>
+				<img class="window_close" src="assets/close_button.png">
 			</div>
 			<div class="window_body" id="selection_body">
 				<div class="xp_field receivers">Receivers: <span id="mail_receivers">0</span></div>
@@ -84,7 +90,7 @@
 		<div class="window" id="marketplace">
 			<div class="window_top">
 				<div class="window_title">Dark Web Marketplace</div>
-				<div class="window_close" id="market_close">&#10006;</div>
+				<img class="window_close" src="assets/close_button.png">
 			</div>
 			<div class="window_body">
 				<div class="header">
@@ -148,12 +154,21 @@
 			</div>
 		</div>
 
+		<div class="window" id="bank_window">
+			<div class="window_top">
+				<div class="window_title">Bank Account</div>
+				<img class="window_close" src="assets/close_button.png">
+			</div>
+			<div class="window_body">
+			</div>
+		</div>
+
 		<div class="window" id="stats_window">
 			<div class="window_top">
 				<div class="window_title">Statistics</div>
 			</div>
 			<div class="window_body">
-				<p>People Reached: <span id="people_disp">0</span> </p>
+				<p>Max People Reached: <span id="people_disp">0</span> </p>
 				<p>Balance: $<span id="money_disp">0</span></p>
 				<p>E-Mail Addresses: <span id="mail_disp">0</span></p>
 				<div class="xp_field">

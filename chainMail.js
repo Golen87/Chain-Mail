@@ -27,16 +27,21 @@ ChainMail = function() {
 	this.peopleReached = 0;
 
 	this.alive = true;
-	this.popularity = RandFloat(0.0, 1.0);
+	this.spreadFactor = null;
+	this.seriousFactor = null;
 
 	this.graphData = [];
 	this.graphColor = takeGraphColor();
 };
 
+ChainMail.prototype.getPart = function(part) {
+	let selected = this.choices[part][0];
+	return this.choices[part][1][selected];
+};
+
 // Return currently selected choice of category
 ChainMail.prototype.getChoice = function(part) {
-	let selected = this.choices[part][0];
-	return this.choices[part][1][selected].text;
+	return this.getPart(part).text;
 };
 
 // Build a complete mail from the picked choices
@@ -48,13 +53,32 @@ ChainMail.prototype.finish = function() {
 	);
 };
 
+ChainMail.prototype.setStats = function() {
+	this.spreadFactor = 0;
+	this.spreadFactor += this.getPart("opening").spreadFactor;
+	this.spreadFactor += this.getPart("content").spreadFactor;
+	this.spreadFactor += this.getPart("ending").spreadFactor
+	this.spreadFactor += RandFloat(0.0, 1.0);
+	this.spreadFactor /= 4;
+	this.spreadFactor = Math.pow( this.spreadFactor, 4 );
+
+	this.seriousFactor = 0;
+	this.seriousFactor += this.getPart("opening").seriousFactor;
+	this.seriousFactor += this.getPart("content").seriousFactor;
+	this.seriousFactor += this.getPart("ending").seriousFactor
+	this.seriousFactor += RandFloat(0.0, 1.0);
+	this.seriousFactor /= 4;
+	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
+};
+
 ChainMail.prototype.tick = function() {
 	if (this.alive) {
 		this.time += 1;
 
-		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.popularity) * Math.pow(Math.E, -0.1*this.time) );
+		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.spreadFactor) * Math.pow(Math.E, -0.1*this.time) );
 
 		this.peopleReached += newPeople;
+		shares = Math.max(shares, this.peopleReached);
 		this.graphData.push(this.peopleReached);
 
 		if (newPeople <= 0) {
@@ -86,9 +110,11 @@ function nextChoice(part, inc) {
 function sendMail() {
 	if (current_mail) {
 		current_mail.finish();
-		console.log("Mail sent!");
 
 		current_mail.startPeople = mail_addresses;
+		current_mail.startTime = globalTick;
+		current_mail.setStats();
+		console.log("Mail sent!", current_mail.spreadFactor, current_mail.seriousFactor);
 
 		sent_mails.push(current_mail);
 		current_mail = null;
@@ -104,7 +130,7 @@ function tickMails() {
 	}
 }
 
-for (var i = 0; i < 10; i++) {
-	createChainMail();
-	sendMail();
-}
+//for (var i = 0; i < 10; i++) {
+//	createChainMail();
+//	sendMail();
+//}

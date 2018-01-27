@@ -55,15 +55,31 @@
     position: absolute;
     background-color: red;
     color: white;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
 
-    width: 24px;
-    height: 24px;
-
-    margin: 1px;
-
-    border-radius: 5px;
+    width: 19px;
+    height: 19px;
+    border: 1px solid white;
+    border-radius: 3px;
 
     cursor:pointer;
+}
+.window_close:hover {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(../assets/close_button_hover.png) no-repeat;
+    width: 19px;
+    height: 21px;
+    padding-left: 19px;
+}
+.window_close:active{
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(../assets/close_button_active.png) no-repeat;
+    width: 19px;
+    height: 21px;
+    padding-left: 19px;
 }
