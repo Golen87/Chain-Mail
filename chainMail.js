@@ -25,6 +25,10 @@ ChainMail = function() {
 	this.spread = [];
 	this.startPeople = 0;
 	this.peopleReached = 0;
+
+	this.popularity = RandFloat(0.0, 1.0);
+
+	this.graphColor = takeGraphColor();
 };
 
 // Return currently selected choice of category
@@ -43,23 +47,25 @@ ChainMail.prototype.finish = function() {
 };
 
 ChainMail.prototype.tick = function() {
-	// Todo: Math
+	this.time += 1;
+	//this.peopleReached
 };
 
+// 0 < popularity < 1
+ChainMail.prototype.getGraphData = function() {
+	let startPoint = 200;
+	let limit = 100;
 
-/*
- 0 < popularity < 1
-*/
-function makeSpread(startPoint, popularity, limit){
-	spread = [0];
+	let data = [0];
 	let i = 1;
 
-	do{
-		spread[i] = startPoint*Math.pow(i, popularity)*Math.pow(Math.E, -0.1*i);
+	// data[i - 1] > limit
+	while (i < this.time) {
+		data[i] = startPoint*Math.pow(i, this.popularity)*Math.pow(Math.E, -0.1*i);
 		i++;
-	}while(spread[i - 1] > limit)
+	}
 
-	return spread;
+	return data;
 }
 
 
@@ -95,4 +101,16 @@ function sendMail() {
 
 		$("#mail_gen").hide();
 	}
+}
+
+
+function tickMails() {
+	for (var i = sent_mails.length - 1; i >= 0; i--) {
+		sent_mails[i].tick();
+	}
+}
+
+for (var i = 0; i < 10; i++) {
+	createChainMail();
+	sendMail();
 }
