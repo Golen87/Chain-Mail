@@ -34,6 +34,11 @@ function Rand(min, max) {
 	return parseFloat(Math.floor(Math.random()*(max-min+1)))+parseFloat(min);
 }
 
+//Return a number between min and max, included.
+function RandFloat(min, max) {
+	return parseFloat(Math.random()*(max-min))+parseFloat(min);
+}
+
 if ( !String.prototype.format ) {
 	String.prototype.format = function() {
 		var args = arguments;

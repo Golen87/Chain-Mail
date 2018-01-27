@@ -54,6 +54,9 @@ function timeTick(){
 
     $("#hour").text(hourStr);
     $("#minute").text(minuteStr);
+
+    tickMails();
+    updateGraph();
 }
 
 $(document).ready(() => {
@@ -111,9 +114,7 @@ $(document).ready(() => {
 
     setInterval(timeTick, tickTime);
 
-    let ctx = document.getElementById("chart").getContext('2d');
-    let data = makeSpread(200, 0.7, 100);
-    makeGraph(ctx, data);
+    updateGraph();
 });
 
 function updateStats(){
