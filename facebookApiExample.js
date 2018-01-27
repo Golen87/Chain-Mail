@@ -1,5 +1,4 @@
 window.onload = function () {
-    alert("Hello");
     var url_string = window.location.href;
     var url = new URL(url_string);
     var a = url.searchParams.get("message");
@@ -17,17 +16,13 @@ window.onload = function () {
             href: url,
           }, function(response){});
     }
+    
+    var shareButton = document.getElementById('shareBtn');
 
-    window.onload = function(){
-
-        var shareButton = document.getElementById('shareBtn');
-
-        if (shareButton){
-            shareButton.onclick = postToFacebook;
-        }else {
-            alert("No button");
-        }
-
+    if (shareButton){
+        shareButton.onclick = postToFacebook;
+    }else {
+        alert("No button");
     }
 
 };
