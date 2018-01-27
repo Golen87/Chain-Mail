@@ -43,7 +43,7 @@ canvas {
 }
 
 .icon img:hover{
-	width: 110px;
+	width: 110%;
 }
 
 .icon{
