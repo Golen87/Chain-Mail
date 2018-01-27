@@ -46,6 +46,19 @@ if ( !String.prototype.format ) {
 	};
 }
 
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+};
+
+function phoneNumber(){
+	var number = (Math.random()*10000000000000).toString();
+	number = number.replaceAt(0, "0")
+	number = number.replaceAt(3, "-");
+	number = number.replaceAt(7, "-")
+	number = number.substr(0, 12);
+
+	return number;
+}
 
 
 /* Word replacements */
