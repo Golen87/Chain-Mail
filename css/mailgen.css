@@ -6,10 +6,6 @@
     height: 380px;
 }
 
-#mailgen .window_body {
-    height: 360px;
-}
-
 .selection_body {
     display: flex;
     flex-direction: column;
@@ -30,9 +26,6 @@
     margin-right: 7px;
     overflow: auto;
     flex-grow: 1;
-
-    border-width: 2px;
-    border-color: dimgrey;
 
     text-align: left;
 }
