@@ -21,7 +21,9 @@ ChainMail = function() {
 	}
 
 	this.message = null;
+	this.time = 0;
 	this.spread = [];
+	this.startPeople = 0;
 	this.peopleReached = 0;
 };
 
@@ -61,32 +63,36 @@ function makeSpread(startPoint, popularity, limit){
 }
 
 
-var currentChainMail = null;
 
 function createChainMail() {
 	// No Mail in session. Create new one
-	if (!currentChainMail) {
-		currentChainMail = new ChainMail();
+	if (!current_mail) {
+		current_mail = new ChainMail();
 
-		$("#opening_choice").find(".text").text(currentChainMail.getChoice("opening"));
-		$("#content_choice").find(".text").text(currentChainMail.getChoice("content"));
-		$("#ending_choice").find(".text").text(currentChainMail.getChoice("ending"));
+		$("#opening_choice").find(".text").text(current_mail.getChoice("opening"));
+		$("#content_choice").find(".text").text(current_mail.getChoice("content"));
+		$("#ending_choice").find(".text").text(current_mail.getChoice("ending"));
 	}
 }
 
 function nextChoice(part, inc) {
-	if (currentChainMail) {
-		let len = currentChainMail.choices[part][1].length;
-		currentChainMail.choices[part][0] = (currentChainMail.choices[part][0] + inc + len) % len;
-		$("#{0}_choice".format(part)).find(".text").text(currentChainMail.getChoice(part));
+	if (current_mail) {
+		let len = current_mail.choices[part][1].length;
+		current_mail.choices[part][0] = (current_mail.choices[part][0] + inc + len) % len;
+		$("#{0}_choice".format(part)).find(".text").text(current_mail.getChoice(part));
 	}
 }
 
 function sendMail() {
-	if (currentChainMail) {
-		currentChainMail.finish();
-		currentChainMail = null;
-		console.log("Mail complete!");
+	if (current_mail) {
+		current_mail.finish();
+		console.log("Mail sent!");
+
+		current_mail.startPeople = mail_addresses;
+
+		sent_mails.push(current_mail);
+		current_mail = null;
+
 		$("#mail_gen").hide();
 	}
 }

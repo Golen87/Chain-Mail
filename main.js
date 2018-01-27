@@ -1,6 +1,9 @@
 let money = 10000;
 let shares = 0;
 let mail_addresses = 10;
+var current_mail = null;
+var sent_mails = [];
+
 
 function PutOnTop(windowId) {
     var newTop = $(windowId);
@@ -21,7 +24,6 @@ function PutOnTop(windowId) {
     newTop.css('z-index', WINDOWS.length);
 };
 
-const graphColor = "#34e722";
 
 const tickTime = 100;
 let hour = 0;
@@ -118,7 +120,7 @@ $(document).ready(() => {
     setInterval(timeTick, tickTime);
 
     let ctx = document.getElementById("chart").getContext('2d');
-    let data = makeSpread(200, 0.7, 10);
+    let data = makeSpread(200, 0.7, 100);
     makeGraph(ctx, data);
 });
 
@@ -130,38 +132,4 @@ function updateStats(){
     $("#people_disp").text(shares);
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
-}
-
-function makeGraph(canvas, data){
-    let N = data.length;
-    let labels = Array.apply(null, {length: N}).map(Number.call, Number);
-
-    let myChart = new Chart(canvas, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: data,
-                borderColor: graphColor,
-                fill: false
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        max: N,
-                        min: 0,
-                        stepSize: 1
-                    }
-                }]
-            },
-            tooltips: {
-                enabled: false
-            },
-            legend: {
-                display: false
-            }
-        }
-    });
 }

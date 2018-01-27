@@ -3,7 +3,27 @@
     left: 100px;
     text-align: center;
 
-    height: 380px;
+    height: 390px;
+}
+#mail_gen .field {
+    background-color: #f1f1f1; /* Very light grey */
+    border: 2px solid dimgrey;
+}
+
+#mail_gen .window_body {
+    width: 94%;
+    padding: 0 3% 0 3%;
+    text-align: left;
+ }
+#mail_gen .receivers {
+    font-size: 15px;
+    padding: 2px 1% 2px 1%;
+    width: 98%;
+    margin: 8px 0 8px 0;
+}
+
+#mail_gen .message {
+    width: 100%;
 }
 
 .selection_body {
@@ -20,37 +40,40 @@
 
 #mail_gen .text {
     background-color: white;
+    font-size: 12px;
 
     height: 80px;
     margin-left: 7px;
     margin-right: 7px;
     overflow: auto;
     flex-grow: 1;
-
-    text-align: left;
 }
 #mail_gen .prev_button {
+    cursor:pointer;
+
     /* CSS triangle left */
     width: 0;
     height: 0;
     border-top: 40px solid transparent;
     border-bottom: 40px solid transparent;
-    border-right: 30px solid grey;
+    border-right: 30px solid #c1c1c1; /* Grey */
 }
 #mail_gen .prev_button:hover {
-    border-right: 30px solid dimgrey;
+    border-right: 30px solid #a8a8a8; /* Somewhat darker grey */
 }
 
 #mail_gen .next_button {
+    cursor:pointer;
+
     /* CSS triangle right */
     width: 0;
     height: 0;
     border-top: 40px solid transparent;
     border-bottom: 40px solid transparent;
-    border-left: 30px solid grey;
+    border-left: 30px solid #c1c1c1; /* Grey */
 }
 #mail_gen .next_button:hover {
-    border-left: 30px solid dimgrey;
+    border-left: 30px solid #a8a8a8; /* Somewhat darker grey */
 }
 
 #mail_gen .send_section {
@@ -67,6 +90,8 @@
     width:100%;
     text-align:center;
     vertical-align: middle;
+
+    cursor:pointer;
 }
 
 #mail_gen .send_button:hover {
