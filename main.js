@@ -9,7 +9,7 @@ function PutOnTop(windowId) {
     var newTop = $(windowId);
 
     // TODO: Update when new windows are implemented
-    var WINDOWS = [$("#mail_gen"), $("#marketplace"), $("#stats_window")];
+    var WINDOWS = [$("#mail_gen"), $("#marketplace"), $("#stats_window"), $("#bank_window")];
 
     // Move down windows on top
     var newTopZ = newTop.css('z-index');
@@ -77,6 +77,11 @@ $(document).ready(() => {
         PutOnTop("#marketplace");
     });
 
+    $("#icon3").click(() => {
+        $("#bank_window").show();
+        PutOnTop("#bank_window");
+    });
+
     $("#mail_gen").mousedown(() => {
         PutOnTop("#mail_gen");
     });
@@ -89,12 +94,12 @@ $(document).ready(() => {
         PutOnTop("#stats_window");
     });
 
-    $("#mail_close").click(() => {
-        $("#mail_gen").hide();
+    $("#bank_window").mousedown(() => {
+        PutOnTop("#bank_window");
     });
 
-    $("#market_close").click(() => {
-        $("#marketplace").hide();
+    $(".window_close").click(function(){
+        $(this).closest(".window").hide()
     });
 
     $(".window").draggable({handle: ".window_top"});

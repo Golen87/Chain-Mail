@@ -135,7 +135,7 @@ Part.prototype.insertRandomTags = function() {
 	// Todo: Replace {People}, or alike with random function calls
 	this.text = this.text.replace(/{Person}/gi, Person());
 	this.text = this.text.replace(/{Name}/gi, Name());
-	this.text = this.text.replace(/{Value}/gi, (Math.random*100).toString());
+	this.text = this.text.replace(/{Value}/gi, (Math.random()*100).toString());
 	this.text = this.text.replace(/{Adjective}/gi, Adjective());
 	this.text = this.text.replace(/{Verb}/gi, Verb());
 	this.text = this.text.replace(/{Tele}/gi, phoneNumber());
@@ -162,6 +162,7 @@ const chainOpening = [
 	[ 0.5, 0.5, "Dear Friends:" ],
 	[ 0.5, 0.5, "IM SORRY GUYS>>I REALLY DONT BELIEVE IT BUT SENDING IT TO YALL JUST IN CASE!!!!!!!!!!!!" ],
 	[ 0.5, 0.5, "Dear Internet Subscriber:" ],
+	[ 0.5, 0.5, "Dear Friend, this is your mate {Person}:" ],
 	[ 0.5, 0.5, "THIS IS TRUE----PLEASE TAKE THE TIME TO READ IT AND PLEASE SEND THIS TO EVERY SINGLE PERSON YOU KNOW WHO HAS AN E- MAIL ADDRESS....THIS IS REALLY TERRIFIC. " ],
 	[ 0.5, 0.5, "WARNING!!!!!!!!!: INTERNET VIRUS" ],
 	[ 0.5, 0.5, "*****PLEASE FORWARD THIS TO HELP THIS {Adjective} GIRL***** \n Dear All, \n I just received this mail from {Person}." ],
@@ -172,7 +173,7 @@ const chainContent = [
 	[ 0.5, 0.5, "If you get some chain letter that's threatening to leave you {Adjective} or luckless for the rest of your life, delete it. If it's {Adjective}, send it on. \ Otherwise you'll end up like {Person}. Right?" ],
 	[ 0.5, 0.5, "We at RH Power Inc. want to see how many people our email can reach! If you forward this mail, you will be PAID MONEY!!!!" ],
 	[ 0.5, 0.5, "For every person you send this to you will receive ${Value}! For every person they send this to you will receive ${Value}!" ],
-	[ 0.5, 0.5, "I too, {Name}, Head Marketing Manager, thought this was a hoax! IF YOU SEND THIS TO AT LEAST {Value} PEOPLE RIGHT AWAY, A ${value} GIFT CERTIFICATE WILL pop UP ON YOUR SCREEN!!!" ],
+	[ 0.5, 0.5, "I too, {Name}, Head Marketing Manager, thought this was a hoax! IF YOU SEND THIS TO AT LEAST {Value} PEOPLE RIGHT AWAY, A ${Value} GIFT CERTIFICATE WILL pop UP ON YOUR SCREEN!!!" ],
 	[ 0.5, 0.5, "Because of the sudden rush of people {Verb} to Hotmail, it has come to our attention that we are {Adjective} running out of resources. Please forward this email so that we know you are still {Verb} this account." ],
 
 	//Money
@@ -182,11 +183,11 @@ const chainContent = [
 	[ 0.5, 0.5, "{Person} was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, {Verb} into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. She died. This Could Happen To You!!!" ],
 	[ 0.5, 0.5, "{Name} had one wish, for her boyfriend of three years, {Person}, to propose to her. Then one day when she was out to lunch they proposed! she accepted, but then had to leave because she had a meeting in {Value} min. When she got to her office, she noticed on her computer she had some e-mail. It was this poem. She simply deleted it without even reading all of it. Later that evening, she received a phone call from the police. It was about her boyfriend! He had been in an accident. He didn't survive!" ],
 	[ 0.5, 0.5, "{Name}, a 13 year old boy, got a chain letter in his mail and ignored it. Later that day, he was hit by a car and so was his boyfriend (hey, some people swing that way). They both died and went to hell and were cursed to eat adorable kittens every day for eternity. This Could Happen To You Too!!! \ Remember, you could end up just like Pinsley and Bip. Just send this letter to all of your loser friends, and everything will be okay." ],
-	[ 0.5, 0.5, "Take Katie Robinsson. She received this e-mail and being the believer that she was, she sent it to a few of her friends, but didn't have enough e-mail addresses to send out the full 10 that you must. Three days later, Katie went to a masquerade ball. Later that night when she left to get to her car, she was killed in that spot by a hit-and-run drunk driver." ],
-	[ 0.5, 0.5, "Richard S. Willis sent this poem out within 45 minutes of reading it. Not even 4 hours later walking along the street to his new job interview with a really big company, when he ran into Cyntha Bell, his secret love for 5 years. Cyntha came up to him, and told him of her passionate crush on him that she had had for 2 years." ],
-	[ 0.5, 0.5, "Intel announced that a new and very destructive virus was discovered recently. If you receive an email called \"An Internet Flower For You\", do not open it. \  Delete it right away!" ],
-	[ 0.5, 0.5, "Hello, and thank you for reading this letter. You see, there is a starving little boy in Baklaliviatatlaglooshen who has no arms, no legs, no parents, and no goats. This little boy's life could be saved, because for every time you pass this on, a dollar will be donated to the Little Starving Legless Armless Goatless Boy from Baklaliviatatlaglooshen Fund. Oh, and remember, we have absolutely no way of counting the emails sent and this is all a complete load of bullshit. So go on, reach out. Send this to 5 people in the next 47 seconds. Oh, and a reminder - if you accidentally send this to 4 or 6 people, you will die instantly." ],
-	[ 0.5, 0.5, "There is a computer virus that is being sent across the Internet. If youreceive an e-mail message with the subject line \"Good Times\", DO NOT readthe message, DELETE it immediately. Please read the messages below.Some miscreant is sending e-mail under the title \"good times\"nation-wide. If you get anything like this, DON'T DOWNLOAD THE FILE! It has a virus that rewrites your hard drive, obliterating anything on it. Please be careful and forward this mail to anyone you care about--I have." ],
+	[ 0.5, 0.5, "Take Katie {Name}. She received this e-mail and sent it to a few of her friends, but didn't have enough e-mail addresses to send out the full {Value} that you must. Three days later, Katie went to a masquerade ball. Later that night when she left to get to her car, she was killed in that spot by a hit-and-run {Adjective} driver." ],
+	[ 0.5, 0.5, "{Name} sent this poem out within {Value} minutes of reading it. Not even {Value} hours later walking along the street he ran into Cyntha Bell, his secret love for {Value} years. Cyntha came up to him, and told him of her passionate crush on him that she had had for {Value} years." ],
+	[ 0.5, 0.5, "Intel announced that a new and very {Adjective} virus was discovered recently. If you receive an email called \"An Internet Flower For You\", do not {Verb} it. \  {Verb} it right away!" ],
+	[ 0.5, 0.5, "Hello, and thank you for {Verb} this letter. You see, there is a starving little boy in {Country} who has no arms, no legs, no {Person}, and no goats. This little boy's life could be saved, because for every time you pass this on, a dollar will be donated to the Little Starving Boy. "]
+	[ 0.5, 0.5, "There is a computer virus that is being sent across the Internet. If you receive an e-mail message with the subject line \"{Person}\", DO NOT {Verb} the message, {Verb} it immediately." ],
 
 	[ 0.5, 0.5, "Now, to make you feel guilty, here's what I'll do. First of all, if you don't send this to 5096 people in the next 5 seconds, you will be raped by a mad goat and thrown off a high building into a pile of manure. It's true! Because, THIS letter isn't like all of those fake ones, THIS one is TRUE!! Really!!! Here's how it goes:" ],
 	[ 0.5, 0.5, "░░░░░███████ ]▄▄▄▄▄▄▄▄ Bob is building an army.\n▂▄▅█████████▅▄▃▂ \☻ This tank & Bob are against Google+\nIl███████████████████]... ▌\︻╦╤─ Copy and Paste this all over\n◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤.... / \ YouTube if you are with us" ],
