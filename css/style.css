@@ -134,3 +134,23 @@ canvas {
 
 	border-radius: 5px 5px 5px 5px;
 }
+
+#stats_window{
+	display: block;
+	width: 150px;
+	height: 90px;
+	text-align: left;
+
+	font-size: 12px;
+
+	top: 20px;
+	right: 20px;
+}
+
+#stats_window .subheader{
+		margin-left: 4px;
+}
+
+#stats_window p{
+	margin: 6px;
+}

@@ -5,9 +5,13 @@
 	<meta charset="utf-8">
 
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="main.js"></script>
 	<script src="chainGenerator.js"></script>
+	<script src="chainMail.js"></script>
 
 	<!-- Phaser -->
 	<!-- <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script> -->
@@ -55,6 +59,17 @@
 				<div class="subheader">
 					- We always reach a compromise -
 				</div>
+			</div>
+		</div>
+
+		<div class="popup" id="stats_window">
+			<div class="window_top"></div>
+			<div class="window_body">
+				<div class="subheader">
+					Statistics
+				</div>
+				<p>Balance: <span id="#money_disp">0</span> $</p>
+				<p>People reached: <span id="#money_disp">0</span> </p>
 			</div>
 		</div>
 	</div>
