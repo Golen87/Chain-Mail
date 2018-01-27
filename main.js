@@ -33,4 +33,44 @@ $(document).ready(() => {
     });
 
     $(".popup").draggable({handle: ".window_top"});
+
+    let ctx = document.getElementById("chart").getContext('2d');
+
+    let data = makeSpread(20, 1, 10);
+    data[0] = 0;
+    let N = data.length;
+    let labels = Array.apply(null, {length: N}).map(Number.call, Number)
+    console.log(labels);
+
+    let myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+            data: data,
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+  options: {
+      scales: {
+        xAxes: [{
+            ticks: {
+                max: N,
+                min: 0,
+                stepSize: 1
+            }
+        }]
+    },
+    tooltips: {
+        enabled: false
+    },
+    legend: {
+        display: false
+    }
+  }
+});
+
+
 });
