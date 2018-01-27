@@ -118,3 +118,14 @@ canvas {
 
 	border-radius: 0px 5px 0px 0px;
 }
+
+#stats_window{
+	display: block;
+	width: 100px;
+	height: 150px;
+
+	font-size: 8px;
+
+	top: 20px;
+	right: 20px;
+}

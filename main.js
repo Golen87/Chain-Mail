@@ -1,3 +1,6 @@
+let money = 0;
+let shares = 0;
+
 $(document).ready(() => {
     $("#icon1").click(() => {
         $("#mail_gen").show();
