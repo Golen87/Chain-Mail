@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '147277622586147',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.11'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="page-header">
+        <h1>Share Dialog</h1>
+    </div>
+
+    <p>Click the button below to trigger a Share Dialog</p>
+
+    <div id="buttonDiv" class="btn btn-success clearfix"><button id='shareBtn' onsubmit="">Share</button></div>
+
+    <script>
+
+    function postToFacebook(){
+        var url = "https://golen87.github.io/Chain-Mail/";
+        var message = "He ho asodiasdhji";
+
+        FB.ui({
+            method: 'share',
+            display: 'popup',
+            quote: message,
+            href: url,
+          }, function(response){});
+    }
+
+    window.onload = function(){
+        alert("Before stuff");
+
+        var shareButton = document.getElementById('shareBtn');
+
+        if (shareButton){
+            shareButton.onclick = postToFacebook;
+        }else {
+            alert("No button");
+        }
+
+    }
+
+    </script>
+
+</body>
+</html>
