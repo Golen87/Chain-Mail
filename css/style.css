@@ -50,6 +50,8 @@ canvas {
 	left: 40px;
 
 	width: 50px;
+
+	cursor: pointer;
 }
 
 #icon1{
@@ -133,6 +135,8 @@ canvas {
 	height: 100%;
 
 	border-radius: 0px 5px 0px 0px;
+
+	cursor:pointer;
 }
 
 #stats_window{
