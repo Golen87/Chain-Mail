@@ -160,7 +160,7 @@ canvas {
 	left: 100px;
 	text-align: center;
 
-	height: 400px;
+	height: 380px;
 }
 
 .selection_body {
@@ -210,14 +210,22 @@ canvas {
 	border-left: 30px solid dimgrey;
 }
 
-#mail_gen .send_button {
+#mail_gen .send_section {
 	height: 50px;
-	background-color: #255fdc; /* XP Blue */
-	border-radius: 5px;
+	padding: 5px 35% 0 35%;
 }
 
-#mail_gen .send_button p {
+#mail_gen .send_button {
+	background-color: #255fdc; /* XP Blue */
+	border-radius: 5px;
 	color: white;
 
-	text-align: right;
+	height: 100%;
+	width:100%;
+	text-align:center;
+	vertical-align: middle;
+}
+
+#mail_gen .send_button:hover {
+	background-color: #1e459d; /* Dark XP Blue */
 }
