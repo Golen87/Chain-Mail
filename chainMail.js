@@ -10,7 +10,7 @@ ChainMail = function() {
 		"content":	MultiChoose(chainContent, this.count),
 		"ending":	MultiChoose(chainEnding, this.count),
 	};
-
+	
 	// Replace with Part objects with random tags
 	for (var key in this.choices) {
 		for (var i = 0; i < this.choices[key].length; i++) {
