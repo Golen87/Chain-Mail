@@ -26,23 +26,33 @@ canvas {
 	bottom: 0;
 	width: 100%;
 	height: 30px;
-	background-color: #255fdc;  /*XP Blue*/
+
+	border-top: 1px solid #3168d5;
+	background: linear-gradient(#4190f1, #357ee2, #2462da, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2158d4, #1a45ad);
 }
 
 #clock{
 	width: 100px;
 	height: 100%;
 	float: right;
-	background-color: #0f8fe8; /* XP Clock Light Blue */
+	background: linear-gradient(#16b7fb, #15a7ee, #1399ed, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #0c9bef, #0d9ef0, #0d9ef0, #0d9ef0, #0d9ef0, #1499e5, #0d67ce);
+}
+
+#clock_edge {
+	height: 100%;
+ 	width: 5px;
+	float: left;
+
+	background: linear-gradient(to right, #2666e7, #1c47b9, #136a8e, #23ccfc, #12a2ee);
 }
 
 #time{
-	padding: 8px 12px 8px 0;
+	padding: 7px 12px 7px 0;
 
-	font-size: 14px;
+	font-size: 13px;
 	color: white;
 	font-family: sans-serif;
 	text-align: right;
 
-	margin: 0px;
+	margin: 0;
 }
