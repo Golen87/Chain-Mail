@@ -53,7 +53,7 @@
 
 .window_close{
     position: absolute;
-    background-color: red;
+    background-color: #d64921;
     color: white;
     top: 5px;
     right: 5px;
@@ -69,7 +69,7 @@
     display: block;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background: url(../assets/close_button_hover.png) no-repeat;
+    background: #ea7c7e url(../assets/close_button_hover.png) no-repeat;
     width: 19px;
     height: 21px;
     padding-left: 19px;
@@ -78,7 +78,7 @@
     display: block;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background: url(../assets/close_button_active.png) no-repeat;
+    background: #d64921 url(../assets/close_button_active.png) no-repeat;
     width: 19px;
     height: 21px;
     padding-left: 19px;
