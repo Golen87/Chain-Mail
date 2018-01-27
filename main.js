@@ -20,6 +20,8 @@ function PutOnTop(windowId) {
     newTop.css('z-index', WINDOWS.length);
 };
 
+const graphColor = "#34e722";
+
 $(document).ready(() => {
     $("#icon1").click(() => {
         $("#mail_gen").show();
@@ -52,4 +54,42 @@ $(document).ready(() => {
     });
 
     $(".popup").draggable({handle: ".window_top"});
+
+    let ctx = document.getElementById("chart").getContext('2d');
+    let data = makeSpread(200, 0.7, 10);
+    makeGraph(ctx, data);
 });
+
+function makeGraph(canvas, data){
+    let N = data.length;
+    let labels = Array.apply(null, {length: N}).map(Number.call, Number);
+
+    let myChart = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                borderColor: graphColor,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        max: N,
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            },
+            tooltips: {
+                enabled: false
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+}
