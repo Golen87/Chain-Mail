@@ -25,11 +25,16 @@ function updateGraph() {
             }
         }
 
-        datasets.push({
-            data: datapoints,
-            borderColor: sent_mails[i].graphColor,
-            fill: false
-        });
+        if (datapoints.length > 0) {
+            datasets.push({
+                data: datapoints,
+                borderColor: sent_mails[i].graphColor,
+                fill: false
+            });
+        } else if (sent_mails[i].graphColor) {
+            returnGraphColor(sent_mails[i].graphColor);
+            sent_mails[i].graphColor = null;
+        }
     }
 
     let labels = [];

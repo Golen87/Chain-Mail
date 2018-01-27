@@ -1,4 +1,4 @@
-let money = 10000;
+let money = 0;
 let shares = 0;
 let mail_addresses = 10;
 var current_mail = null;
