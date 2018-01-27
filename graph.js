@@ -55,7 +55,8 @@ function makeGraph(canvas, datasets) {
                     radius: 0
                 }
             },
-            animation: false
+            animation: false,
+            events: []
         }
     });
 }
