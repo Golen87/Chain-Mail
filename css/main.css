@@ -25,7 +25,7 @@ canvas {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 40px;
+	height: 30px;
 	background-color: #255fdc;  /*XP Blue*/
 }
 
@@ -33,18 +33,16 @@ canvas {
 	width: 100px;
 	height: 100%;
 	float: right;
-	background-color: #44b2fc;
-
-	border-radius: 15px 0px 0px 0px;
+	background-color: #0f8fe8; /* XP Clock Light Blue */
 }
 
 #time{
-	padding: 7px;
+	padding: 8px 12px 8px 0;
 
-	font-size: 23px;
+	font-size: 14px;
 	color: white;
 	font-family: sans-serif;
-	font: Arial;
+	text-align: right;
 
 	margin: 0px;
 }
