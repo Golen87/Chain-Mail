@@ -61,6 +61,7 @@ function timeTick(){
 
         tickMails();
         updateGraph();
+        updateStats();
     }
 }
 

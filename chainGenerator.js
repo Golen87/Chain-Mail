@@ -162,7 +162,6 @@ const chainOpening = [
 	[ 0.5, 0.5, "Dear Friends:" ],
 	[ 0.5, 0.5, "IM SORRY GUYS>>I REALLY DONT BELIEVE IT BUT SENDING IT TO YALL JUST IN CASE!!!!!!!!!!!!" ],
 	[ 0.5, 0.5, "Dear Internet Subscriber:" ],
-	[ 0.5, 0.5, "Dear {Person}:" ],
 	[ 0.5, 0.5, "THIS IS TRUE----PLEASE TAKE THE TIME TO READ IT AND PLEASE SEND THIS TO EVERY SINGLE PERSON YOU KNOW WHO HAS AN E- MAIL ADDRESS....THIS IS REALLY TERRIFIC. " ],
 	[ 0.5, 0.5, "WARNING!!!!!!!!!: INTERNET VIRUS" ],
 	[ 0.5, 0.5, "*****PLEASE FORWARD THIS TO HELP THIS {Adjective} GIRL***** \n Dear All, \n I just received this mail from {Person}." ],
