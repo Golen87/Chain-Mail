@@ -5,25 +5,5 @@ window.onload = function () {
 
     document.getElementById("message").innerHTML = a;
 
-    function postToFacebook(){
-        var url = "https://golen87.github.io/Chain-Mail/";
-        var message = "He ho asodiasdhji";
-
-        FB.ui({
-            method: 'share',
-            display: 'popup',
-            quote: message,
-            href: url,
-          }, function(response){});
-    }
-    
-    var shareButton = document.getElementById('shareBtn');
-
-    if (shareButton){
-        shareButton.onclick = postToFacebook;
-    }else {
-        alert("No button");
-    }
-
 };
 

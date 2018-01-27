@@ -32,6 +32,25 @@
 	<script src="js/main.js"></script> -->
 </head>
 <body>
+	 <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '147277622586147',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.11'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 	<div id="desktop" >
 		<img id="wallpaper" src="assets/wallpaper.jpg" />
 		<div id="taskbar">
@@ -83,6 +102,9 @@
 					<div class="send_button button" onclick="javascript:sendMail();">
 						<div class="inner">Send</div>
 					</div>
+                    <div class="share_button button" id="shareButton" onclick="postToFacebook();">
+                        <div class="inner">Share</div>
+                    </div>
 				</div>
 			</div>
 		</div>
