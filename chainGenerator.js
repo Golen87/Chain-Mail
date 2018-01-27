@@ -207,8 +207,9 @@ const chainContent = [
 	[ 0.5, 0.5, "Please respond to it. It will just mean employing a little bit of time and won't cost you a penny. All it needs is the heart for you to send this mail. PLEASE pass this mail on to everybody you know. It is the request of little girl who will soon leave this world as she has been a victim of the terrible disease called CANCER. Thank you for your effort, this isn't a chain letter, but a choice for all of us to save a little girl that's dying of a serious and fatal form of cancer. " ],
 	[ 0.5, 0.5, "Please send this to everyone you know...or don't know. This little girl has 6 months left to live, and as her dying wish, she wanted to send a chain letter telling everyone to live their life to fullest, since she never will. She'll never make it to prom, graduate from high school, or get married and have a family of her own. By you sending this to as many people as possible, you can give her and her family a little hope, because with every name that this is sent to,The American Cancer Society will donate 3 cents per name to her treatment and recovery plan. " ],
 	[ 0.5, 0.5, "One guy sent this to 500 people !!!! So, I know that we can send it to at least 5 or 6. Come on you guys.... and if you're too selfish to take 10-15 minutes scrolling this and forwarding it to EVERYONE, then you are one sick person. Just think it could be you one day.It's not even your $money$, just your time!!!" ],
+	[ 0.5, 0.5, "WE URGE YOU TO MAKE COPIES OF THIS AND PASS IT ON TO AS MANY PEOPLE AS POSSIBLE. THIS NEEDS TO STOP. LIZ CLAIRBORNE ALSO PROFESSES TO WORSHIP SATAN AND RECENTLY OPENLY ADMITTED ON THE OPRAH WINFREY SHOW THAT HALF OF HER PROFITS GO TOWARDS THE CHURCH OF SATAN. " ],
+	[ 0.5, 0.5, "He stated that a large portion of his profits from Procter & Gamble Products goes to support this satanic church. When asked by Sally Jesse if stating this on t.v. would hurt his business, he replied, \"THERE ARE NOT ENOUGH CHRISTIANS IN THE UNITED STATES TO MAKE A DIFFERENCE.\"" ],
 ];
-
 
 const chainEnding = [
 	[ 0.5, 0.5, "Now pass this on! If you don't, you'll never have sex ever again." ],
@@ -224,6 +225,4 @@ const chainEnding = [
 	[ 0.5, 0.5, "From Mr. Jon, Henerd" ],
 	[ 0.5, 0.5, "Walt Disney Jr., Disney, Bill Gates, & The Microsoft Development Team." ],
 	[ 0.5, 0.5, "Note: Duplicate entries will not be counted. You will be notified by email with further instructions once this email has reached 13,000 people. Your friend, Mike Myers." ],
-	[ 0.5, 0.5, "WE URGE YOU TO MAKE COPIES OF THIS AND PASS IT ON TO AS MANY PEOPLE AS POSSIBLE. THIS NEEDS TO STOP. LIZ CLAIRBORNE ALSO PROFESSES TO WORSHIP SATAN AND RECENTLY OPENLY ADMITTED ON THE OPRAH WINFREY SHOW THAT HALF OF HER PROFITS GO TOWARDS THE CHURCH OF SATAN. " ],
-	[ 0.5, 0.5, "He stated that a large portion of his profits from Procter & Gamble Products goes to support this satanic church. When asked by Sally Jesse if stating this on t.v. would hurt his business, he replied, \"THERE ARE NOT ENOUGH CHRISTIANS IN THE UNITED STATES TO MAKE A DIFFERENCE.\"" ],
 ];
