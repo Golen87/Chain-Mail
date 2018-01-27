@@ -106,9 +106,17 @@ $(document).ready(() => {
         updateStats();
     });
 
+    window.onresize = function(event) {
+        setGameHeight();
+    };
+
+    //Set game height correct
+    setGameHeight();
+
     //update stats on page Preload
     updateStats();
 
+    //Start clock
     setInterval(timeTick, tickTime);
 
     let ctx = document.getElementById("chart").getContext('2d');
@@ -116,10 +124,12 @@ $(document).ready(() => {
     makeGraph(ctx, data);
 });
 
+function setGameHeight(){
+    $("#desktop").css("height", Math.max(document.documentElement.clientHeight, window.innerHeight || 0));
+}
+
 function updateStats(){
     $("#people_disp").text(shares);
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
-
-    console.log("ran");
 }
