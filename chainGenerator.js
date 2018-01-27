@@ -133,12 +133,12 @@ Part = function(spreadFactor, seriousFactor, text)
 
 Part.prototype.insertRandomTags = function() {
 	// Todo: Replace {People}, or alike with random function calls
-	this.text = this.text.replace("{Person}", Person());
-	this.text = this.text.replace("{Name}", Name());
-	this.text = this.text.replace("{value}", (Math.random*100).toString());
-	this.text = this.text.replace("{Adjective}", Adjective());
-	this.text = this.text.replace("{Verb}", Verb());
-	this.text = this.text.replace("{Tele}", phoneNumber());
+	this.text = this.text.replace(/{Person}/gi, Person());
+	this.text = this.text.replace(/{Name}/gi, Name());
+	this.text = this.text.replace(/{value}/gi, (Math.random*100).toString());
+	this.text = this.text.replace(/{Adjective}/gi, Adjective());
+	this.text = this.text.replace(/{Verb}/gi, Verb());
+	this.text = this.text.replace(/{Tele}/gi, phoneNumber());
 };
 
 
@@ -226,7 +226,7 @@ const chainEnding = [
 	[ 0.5, 0.5, "What we say is important... for in most cases the mouth speaks what the heart is full of." ],
 	[ 0.5, 0.5, "From Mr. Jon Henerd \ Hotmail Admin. Dept." ],
 	[ 0.5, 0.5, "Thank you for your time.......#:) hahahahaha!!!" ],
-	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: {Tele}" ],
+	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: {Tele} {Tele}" ],
 	[ 0.5, 0.5, "Please be careful." ],
 	[ 0.5, 0.5, "This is not a joke --- this is a true story. Ride free citizens!" ],
 	[ 0.5, 0.5, "From Mr. Jon, Henerd" ],
