@@ -1,6 +1,9 @@
 let money = 10000;
 let shares = 0;
 let mail_addresses = 10;
+var current_mail = null;
+var sent_mails = [];
+
 
 function PutOnTop(windowId) {
     var newTop = $(windowId);
@@ -21,7 +24,37 @@ function PutOnTop(windowId) {
     newTop.css('z-index', WINDOWS.length);
 };
 
-const graphColor = "#34e722";
+
+const tickTime = 100;
+let hour = 0;
+let minute = 0;
+
+function timeTick(){
+    if(minute == 59){
+        minute = 0;
+        hour += 1;
+    }
+    else{
+        minute++;
+    }
+
+    if(hour == 24){
+        hour = 0;
+    }
+
+    let hourStr = hour;
+    let minuteStr = minute;
+
+    if(hour < 10){
+        hourStr = "0" + hourStr;
+    }
+    if(minute < 10){
+        minuteStr = "0" + minuteStr;
+    }
+
+    $("#hour").text(hourStr);
+    $("#minute").text(minuteStr);
+}
 
 $(document).ready(() => {
     $("#icon1").click(() => {
@@ -76,8 +109,10 @@ $(document).ready(() => {
     //update stats on page Preload
     updateStats();
 
+    setInterval(timeTick, tickTime);
+
     let ctx = document.getElementById("chart").getContext('2d');
-    let data = makeSpread(200, 0.7, 10);
+    let data = makeSpread(200, 0.7, 100);
     makeGraph(ctx, data);
 });
 
@@ -87,38 +122,4 @@ function updateStats(){
     $("#mail_disp").text(mail_addresses);
 
     console.log("ran");
-}
-
-function makeGraph(canvas, data){
-    let N = data.length;
-    let labels = Array.apply(null, {length: N}).map(Number.call, Number);
-
-    let myChart = new Chart(canvas, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: data,
-                borderColor: graphColor,
-                fill: false
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        max: N,
-                        min: 0,
-                        stepSize: 1
-                    }
-                }]
-            },
-            tooltips: {
-                enabled: false
-            },
-            legend: {
-                display: false
-            }
-        }
-    });
 }
