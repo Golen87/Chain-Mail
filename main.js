@@ -1,3 +1,6 @@
+let money = 0;
+let shares = 0;
+
 $(document).ready(() => {
     $("#icon1").click(() => {
         $("#mail_gen").show();
@@ -14,4 +17,6 @@ $(document).ready(() => {
     $("#market_close").click(() => {
         $("#marketplace").hide();
     });
+
+    $(".popup").draggable({handle: ".window_top"});
 });
