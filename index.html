@@ -7,6 +7,7 @@
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
+	<script src="Chart.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="main.js"></script>
@@ -63,13 +64,13 @@
 		</div>
 
 		<div class="popup" id="stats_window">
-			<div class="window_top"></div>
+			<div class="window_top">
+				<div class="window_title">Statistics</div>
+			</div>
 			<div class="window_body">
-				<div class="subheader">
-					Statistics
-				</div>
 				<p>People reached: <span id="people_disp">0</span> </p>
 				<p>Balance: <span id="money_disp">0</span> $</p>
+				<canvas id="chart"></canvas>
 			</div>
 		</div>
 	</div>

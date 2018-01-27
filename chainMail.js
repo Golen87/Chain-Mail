@@ -21,6 +21,7 @@ ChainMail = function() {
 	}
 
 	this.message = null;
+	this.spread = [];
 	this.peopleReached = 0;
 };
 
@@ -37,6 +38,21 @@ ChainMail.prototype.tick = function() {
 	// Todo: Math
 };
 
+/*
+ 0 < popularity < 1
+*/
+function makeSpread(startPoint, popularity, limit){
+	spread = [];
+
+	let i = 1;
+
+	do{
+		spread[i] = startPoint*Math.pow(i, popularity)*Math.pow(Math.E, -0.1*i);
+		i++;
+	}while(spread[i - 1] > limit)
+
+	return spread;
+}
 
 var mail = new ChainMail();
 console.log(mail);
