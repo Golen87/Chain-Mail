@@ -46,7 +46,7 @@
     width: 100%;
     height: inherit;
     position: absolute;
-    background-color: lightgrey;
+    background-color: #eceadc; /* XP Light Yellow/Grey */
 }
 
 .window_close{
