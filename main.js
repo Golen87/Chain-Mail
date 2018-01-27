@@ -54,6 +54,9 @@ function timeTick(){
 
     $("#hour").text(hourStr);
     $("#minute").text(minuteStr);
+
+    tickMails();
+    updateGraph();
 }
 
 $(document).ready(() => {
@@ -119,9 +122,7 @@ $(document).ready(() => {
     //Start clock
     setInterval(timeTick, tickTime);
 
-    let ctx = document.getElementById("chart").getContext('2d');
-    let data = makeSpread(200, 0.7, 100);
-    makeGraph(ctx, data);
+    updateGraph();
 });
 
 function setGameHeight(){
@@ -132,4 +133,5 @@ function updateStats(){
     $("#people_disp").text(shares);
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
+    $("#mail_receivers").text(mail_addresses);
 }
