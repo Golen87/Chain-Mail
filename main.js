@@ -20,6 +20,8 @@ function PutOnTop(windowId) {
     newTop.css('z-index', WINDOWS.length);
 };
 
+const graphColor = "#34e722";
+
 $(document).ready(() => {
     $("#icon1").click(() => {
         $("#mail_gen").show();
@@ -54,42 +56,40 @@ $(document).ready(() => {
     $(".popup").draggable({handle: ".window_top"});
 
     let ctx = document.getElementById("chart").getContext('2d');
+    let data = makeSpread(200, 0.7, 10);
+    makeGraph(ctx, data);
+});
 
-    let data = makeSpread(20, 1, 10);
-    data[0] = 0;
+function makeGraph(canvas, data){
     let N = data.length;
-    let labels = Array.apply(null, {length: N}).map(Number.call, Number)
-    console.log(labels);
+    let labels = Array.apply(null, {length: N}).map(Number.call, Number);
 
-    let myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-            data: data,
-            borderColor: "#3e95cd",
-            fill: false
-          }
-        ]
-      },
-  options: {
-      scales: {
-        xAxes: [{
-            ticks: {
-                max: N,
-                min: 0,
-                stepSize: 1
+    let myChart = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                borderColor: graphColor,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        max: N,
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            },
+            tooltips: {
+                enabled: false
+            },
+            legend: {
+                display: false
             }
-        }]
-    },
-    tooltips: {
-        enabled: false
-    },
-    legend: {
-        display: false
-    }
-  }
-});
-
-
-});
+        }
+    });
+}
