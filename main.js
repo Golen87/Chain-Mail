@@ -128,6 +128,8 @@ $(document).ready(() => {
             current_mail.finish();
 
             var message = current_mail.message.replace(/<p>/gi, "");
+            message = message.replace(/<.+p>/gi, "");
+
 
             console.log(message);
             FB.ui({
