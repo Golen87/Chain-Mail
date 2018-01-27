@@ -31,7 +31,7 @@ canvas {
 }
 
 .icon p{
-	font-size: 15px;
+	font-size: 9px;
 	font-family: sans-serif;
 	font: Arial;
 
@@ -39,12 +39,14 @@ canvas {
 }
 
 .icon img{
-	width: 100px;
+	width: 100%;
 }
 
 .icon{
 	position: absolute;
 	left: 40px;
+
+	width: 50px;
 }
 
 #icon1{
@@ -63,6 +65,11 @@ canvas {
 
 	height: 300px;
 	display: none;
+
+	border-radius: 10px;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
 }
 
 #mail_gen{
@@ -75,4 +82,27 @@ canvas {
 	width: 500px;
 
 	left: 150px;
+	top: 70px;
+}
+
+.window_top{
+	height: 20px;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	background-color: blue;
+
+	border-radius: 5px 5px 0px 0px;
+}
+
+.window_close{
+	position: absolute;
+	background-color: red;
+	top: 0px;
+	right: 0px;
+
+	width: 20px;
+	height: 100%;
+
+	border-radius: 0px 5px 0px 0px;
 }
