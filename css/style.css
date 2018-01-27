@@ -159,6 +159,8 @@ canvas {
 	width: 500px;
 	left: 100px;
 	text-align: center;
+
+	height: 400px;
 }
 
 .selection_body {
@@ -170,18 +172,19 @@ canvas {
 	display: flex;
 	flex-direction: row;
 
-	margin: 15px 5px 0 5px;
+	margin: 8px 5px 8px 5px;
 }
 
 #mail_gen .text {
 	background-color: white;
 
 	height: 80px;
-
-	overflow: auto;
-	flex-grow: 1;
 	margin-left: 7px;
 	margin-right: 7px;
+	overflow: auto;
+	flex-grow: 1;
+
+	text-align: left;
 }
 #mail_gen .prev_button {
 	/* CSS triangle left */
@@ -205,4 +208,16 @@ canvas {
 }
 #mail_gen .next_button:hover {
 	border-left: 30px solid dimgrey;
+}
+
+#mail_gen .send_button {
+	height: 50px;
+	background-color: #255fdc; /* XP Blue */
+	border-radius: 5px;
+}
+
+#mail_gen .send_button p {
+	color: white;
+
+	text-align: right;
 }
