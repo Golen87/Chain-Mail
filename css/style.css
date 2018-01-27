@@ -127,11 +127,20 @@ canvas {
 
 #stats_window{
 	display: block;
-	width: 100px;
-	height: 150px;
+	width: 150px;
+	height: 90px;
+	text-align: left;
 
-	font-size: 8px;
+	font-size: 12px;
 
 	top: 20px;
 	right: 20px;
+}
+
+#stats_window .subheader{
+		margin-left: 4px;
+}
+
+#stats_window p{
+	margin: 6px;
 }
