@@ -134,13 +134,15 @@ Part = function(spreadFactor, seriousFactor, text)
 Part.prototype.insertRandomTags = function() {
 	// Todo: Replace {People}, or alike with random function calls
 	this.text = this.text.replace("{Person}", Person());
+	this.text = this.text.replace("{Name}", Name());
 	this.text = this.text.replace("{value}", (Math.random*100).toString());
 	this.text = this.text.replace("{Adjective}", Adjective());
 	this.text = this.text.replace("{Verb}", Verb());
+	this.text = this.text.replace("{Tele}", phoneNumber());
 };
 
 
-//	[ spread, serious, text ]
+//	[ spread, serious,0, text ]
 
 const chainOpening = [
 	[ 1.0, 0.0, "BEWARE" ],
@@ -217,17 +219,17 @@ const chainContent = [
 ];
 
 const chainEnding = [
-	[ 0.5, 0.5, "Now pass this on! If you don't, you'll never have sex ever again." ],
+	[ 0.5, 0.5, "Now pass this on! If you don't, you'll never {Verb} ever again." ],
 	[ 0.5, 0.5, "Forward this for good luck!" ],
 	[ 0.5, 0.5, "Now forward this to everyone you know otherwise you'll find your balls missing tomorrow morning." ],
 	[ 0.5, 0.5, "Try this! ...It really works. If you take this e-mail and forward it to at least 5 people, including the person that sent it to you, a person will appear standing on this bridge. \ Let me know if you know the person? OKAY!" ],
 	[ 0.5, 0.5, "What we say is important... for in most cases the mouth speaks what the heart is full of." ],
 	[ 0.5, 0.5, "From Mr. Jon Henerd \ Hotmail Admin. Dept." ],
 	[ 0.5, 0.5, "Thank you for your time.......#:) hahahahaha!!!" ],
-	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: 512-433-6855 Pager: 512-613-3710" ],
+	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: {Tele}" ],
 	[ 0.5, 0.5, "Please be careful." ],
 	[ 0.5, 0.5, "This is not a joke --- this is a true story. Ride free citizens!" ],
 	[ 0.5, 0.5, "From Mr. Jon, Henerd" ],
 	[ 0.5, 0.5, "Walt Disney Jr., Disney, Bill Gates, & The Microsoft Development Team." ],
-	[ 0.5, 0.5, "Note: Duplicate entries will not be counted. You will be notified by email with further instructions once this email has reached 13,000 people. Your friend, Mike Myers." ],
+	[ 0.5, 0.5, "Note: Duplicate entries will not be counted. You will be notified by email with further instructions once this email has reached 13,000 people. Your friend, {Name}." ],
 ];

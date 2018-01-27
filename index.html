@@ -54,20 +54,23 @@
 				<div class="window_close" id="mail_close">&#10006;</div>
 			</div>
 			<div class="window_body" id="selection_body">
-				<div class="choice" id="opening_choice">
-					<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
-					<div class="text">Empty</div>
-					<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
-				</div>
-				<div class="choice" id="content_choice">
-					<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
-					<div class="text">Empty</div>
-					<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
-				</div>
-				<div class="choice" id="ending_choice">
-					<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
-					<div class="text">Empty</div>
-					<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
+				<div class="field receivers">Receivers: <span id="mail_receivers">0</span></div>
+				<div class="field message">
+					<div class="choice" id="opening_choice">
+						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
+						<div class="text">Empty</div>
+						<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
+					</div>
+					<div class="choice" id="content_choice">
+						<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
+						<div class="text">Empty</div>
+						<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
+					</div>
+					<div class="choice" id="ending_choice">
+						<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
+						<div class="text">Empty</div>
+						<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
+					</div>
 				</div>
 				<div class="send_section choice">
 					<div class="send_button" onclick="javascript:sendMail();"><p>Send</p></div>
@@ -89,9 +92,29 @@
 				</div>
 				<div id="shop_list">
 					<div class="shop_item">
+						<h4><span class="adresses">20</span> E-Mail Adresses</h4>
+						<div class="store_left">
+							<p>20 e-mail adresses I stole from my friend. Do what you want with them.</p>
+						</div>
+						<div class="store_right">
+							<p><span class="cost">15</span>$</p>
+							<div class="buy_btn">Buy!</div>
+						</div>
+					</div>
+					<div class="shop_item">
+						<h4><span class="adresses">100</span> E-Mail Adresses</h4>
+						<div class="store_left">
+							<p>100 e-mail adresses I found on some forum. Pls no spam.</p>
+						</div>
+						<div class="store_right">
+							<p><span class="cost">50</span>$</p>
+							<div class="buy_btn">Buy!</div>
+						</div>
+					</div>
+					<div class="shop_item">
 						<h4><span class="adresses">500</span> E-Mail Adresses</h4>
 						<div class="store_left">
-							<p>500 e-mail adresses from hacked databases. Perfect for spreading your important messages!</p>
+							<p>500 e-mail adresses from a big data breach. Use with care!</p>
 						</div>
 						<div class="store_right">
 							<p><span class="cost">200</span>$</p>
@@ -111,7 +134,7 @@
 					<div class="shop_item">
 						<h4><span class="adresses">3000</span> E-Mail Adresses</h4>
 						<div class="store_left">
-							<p>3000 e-mail adresses from hacked databases. Perfect for spreading your important messages!</p>
+							<p>3000 e-mail adresses fresh of NSA's servers. Remember, with great spamming comes great responsibility.</p>
 						</div>
 						<div class="store_right">
 							<p><span class="cost">1000</span>$</p>
