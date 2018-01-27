@@ -1,5 +1,6 @@
 #marketplace{
     width: 500px;
+    height: 380px;
     left: 150px;
     top: 20px;
 }
@@ -15,12 +16,8 @@
     display: block;
     height: 100px;
 
-    background-color: white;
-
     padding: 5px;
     text-align: left;
-
-    border: 1px solid #7c9ebc; /* XP Yellow-Blue */
 }
 
 .buy_btn{

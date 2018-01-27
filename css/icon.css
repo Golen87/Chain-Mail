@@ -7,10 +7,12 @@
 
 .icon img{
     width: 100%;
+    position: relative;
 }
 
 .icon img:hover{
     width: 110%;
+    left: -5%;
 }
 
 .icon{

@@ -76,7 +76,8 @@ function makeGraph(datasets, labels) {
                     radius: 0
                 }
             },
-            animation: false
+            animation: false,
+            events: []
         }
     });
 }

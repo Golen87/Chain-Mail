@@ -31,7 +31,9 @@ let hour = 0;
 let minute = 0;
 
 function timeTick(){
-    if(minute == 59){
+    globalTick += 1;
+
+    if(minute === 59){
         minute = 0;
         hour += 1;
     }
@@ -39,7 +41,7 @@ function timeTick(){
         minute++;
     }
 
-    if(hour == 24){
+    if(hour === 24){
         hour = 0;
     }
 
@@ -56,8 +58,7 @@ function timeTick(){
     $("#hour").text(hourStr);
     $("#minute").text(minuteStr);
 
-
-    if (minute % 10 == 0) {
+    if (minute % 10 === 0) {
         globalTick += 1;
 
         tickMails();
@@ -97,7 +98,7 @@ $(document).ready(() => {
         $("#marketplace").hide();
     });
 
-    $(".popup").draggable({handle: ".window_top"});
+    $(".window").draggable({handle: ".window_top"});
 
     $(".buy_btn").click(function(){
         let parent = $(this).closest(".shop_item");
