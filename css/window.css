@@ -46,7 +46,7 @@
     width: 100%;
     height: inherit;
     position: absolute;
-    background-color: lightgrey;
+    background-color: #eceadc; /* XP Light Yellow/Grey */
 }
 
 .window_close{
@@ -59,7 +59,40 @@
     width: 24px;
     height: 24px;
 
+    margin: 1px;
+
     border-radius: 5px;
 
     cursor:pointer;
+}
+
+.button {
+    background-color: white;
+    border: 1px solid #043e74; /* XP Dark Blue*/
+    border-radius: 3px;
+    color: black;
+
+    height: 19px;
+    width: 62px;
+    text-align:center;
+
+    cursor:pointer;
+}
+
+.button .inner {
+    border: 2px solid #dcdcdc; /* Xp Light Grey */
+    border-radius: 2px;
+    height: 14px;
+    width: 58px;
+    font-size: 13px;
+    padding-top: 1px;
+}
+
+.button .inner:hover {
+    border-color: #fcb234; /* XP Gold */
+}
+
+.button .inner:active {
+    border-color: #e3e0db; /* XP Light Grey */
+    background-color: #e3e0db;;
 }

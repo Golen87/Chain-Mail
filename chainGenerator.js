@@ -42,7 +42,7 @@ function RandFloat(min, max) {
 if ( !String.prototype.format ) {
 	String.prototype.format = function() {
 		var args = arguments;
-		return this.replace( /{(\d+)}/g, function( match, number ) { 
+		return this.replace( /{(\d+)}/g, function( match, number ) {
 			return typeof args[number] != 'undefined'
 				? args[number]
 				: match
@@ -133,12 +133,12 @@ Part = function(spreadFactor, seriousFactor, text)
 
 Part.prototype.insertRandomTags = function() {
 	// Todo: Replace {People}, or alike with random function calls
-	this.text = this.text.replace("{Person}", Person());
-	this.text = this.text.replace("{Name}", Name());
-	this.text = this.text.replace("{value}", (Math.random*100).toString());
-	this.text = this.text.replace("{Adjective}", Adjective());
-	this.text = this.text.replace("{Verb}", Verb());
-	this.text = this.text.replace("{Tele}", phoneNumber());
+	this.text = this.text.replace(/{Person}/gi, Person());
+	this.text = this.text.replace(/{Name}/gi, Name());
+	this.text = this.text.replace(/{value}/gi, (Math.random*100).toString());
+	this.text = this.text.replace(/{Adjective}/gi, Adjective());
+	this.text = this.text.replace(/{Verb}/gi, Verb());
+	this.text = this.text.replace(/{Tele}/gi, phoneNumber());
 };
 
 
@@ -149,7 +149,7 @@ const chainOpening = [
 	[ 1.0, 0.0, "U WILL {Verb} DEAD IF YOU STOP READING" ],
 	[ 1.0, 0.0, "PLEEEEEEEEEEASE READ! it was on the news!" ],
 	[ 1.0, 0.0, "THIS IS SOOOOOOOOO {Adjective}!!?" ],
-	[ 1.0, 0.0, "WARNING WARNING" ],
+	[ 1.0, 0.0, "WARNING WARNING"],
 	[ 1.0, 0.0, "Urgent!!" ],
 	[ 1.0, 0.0, "** High Priority **" ],
 
@@ -162,9 +162,10 @@ const chainOpening = [
 	[ 0.5, 0.5, "Dear Friends:" ],
 	[ 0.5, 0.5, "IM SORRY GUYS>>I REALLY DONT BELIEVE IT BUT SENDING IT TO YALL JUST IN CASE!!!!!!!!!!!!" ],
 	[ 0.5, 0.5, "Dear Internet Subscriber:" ],
+	[ 0.5, 0.5, "Dear {Person}:" ],
 	[ 0.5, 0.5, "THIS IS TRUE----PLEASE TAKE THE TIME TO READ IT AND PLEASE SEND THIS TO EVERY SINGLE PERSON YOU KNOW WHO HAS AN E- MAIL ADDRESS....THIS IS REALLY TERRIFIC. " ],
 	[ 0.5, 0.5, "WARNING!!!!!!!!!: INTERNET VIRUS" ],
-	[ 0.5, 0.5, "*****PLEASE FORWARD THIS TO HELP THIS LITTLE GIRL***** \n Dear All, \n I just received this mail from my friend." ],
+	[ 0.5, 0.5, "*****PLEASE FORWARD THIS TO HELP THIS {Adjective} GIRL***** \n Dear All, \n I just received this mail from {Person}." ],
 ];
 
 const chainContent = [
@@ -226,10 +227,11 @@ const chainEnding = [
 	[ 0.5, 0.5, "What we say is important... for in most cases the mouth speaks what the heart is full of." ],
 	[ 0.5, 0.5, "From Mr. Jon Henerd \ Hotmail Admin. Dept." ],
 	[ 0.5, 0.5, "Thank you for your time.......#:) hahahahaha!!!" ],
-	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: {Tele}" ],
+	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: {Tele} {Tele}" ],
 	[ 0.5, 0.5, "Please be careful." ],
 	[ 0.5, 0.5, "This is not a joke --- this is a true story. Ride free citizens!" ],
 	[ 0.5, 0.5, "From Mr. Jon, Henerd" ],
 	[ 0.5, 0.5, "Walt Disney Jr., Disney, Bill Gates, & The Microsoft Development Team." ],
 	[ 0.5, 0.5, "Note: Duplicate entries will not be counted. You will be notified by email with further instructions once this email has reached 13,000 people. Your friend, {Name}." ],
+	[ 0.5, 0.5, "Send this to 4 ppl or skelintons will eat you"]
 ];
