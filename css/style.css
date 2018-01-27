@@ -50,6 +50,8 @@ canvas {
 	left: 40px;
 
 	width: 50px;
+
+	cursor: pointer;
 }
 
 #icon1{
@@ -72,7 +74,7 @@ canvas {
 
 	border-radius: 10px;
 	border-style: solid;
-	border-color: black;
+	border-color: #255fdc; /*XP Blue*/
 	border-width: 3px;
 }
 
@@ -129,10 +131,12 @@ canvas {
 	top: 0px;
 	right: 0px;
 
-	width: 20px;
-	height: 100%;
+	width: 17px;
+	height: 17px;
 
-	border-radius: 0px 5px 0px 0px;
+	border-radius: 5px;
+
+	cursor:pointer;
 }
 
 #stats_window{
