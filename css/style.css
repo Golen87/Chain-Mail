@@ -69,14 +69,22 @@ canvas {
 	display: none;
 }
 
+.popup .header{
+	font-size: 25px;
+	font-weight: bolder;
+}
+
+.popup .subheader{
+	font-size: 20px;
+}
+
 #mail_gen{
 	width: 500px;
-
 	left: 100px;
+	text-align: center;
 }
 
 #marketplace{
 	width: 500px;
-
 	left: 150px;
 }
