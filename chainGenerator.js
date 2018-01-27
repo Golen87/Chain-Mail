@@ -61,3 +61,8 @@ var chainOpening = [
 	"From {person}"
 ];
 
+var letters = [
+	"Hi there!! This chain letter has been in existence since 1897. This is absolutely incredible because there was no email then and probably not as many sad pricks with nothing better to do. So this is how it works: Pass this on to 15,067 people in the next 7 minutes or something horrible will happen to you like",
+	"Miranda Pinsley was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, fell into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. Not only did she smell nasty, she died. This Could Happen To You!!!",
+	"Dexter Bip, a 13 year old boy, got a chain letter in his mail and ignored it. Later that day, he was hit by a car and so was his boyfriend (hey, some people swing that way). They both died and went to hell and were cursed to eat adorable kittens every day for eternity. This Could Happen To You Too!!! \ Remember, you could end up just like Pinsley and Bip. Just send this letter to all of your loser friends, and everything will be okay.",
+]
