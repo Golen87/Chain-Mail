@@ -31,8 +31,9 @@
     background-color: #255fdc; /*XP Blue*/
 
     vertical-align: middle;
-
     border-radius: 5px 5px 0 0;
+
+    cursor:pointer;
 }
 
 .window_title {

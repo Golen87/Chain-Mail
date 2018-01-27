@@ -49,6 +49,8 @@
     flex-grow: 1;
 }
 #mail_gen .prev_button {
+    cursor:pointer;
+
     /* CSS triangle left */
     width: 0;
     height: 0;
@@ -57,10 +59,12 @@
     border-right: 30px solid #c1c1c1; /* Grey */
 }
 #mail_gen .prev_button:hover {
-    border-left: 30px solid #a8a8a8; /* Somewhat darker grey */
+    border-right: 30px solid #a8a8a8; /* Somewhat darker grey */
 }
 
 #mail_gen .next_button {
+    cursor:pointer;
+
     /* CSS triangle right */
     width: 0;
     height: 0;
@@ -86,6 +90,8 @@
     width:100%;
     text-align:center;
     vertical-align: middle;
+
+    cursor:pointer;
 }
 
 #mail_gen .send_button:hover {
