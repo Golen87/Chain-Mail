@@ -1,25 +1,14 @@
 #mail_gen {
     width: 500px;
     left: 100px;
-    text-align: center;
+    text-align: left;
 
-    height: 395px;
+    height: 400px;
 }
 
-#mail_gen .window_body {
-    width: 94%;
-    padding: 0 3% 0 3%;
-    text-align: left;
- }
 #mail_gen .receivers {
     font-size: 15px;
-    padding: 2px 1% 2px 1%;
-    width: 98%;
-    margin: 8px 0 8px 0;
-}
-
-#mail_gen .message {
-    width: 100%;
+    margin-bottom: 8px;
 }
 
 .selection_body {
@@ -32,7 +21,7 @@
     flex-direction: row;
     height: 80px;
 
-    margin: 8px 5px 16px 5px;
+    margin: 5px 0 15px 0;
 }
 
 #mail_gen .text {
@@ -46,6 +35,7 @@
     overflow: auto;
     flex-grow: 1;
 }
+
 #mail_gen .prev_button {
     cursor:pointer;
     margin-top: 20px;

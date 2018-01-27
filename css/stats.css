@@ -1,7 +1,7 @@
 #stats_window{
     display: block;
     width: 300px;
-    height: 223px;
+    height: 248px;
     text-align: left;
 
     font-size: 12px;
@@ -11,14 +11,9 @@
 }
 
 #stats_window p{
-    margin: 6px;
+    margin-top: 0;
 }
 
-#stats_window .xp_field {
-    width: 89%;
-    padding: 3% 2% 1% 2%;
-    margin: 0 3% 3% 3%;
-}
 #chart {
     cursor: default;
 }

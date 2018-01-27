@@ -1,4 +1,37 @@
 .xp_field {
     background-color: white;
     border: 1px solid #7c9ebc; /* XP Yellow-Blue */
+
+    width: calc(100% - 16px);
+    padding: 7px;
+}
+
+.button {
+    background-color: white;
+    border: 1px solid #043e74; /* XP Dark Blue*/
+    border-radius: 3px;
+    color: black;
+
+    height: 19px;
+    width: 62px;
+    text-align:center;
+
+    cursor:pointer;
+}
+
+.button .inner {
+    border: 2px solid #dcdcdc; /* Xp Light Grey */
+    border-radius: 2px;
+    height: 14px;
+    width: 58px;
+    font-size: 13px;
+}
+
+.button .inner:hover {
+    border-color: #fcb234; /* XP Gold */
+}
+
+.button .inner:active {
+    border-color: #e3e0db; /* XP Light Grey */
+    background-color: #e3e0db;;
 }

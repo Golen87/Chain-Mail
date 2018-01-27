@@ -6,11 +6,12 @@
 
     display: none;
 
-    padding-top: 30px;
+    padding: 30px 3px 3px 3px;
 
-    border-radius: 10px 10px 0 0;
-    border: 3px solid #255fdc; /*XP Blue*/
-    background-color: #255fdc; /*XP Blue*/
+    border-radius: 11px 11px 0 0;
+    border: 1px solid #0019cf;
+    border-top-color: #0058ed;
+    background: linear-gradient(#0046e0, #003ddd);
 }
 
 .window .header{
@@ -27,7 +28,8 @@
     width: 100%;
     position: absolute;
     top: 0;
-    background-color: #255fdc; /*XP Blue*/
+    left: 0;
+    background: linear-gradient(#3f97ff, #0261ed, #0052e2, #004fe4, #0060fb, #0065fd, #0046e0); /* Blue XP Gradient */
     border-radius: 5px 5px 0 0;
 
     cursor:pointer;
@@ -42,8 +44,9 @@
 }
 
 .window_body {
-    width: 100%;
-    height: inherit;
+    width: calc(100% - 26px);
+    height: calc(100% - 53px);
+    padding: 10px;
     position: absolute;
     background-color: #eceadc; /* XP Light Yellow/Grey */
 }
@@ -63,34 +66,4 @@
     border-radius: 5px;
 
     cursor:pointer;
-}
-
-.button {
-    background-color: white;
-    border: 1px solid #043e74; /* XP Dark Blue*/
-    border-radius: 3px;
-    color: black;
-
-    height: 19px;
-    width: 62px;
-    text-align:center;
-
-    cursor:pointer;
-}
-
-.button .inner {
-    border: 2px solid #dcdcdc; /* Xp Light Grey */
-    border-radius: 2px;
-    height: 14px;
-    width: 58px;
-    font-size: 13px;
-}
-
-.button .inner:hover {
-    border-color: #fcb234; /* XP Gold */
-}
-
-.button .inner:active {
-    border-color: #e3e0db; /* XP Light Grey */
-    background-color: #e3e0db;;
 }
