@@ -1,0 +1,66 @@
+.popup{
+    position: absolute;
+    top: 50px;
+
+    font-family: sans-serif;
+
+    display: none;
+    height: 380px;
+
+    padding-top: 20px;
+
+    border-radius: 10px 10px 0 0;
+    border: 3px solid #255fdc; /*XP Blue*/
+    background-color: #255fdc; /*XP Blue*/
+}
+
+.popup .header{
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.popup .subheader{
+    font-size: 20px;
+}
+
+.window_top{
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #255fdc; /*XP Blue*/
+
+    vertical-align: middle;
+
+    border-radius: 5px 5px 0 0;
+}
+
+.window_title {
+    color: white;
+    font-size: 14px;
+    text-align: left;
+
+    padding-left: 4px;
+}
+
+.window_body {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    background-color: lightgrey;
+}
+
+.window_close{
+    position: absolute;
+    background-color: red;
+    color: white;
+    top: 0;
+    right: 0;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 5px;
+
+    cursor:pointer;
+}

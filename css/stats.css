@@ -1,0 +1,20 @@
+#stats_window{
+    display: block;
+    width: 300px;
+    height: 280px;
+    text-align: left;
+
+    font-size: 12px;
+
+    top: 20px;
+    right: 20px;
+}
+
+#stats_window p{
+    margin: 6px;
+}
+
+#chart {
+    width: 100%;
+    cursor: default;
+}
