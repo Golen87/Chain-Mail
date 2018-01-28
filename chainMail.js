@@ -114,7 +114,6 @@ function sendMail() {
 		current_mail.startPeople = mail_addresses;
 		current_mail.startTime = globalTick;
 		current_mail.setStats();
-		console.log("Mail sent!", current_mail.spreadFactor, current_mail.seriousFactor);
 
 		sent_mails.push(current_mail);
 		current_mail = null;

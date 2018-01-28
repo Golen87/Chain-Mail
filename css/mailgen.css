@@ -34,6 +34,8 @@
     margin-right: 7px;
     overflow: auto;
     flex-grow: 1;
+
+    white-space: pre-line; /* Allows \n to become newlines */
 }
 
 #mail_gen .prev_button {
