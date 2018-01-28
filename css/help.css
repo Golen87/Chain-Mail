@@ -1,0 +1,15 @@
+#help_window{
+    display: block;
+    width: 300px;
+    height: 268px;
+    text-align: left;
+
+    font-size: 12px;
+
+    top: 20px;
+    right: 20px;
+}
+
+#help_window p{
+    margin-top: 0;
+}
