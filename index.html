@@ -32,24 +32,23 @@
 	<script src="js/main.js"></script> -->
 </head>
 <body>
-	 <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : '147277622586147',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v2.11'
-        });
-      };
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/all.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
+	 <script>window.twttr = (function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0],
+			t = window.twttr || {};
+		  if (d.getElementById(id)) return t;
+		  js = d.createElement(s);
+		  js.id = id;
+		  js.src = "https://platform.twitter.com/widgets.js";
+		  fjs.parentNode.insertBefore(js, fjs);
+
+		  t._e = [];
+		  t.ready = function(f) {
+			t._e.push(f);
+		  };
+
+		  return t;
+	}(document, "script", "twitter-wjs"));</script>
 
 	<div id="desktop" >
 		<img id="wallpaper" src="assets/wallpaper.jpg" />
@@ -90,19 +89,19 @@
 				<div class="xp_field receivers">Receivers: <span id="mail_receivers">0</span></div>
 				<div class="xp_field message">
 					<div class="choice" id="opening_choice">
-						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
+						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);tweetReady();"></div>
 						<div class="text">Empty</div>
-						<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
+						<div class="next_button" onclick="javascript:nextChoice('opening', +1);tweetReady();"></div>
 					</div>
 					<div class="choice" id="content_choice">
-						<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
+						<div class="prev_button" onclick="javascript:nextChoice('content', -1);tweetReady();"></div>
 						<div class="text">Empty</div>
-						<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
+						<div class="next_button" onclick="javascript:nextChoice('content', +1);tweetReady();"></div>
 					</div>
 					<div class="choice" id="ending_choice">
-						<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
+						<div class="prev_button" onclick="javascript:nextChoice('ending', -1);tweetReady();"></div>
 						<div class="text">Empty</div>
-						<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
+						<div class="next_button" onclick="javascript:nextChoice('ending', +1);tweetReady();"></div>
 					</div>
 				</div>
 				<div class="send_section choice">
@@ -110,8 +109,9 @@
 						<div class="send_button button" onclick="javascript:sendMail();">
 							<div class="inner">Send</div>
 						</div>
-						<div class="share_button button" id="shareButton" onclick="postToFacebook();">
-							<div class="inner">Share</div>
+						<div id="tweetBtn">
+							<a class="twitter-share-button" href="http://twitter.com/share" data-url="http://test.com" data-text="REPLACEME">Tweet</a>
+							<!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> -->
 						</div>
 					</div>
 				</div>
