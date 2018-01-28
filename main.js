@@ -1,6 +1,6 @@
-let money = 0;
+let money = 10;
 let shares = 0;
-let mail_addresses = 10;
+let mail_addresses = 50;
 var current_mail = null;
 var sent_mails = [];
 
@@ -143,38 +143,11 @@ $(document).ready(() => {
         }
 
         updateStats();
-
     });
 
-    /*
-    function postToFacebook(){
-        var url = "https://golen87.github.io/Chain-Mail/facebookApiExample.html?message=";
-        if(current_mail) {
-            current_mail.finish();
-
-            var message = current_mail.message.replace(/<p>/gi, "");
-            message = message.replace(/<.+p>/gi, "");
-
-
-            console.log(message);
-            FB.ui({
-                method: 'share',
-                display: 'popup',
-                quote: message,
-                href: url + current_mail.message,
-            }, function (response) {
-            });
-        }
-    }
-
-    var shareButton = document.getElementById('shareButton');
-
-    if (shareButton){
-        shareButton.onclick = postToFacebook;
-    }else {
-        alert("No button");
-    }*/
-
+    $("#accept_all").click(function(){
+        acceptAllTrans();
+    });
 
 
     window.onresize = function(event) {
@@ -186,11 +159,11 @@ $(document).ready(() => {
 
     //update stats on page Preload
     updateStats();
+    updateGraph();
+    updateBankAlert();
 
     //Start clock
     setInterval(timeTick, tickTime);
-
-    updateGraph();
 });
 
 function setGameHeight(){
@@ -202,4 +175,50 @@ function updateStats(){
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
     $("#mail_receivers").text(mail_addresses);
+}
+
+function addTransAction(amount){
+    let trans_list = $("#bank_list");
+    let name = Name(); //Random name
+
+    let newObj = $('<div class="xp_field transaction"><span class="sent_amount">'+amount+'</span> $ from '+name+'<div class="bank_btn button"><div class="inner">Accept</div></div></div>');
+
+    newObj.appendTo(trans_list);
+    newObj.find('.bank_btn').click(function(){
+        let trans = $(this).closest(".transaction");
+        acceptTransaction(trans);
+    });
+
+    updateBankAlert();
+}
+
+function updateBankAlert(){
+    let alert = $("#bank_alert");
+
+    let trans_c = $("#bank_list").children(".transaction").length;
+
+    alert.text(trans_c);
+
+    if(trans_c <= 0){
+        alert.hide();
+    }
+    else{
+        alert.show();
+    }
+}
+
+function acceptTransaction(transaction){
+    let amount = transaction.children('.sent_amount').text();
+
+    money += parseInt(amount);
+
+    transaction.remove();
+    updateStats();
+    updateBankAlert();
+}
+
+function acceptAllTrans(){
+    $(".transaction").each(function(){
+        acceptTransaction($(this));
+    });
 }

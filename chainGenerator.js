@@ -55,7 +55,7 @@ String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 };
 
-function phoneNumber(){
+function PhoneNumber(){
 	var number = (Math.random()*10000000000000).toString();
 	number = number.replaceAt(0, "0")
 	number = number.replaceAt(3, "-");
@@ -85,8 +85,18 @@ function Treasure() {
 	return "{0} {1} of {2}".format(count, Unit(), Mineral());
 }
 
-function Name() {
-	var gender = Choose([0,1]);
+function FemaleName() {
+	return Name(0);
+}
+
+function MaleName() {
+	return Name(1);
+}
+
+function Name(gender = null) {
+	if (gender === null) {
+		gender = Choose([0,1]);
+	}
 	var str = "";
 	if (gender == 0) str += WeightedChoose(["Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley","Cynthia","Angela","Melissa","Brenda","Amy","Anna","Rebecca","Virginia","Kathleen","Pamela","Martha","Debra","Amanda","Stephanie","Carolyn","Christine","Marie","Janet","Catherine","Frances","Ann","Joyce","Diane","Alice","Julie","Heather","Teresa","Doris","Gloria","Evelyn","Jean","Cheryl","Mildred","Katherine","Joan","Ashley","Judith","Rose","Janice","Kelly","Nicole","Judy","Christina","Kathy","Theresa","Beverly","Denise","Tammy","Irene","Jane","Lori","Rachel","Marilyn","Andrea","Kathryn","Louise","Sara","Anne","Jacqueline","Wanda","Bonnie","Julia","Ruby","Lois","Tina","Phyllis","Norma","Paula","Diana","Annie","Lillian","Emily","Robin"], 1.2);
 	else if (gender == 1) str += WeightedChoose(["James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Jeffrey","Frank","Scott","Eric","Stephen","Andrew","Raymond","Gregory","Joshua","Jerry","Dennis","Walter","Patrick","Peter","Harold","Douglas","Henry","Carl","Arthur","Ryan","Roger","Joe","Juan","Jack","Albert","Jonathan","Justin","Terry","Gerald","Keith","Samuel","Willie","Ralph","Lawrence","Nicholas","Roy","Benjamin","Bruce","Brandon","Adam","Harry","Fred","Wayne","Billy","Steve","Louis","Jeremy","Aaron","Randy","Howard","Eugene","Carlos","Russell","Bobby","Victor","Martin","Ernest","Phillip","Todd","Jesse","Craig","Alan","Shawn","Clarence","Sean","Philip","Chris","Johnny","Earl","Jimmy","Antonio"], 1.2);
@@ -115,6 +125,45 @@ function Person() {
 	])
 }
 
+function Year() {
+	return Math.floor(
+		WeightedChoose([
+			1990 + 20 * Math.random(),
+			1900 + 120 * Math.random(),
+			1000 + 2000 * Math.random(),
+		], 2)
+	).toString();
+}
+
+function Age() {
+	return Math.floor(
+		WeightedChoose([
+			10 + 10 * Math.random(),
+			5 + 40 * Math.random(),
+			2 + 200 * Math.random(),
+		], 2)
+	).toString();
+}
+
+function Percentage() {
+	return Math.floor(100 * Math.random()).toString();
+}
+
+function Timeunit() {
+	return Choose(["days", "hours", "minutes", "months", "seconds", "weeks", "years"]);
+}
+
+function Value() {
+	var n = Math.floor(
+		WeightedChoose([
+			1 + 10 * Math.random(),
+			1000 + 9900 * Math.random(),
+			100000 + 10000000 * Math.random(),
+		], 3)
+	);
+	return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 
 /* Section of a chain mail. */
@@ -131,107 +180,159 @@ Part = function(spreadFactor, seriousFactor, text)
 	this.insertRandomTags();
 };
 
+Part.prototype.replace = function(tag, func) {
+	while (true) {
+		var oldText = this.text;
+		var repl = func();
+
+		var caps = new RegExp("\{{0}:Caps\}".format(tag), "i");
+		this.text = this.text.replace(caps, repl.toUpperCase());
+
+		var normal = new RegExp("\{{0}\}".format(tag), "i");
+		this.text = this.text.replace(normal, repl);
+
+		if (this.text == oldText)
+			break;
+	}
+}
+
 Part.prototype.insertRandomTags = function() {
-	// Todo: Replace {People}, or alike with random function calls
-	this.text = this.text.replace(/{Person}/gi, Person());
-	this.text = this.text.replace(/{Name}/gi, Name());
-	this.text = this.text.replace(/{Value}/gi, (Math.random()*100).toString());
-	this.text = this.text.replace(/{Adjective}/gi, Adjective());
-	this.text = this.text.replace(/{Verb}/gi, Verb());
-	this.text = this.text.replace(/{Tele}/gi, phoneNumber());
+	this.replace("Person", Person);
+	this.replace("Name-Female", FemaleName);
+	this.replace("Name-Male", MaleName);
+	this.replace("Name", Name);
+	this.replace("Country", Country);
+	this.replace("Adjective", Adjective);
+	this.replace("Verb", Verb);
+	this.replace("Timeunit", Timeunit);
+
+	this.replace("Tele", PhoneNumber);
+	this.replace("Year", Year);
+	this.replace("Age", Age);
+	this.replace("Percentage", Percentage);
+	this.replace("Value", Value);
 };
 
 
 //	[ spread, serious,0, text ]
 
 const chainOpening = [
-	[ 1.0, 0.0, "BEWARE" ],
-	[ 1.0, 0.0, "U WILL {Verb} DEAD IF YOU STOP READING" ],
+	// Attention grab
+	[ 1.0, 0.0, "BEWARE!!!" ],
+	[ 1.0, 0.0, "U WILL {Verb:Caps} DEAD IF YOU STOP READING" ],
 	[ 1.0, 0.0, "PLEEEEEEEEEEASE READ! it was on the news!" ],
-	[ 1.0, 0.0, "THIS IS SOOOOOOOOO {Adjective}!!?" ],
-	[ 1.0, 0.0, "WARNING WARNING"],
-	[ 1.0, 0.0, "Urgent!!" ],
-	[ 1.0, 0.0, "** High Priority **" ],
+	[ 1.0, 0.0, "THIS IS SOOOOOOOOO {Adjective:Caps}!!?" ],
+	[ 1.0, 0.0, "!!! STOP EVERYTHING YOUR DOING AND READ THIS !!!" ],
+	[ 1.0, 0.0, "WAY COOL EXPERIENCES!!!!!"],
+	[ 1.0, 0.0, "IM SORRY GUYS>>I REALLY DONT BELIEVE IT BUT SENDING IT TO YALL JUST IN CASE!!!!!!!!!!!!" ],
+	[ 1.0, 0.0, "THIS IS TRUE----PLEASE TAKE THE TIME TO READ IT AND PLEASE SEND THIS TO EVERY SINGLE PERSON YOU KNOW WHO HAS AN E- MAIL ADDRESS....THIS IS REALLY TERRIFIC. " ],
+	[ 1.0, 0.0, "*****PLEASE FORWARD THIS TO HELP THIS {Adjective:Caps} GIRL*****\n\nDear All,\nI just received this mail from {Person}." ],
+	[ 1.0, 0.0, "This letter is about an opportunity to make an incredible amount of Money (CASH!!!) in a very short time." ],
 
-	[ 0.5, 0.5, "This letter is about an opportunity to make an incredible amount of Money (CASH!!!) in a very short time." ],
-	[ 0.5, 0.5, "Help save {Person}!!" ],
-	[ 0.5, 0.5, "From {Person}" ],
+	// Serious
+	[ 0.6, 0.7, "Dear Friend," ],
+	[ 0.6, 0.7, "{Adjective} Friend," ],
+	[ 0.6, 0.7, "Dear Friends:" ],
+	[ 0.6, 0.7, "Dear Internet Subscriber:" ],
+	[ 0.6, 0.7, "Dear Friend, this is your mate {Person}:" ],
+	[ 0.6, 0.7, "This is an experiment. I hope it will seem interesting enough to you to make you want to participate." ],
 
-	[ 0.0, 1.0, "Dear Friend," ],
-	[ 0.0, 1.0, "{Adjective} Friend," ],
-	[ 0.5, 0.5, "Dear Friends:" ],
-	[ 0.5, 0.5, "IM SORRY GUYS>>I REALLY DONT BELIEVE IT BUT SENDING IT TO YALL JUST IN CASE!!!!!!!!!!!!" ],
-	[ 0.5, 0.5, "Dear Internet Subscriber:" ],
-	[ 0.5, 0.5, "Dear Friend, this is your mate {Person}:" ],
-	[ 0.5, 0.5, "THIS IS TRUE----PLEASE TAKE THE TIME TO READ IT AND PLEASE SEND THIS TO EVERY SINGLE PERSON YOU KNOW WHO HAS AN E- MAIL ADDRESS....THIS IS REALLY TERRIFIC. " ],
-	[ 0.5, 0.5, "WARNING!!!!!!!!!: INTERNET VIRUS" ],
-	[ 0.5, 0.5, "*****PLEASE FORWARD THIS TO HELP THIS {Adjective} GIRL***** \n Dear All, \n I just received this mail from {Person}." ],
+	// Money
+	[ 0.3, 1.0, "--- WARNING WARNING ---"],
+	[ 0.3, 1.0, "Urgent!! Please continue reading!" ],
+	[ 0.3, 1.0, "** High Priority **" ],
+	[ 0.3, 1.0, "Help save {Person:Caps}!!" ],
+	[ 0.3, 1.0, "WARNING!!!!!!!!!: INTERNET VIRUS" ],
 ];
 
 const chainContent = [
-	[ 0.5, 0.5, "Hi there!! This chain letter has been in existence since 1897. This is absolutely incredible because there was no email then. Pass this on to {Value} people in the next {Value} minutes or something {Adjective} will happen to you" ],
-	[ 0.5, 0.5, "If you get some chain letter that's threatening to leave you {Adjective} or luckless for the rest of your life, delete it. If it's {Adjective}, send it on. \ Otherwise you'll end up like {Person}. Right?" ],
-	[ 0.5, 0.5, "We at RH Power Inc. want to see how many people our email can reach! If you forward this mail, you will be PAID MONEY!!!!" ],
-	[ 0.5, 0.5, "For every person you send this to you will receive ${Value}! For every person they send this to you will receive ${Value}!" ],
-	[ 0.5, 0.5, "I too, {Name}, Head Marketing Manager, thought this was a hoax! IF YOU SEND THIS TO AT LEAST {Value} PEOPLE RIGHT AWAY, A ${Value} GIFT CERTIFICATE WILL pop UP ON YOUR SCREEN!!!" ],
-	[ 0.5, 0.5, "Because of the sudden rush of people {Verb} to Hotmail, it has come to our attention that we are {Adjective} running out of resources. Please forward this email so that we know you are still {Verb} this account." ],
+	// Polite, please share
+	[ 0.7, 0.7, "Hi there!! This chain letter has been in existence since {Year}. This is absolutely incredible because there was no email then. Pass this on to {Value} people in the next {Value} minutes or something {Adjective} will happen to you" ],
+	[ 0.7, 0.7, "Because of the sudden rush of people {Verb} to Hotmail, it has come to our attention that we are {Adjective} running out of resources. Please forward this email so that we know you are still {Verb} this account." ],
+	[ 0.7, 0.7, "If you get some chain letter that's threatening to leave you {Adjective} or luckless for the rest of your life, delete it. If it's {Adjective}, send it on.\nOtherwise you'll end up like {Person}. Right??" ],
+	[ 0.7, 0.7, "Hello Disney fans, And thank you for signing up for {Person} Beta Email Tracking My name is {Name}. Here at Disney we are working with Microsoft which has just compiled an e-mail tracing program that tracks everyone to whom this message is forwarded to. It does this through an unique IP (Internet Protocol) address log book database. We are experimenting with this and need your help. "],
 
-	//Money
-	[0.0, 0.0, "Hello Disney fans, And thank you for signing up for {Person} Beta Email Tracking My name is {Name}. Here at Disney we are working with Microsoft which has just compiled an e-mail tracing program that tracks everyone to whom this message is forwarded to. It does this through an unique IP (Internet Protocol) address log book database. We are experimenting with this and need your help. "],
+	// Claim to send them money
+	[ 1.0, 0.3, "We at RH Power Inc. want to see how many people our email can reach! If you forward this mail, you will be PAID MONEY!!!!" ],
+	[ 1.0, 0.3, "For every person you send this to you will receive ${Value}! For every person they send this to you will receive ${Value}!" ],
+	[ 1.0, 0.3, "I too, {Name}, Head Marketing Manager, thought this was a hoax! IF YOU SEND THIS TO AT LEAST {Value} PEOPLE RIGHT AWAY, A ${Value} GIFT CERTIFICATE WILL POP UP ON YOUR SCREEN!!!" ],
+	[ 1.0, 0.3, "This message is sent to you with the hope you will forward it to EVERYONE you have ever even seen the e-mail address of. In the spirit of the originator, please feel free to post it anywhere and everywhere." ],
+	[ 1.0, 0.3, "One guy sent this to 500 people !!!! So, I know that we can send it to at least 5 or 6. Come on you guys.... and if you're too selfish to take 10-15 minutes scrolling this and forwarding it to EVERYONE, then you are one sick person. Just think it could be you one day.It's not even your $money$, just your time!!!" ],
 
 	// Horror
-	[ 0.5, 0.5, "{Person} was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, {Verb} into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. She died. This Could Happen To You!!!" ],
-	[ 0.5, 0.5, "{Name} had one wish, for her boyfriend of three years, {Person}, to propose to her. Then one day when she was out to lunch they proposed! she accepted, but then had to leave because she had a meeting in {Value} min. When she got to her office, she noticed on her computer she had some e-mail. It was this poem. She simply deleted it without even reading all of it. Later that evening, she received a phone call from the police. It was about her boyfriend! He had been in an accident. He didn't survive!" ],
-	[ 0.5, 0.5, "{Name}, a 13 year old boy, got a chain letter in his mail and ignored it. Later that day, he was hit by a car and so was his boyfriend (hey, some people swing that way). They both died and went to hell and were cursed to eat adorable kittens every day for eternity. This Could Happen To You Too!!! \ Remember, you could end up just like Pinsley and Bip. Just send this letter to all of your loser friends, and everything will be okay." ],
-	[ 0.5, 0.5, "Take Katie {Name}. She received this e-mail and sent it to a few of her friends, but didn't have enough e-mail addresses to send out the full {Value} that you must. Three days later, Katie went to a masquerade ball. Later that night when she left to get to her car, she was killed in that spot by a hit-and-run {Adjective} driver." ],
-	[ 0.5, 0.5, "{Name} sent this poem out within {Value} minutes of reading it. Not even {Value} hours later walking along the street he ran into Cyntha Bell, his secret love for {Value} years. Cyntha came up to him, and told him of her passionate crush on him that she had had for {Value} years." ],
-	[ 0.5, 0.5, "Intel announced that a new and very {Adjective} virus was discovered recently. If you receive an email called \"An Internet Flower For You\", do not {Verb} it. \  {Verb} it right away!" ],
-	[ 0.5, 0.5, "Hello, and thank you for {Verb} this letter. You see, there is a starving little boy in {Country} who has no arms, no legs, no {Person}, and no goats. This little boy's life could be saved, because for every time you pass this on, a dollar will be donated to the Little Starving Boy. "],
-	[ 0.5, 0.5, "There is a computer virus that is being sent across the Internet. If you receive an e-mail message with the subject line \"{Person}\", DO NOT {Verb} the message, {Verb} it immediately." ],
+	[ 0.8, 0.4, "{Name-Female} was walking home from school on Saturday. She had recently received this letter and ignored it. She then tripped in a crack in the sidewalk, {Verb} into the sewer, was gushed down a drainpipe in a flood of poopie, and went flying out over a waterfall. She died. This Could Happen To You!!!" ],
+	[ 0.8, 0.4, "{Name-Female} had one wish, for her lover of three years, {Person}, to propose to her. Then one day when she was out to lunch they proposed! she accepted, but then had to leave because she had a meeting in {Value} {Timeunit}. When she got to her office, she noticed on her computer she had some e-mail. It was this email. She simply deleted it without even reading all of it. Later that evening, she received a phone call from the police. It was about her boyfriend! He had been in an accident. He didn't survive!" ],
+	[ 0.8, 0.4, "{Name-Male}, a {Age} year old boy, got a chain letter in his mail and ignored it. Later that day, he was hit by a {Adjective} car and so was his boyfriend (hey, some people swing that way!!). They both died and went to hell and were cursed to eat {Adjective} kittens every day for eternity. This Could Happen To You Too!!!\nRemember, you could end up just like {Name-Male} and {Name-Male}. Just send this letter to all of your loser friends, and everything will be okay.." ],
+	[ 0.8, 0.4, "Take {Name-Female}. She received this e-mail and sent it to a few of her friends, but didn't have enough e-mail addresses to send out the full ${Value} that you must. {Value} {Timeunit} later, Katie went to a masquerade ball. Later that night when she left to get to her car, she was killed in that spot by a hit-and-run {Adjective} driver." ],
+	[ 0.8, 0.4, "{Name-Male} sent this email out within {Age} {Timeunit} of reading it. Not even {Age} {Timeunit} later walking along the street he ran into {Name-Female}, his secret love for {Value} {Timeunit}. She came up to him, and told him of her passionate crush on him that she had had for {Age} {Timeunit}." ],
+	[ 0.8, 0.4, "Now, to make you feel guilty, here's what I'll do. First of all, if you don't send this to {Value} people in the next {Value} {Timeunit}, you will be {Verb} by a {Adjective} goat and thrown off a {Adjective} building into a {Adjective} pile of manure. It's true! Because, THIS letter isn't like all of those fake ones, THIS one is TRUE!! Really!!!" ],
+	[ 0.8, 0.4, "This is not a scam or out of a science fiction novel, it is real. It is documented and confirmable. If you travel or someone close to you travels, please be careful. Sadly, this is very true. My husband {Name-Male} is a {Country} firefighter/EMT and they have received alerts regarding this crime ring. It is to be taken very seriously. The daughter of a friend of a fellow firefighter had this happen to her. Skilled doctor's are performing these crimes! (which, by the way have been highly noted in the {Country} area). Additionally, the military has received alerts regarding this. This story blew me away. I really want as many people to see this as possible so please bounce this to whoever you can." ],
+	[ 0.8, 0.4, "I wish to warn you about a new crime ring that is targeting business travelers. This ring is well organized, well funded, has very skilled personnel, and is currently in most major cities and recently very active in New Orleans. The crime begins when a business traveler goes to a lounge for a drink at the end of the work day. A person in the bar walks up as they sit alone and offers to buy them a drink. The last thing the traveler remembers until they wake up in a hotel room bath tub, their body submerged to their neck in ice, is sipping that drink. If you travel or someone close to you travels, please be careful." ],
+	[ 0.8, 0.4, "Please read the following carefully if you intend to stay online and continue using email: The last few months have revealed an alarming trend in the Government of the United States attempting to quietly push through legislation that will affect your use of the Internet. Under proposed legislation the US Postal Service will be attempting to bilk email users out of \"alternate postage fees\". Bill 602P will permit the Federal Govt to charge a 5 cent surcharge on every email delivered, by billing Internet Service Providers at source. The consumer would then be billed in turn by the ISP. Washington DC lawyer Richard Stepp is working without pay to prevent this legislation from becoming law. The US Postal Service is claiming that lost revenue due to the proliferation of email is costing nearly ${Value} in revenue per year. You may have noticed their recent ad campaign \"There is nothing like a letter.\" Since the average citizen received about {Value} pieces of email per day in {Year}, the cost to the typical individual would be an additional {Value} cents per day, or over ${Value} dollars per {Timeunit}, above and beyond their regular Internet costs. Note that this would be money paid directly to the U.S. Postal Service for a service they do not even provide. The whole point of the Internet is democracy and non-interference. If the federal government is permitted to tamper with our liberties by adding a surcharge to email, who knows where it will end." ],
 
-	[ 0.5, 0.5, "Now, to make you feel guilty, here's what I'll do. First of all, if you don't send this to 5096 people in the next 5 seconds, you will be raped by a mad goat and thrown off a high building into a pile of manure. It's true! Because, THIS letter isn't like all of those fake ones, THIS one is TRUE!! Really!!! Here's how it goes:" ],
-	[ 0.5, 0.5, "░░░░░███████ ]▄▄▄▄▄▄▄▄ Bob is building an army.\n▂▄▅█████████▅▄▃▂ \☻ This tank & Bob are against Google+\nIl███████████████████]... ▌\︻╦╤─ Copy and Paste this all over\n◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤.... / \ YouTube if you are with us" ],
+	// Asking for money
+	[ 0.3, 1.0, "Intel announced that a new and very {Adjective} virus was discovered recently. If you receive an email called \"An Internet Flower For You\", do not {Verb} it.\n {Verb} it right away! Just send us your credit card number and we will fix it for you. HURRY!!" ],
+	[ 0.3, 1.0, "There is a computer virus that is being sent across the Internet. If you receive an e-mail message with the subject line \"{Person}\", DO NOT {Verb} the message, {Verb} it immediately. To be sure you arent affected, send {Value} dollars to {Tele}!!" ],
+	[ 0.3, 1.0, "Hello, and thank you for {Verb} this letter. You see, there is a starving little boy in {Country} who has no arms, no legs, no {Person}, and no goats. This little boy's life could be saved, because for every time you pass this on, {Value} dollar will be donated to the Little Starving Boy. Please donate and help."],
+	[ 0.3, 1.0, "This is not a joke...if you do not forward this message to 10 other people............. your computer will be a living hell thanks to one of our very own little ingenus viruses. I repeat this is not a joke this virus will come to you only a week after you open this piece of mail in a very undiscreet e-mail If you open this e-mail after opening others, it just might come as a letter from your \"buddy\" Watch out! You have one week.. starting now. If this virus gets in it won't come back out. It will slowly delete 1 file a day from system IRQ files, startup files and windows kernels for registery address. Send payment to {Tele} and your problems will be fixed IMMEDIATELY." ],
+	[ 0.3, 1.0, "In thirty days, I received my VISA statement from Neiman-Marcus and it was $285.00. I looked again and I remembered I had only spent $9.95 for two salads and about $20.00 for a scarf. As I glanced at the bottom of the statement, it said, \"Cookie Recipe - $250.00\" That's outrageous!! Just send money to us and you will be rich too!!!!" ],
+	[ 0.3, 1.0, "Hotmail is overloading and we need to get rid of some people and we want to find out what user are actually using there hotmail. so please if you are using your user pass this letter to every person you can and if you do not pass this letter to anyone we will deleate you user. To ensure your account is not removed, send money to {Tele} to renew your subscription." ],
+	[ 0.3, 1.0, "Please respond to it. It will just mean employing a little bit of time and you can donate for a good cause! All it needs is the heart for you to send this mail. PLEASE pass this mail on to everybody you know. It is the request of little girl who will soon leave this world as she has been a victim of the terrible disease called CANCER. Thank you for your effort, this isn't a chain letter, but a choice for all of us to save a little girl that's dying of a serious and fatal form of cancer. Please help this girl." ],
+	[ 0.3, 1.0, "Please send this to everyone you know...or don't know. This little girl has {Age} {Timeunit} left to live, and as her dying wish, she wanted to send a chain letter telling everyone to live their life to fullest, since she never will. She'll never make it to prom, graduate from high school, or get married and have a family of her own. By you sending this to as many people as possible, you can give her and her family a little hope, because with every name that this is sent to,The American Cancer Society will donate 3 cents per name to her treatment and recovery plan. How much will you send?" ],
 
-	// Facebook
-	[ 0.5, 0.5, "Please copy and paste this as your status if you know someone, or have heard of someone who knows someone that may know someone who knows anyone. If you don’t know anyone, or even if you’ve heard of anyone who doesn’t know anyone that doesn’t know someone, then still copy this. It’s important to spread the message. Oh, and the hearts. <3 <3 <3 For crap’s sake, don’t forget the hearts. <3 <3 <3" ],
-	[ 0.5, 0.5, "PLEASE put this on your status if you know someone or are related to someone who has been eaten by dragons. Dragons are nearly unstoppable, and in case you didn’t know, they can breathe fire. 93% of people won’t copy and paste this, because they have already been eaten by dragons. 6% of people are sitting in the shower, armed with fire extinguishers. The remaining 1% are awesome, and will re-post this." ],
-	[ 0.5, 0.5, "So sad! Please put this on your status if you know someone or are related to someone who suffers from stupidity. We all need to understand that stupidity is real and should be taken seriously. You could be sitting next to a sufferer right now. There is still no known cure for stupidity & sympathy does not help. But we can raise awareness. 87.365% won’t re-post this because they don’t know how to copy & paste." ],
-	[ 0.5, 0.5, "Please put this on your status if you know someone (or are related to someone) who has been eaten by pandas. Pandas are nearly unstoppable and, in case you didn’t know, they can also breathe fire. 93% of people won’t copy and paste this, because they have already been eaten by pandas. 6% of people are sitting in their showers armed with fire extinguishers, and the remaining 1% are awesome and will repost." ],
-	[ 0.5, 0.5, "Please copy and paste this to your status if you know someone, or have been affected by someone, who needs a smack upside the head. People who need a smack upside the head effect the lives of many. There is still no known cure for someone who deserves a smack upside the head, except a smack upside the head, but we can raise awareness. Many won’t copy and paste this. I did. Will you?" ],
-	[ 0.5, 0.5, "ACCHOO!!!……..٩(-̮̮̃•̃)۶.. Copy and paste this to your status if you’re allergic to bullcrap, drama, head games, liars, and fake people. Keep this sneeze going." ],
-	[ 0.5, 0.5, "If you have Facebook friends that you’ve never met, but would just love to give a big HUG to, cause they are always there for you, liking your posts, poking you, and  just being on your friend list though you never ever met them in your life. I know I do. Copy and paste this to let them know they are AWESOME and appreciated." ],
-	[ 0.5, 0.5, "Cna yuo raed tihs? Olny 55 plepoe out of 100 can." ],
-	[ 0.5, 0.5, "I cdnuolt blveiee taht I cluod aulaclty uesdnatnrd waht I was rdanieg. The phaonmneal pweor of the hmuan mnid, aoccdrnig to a rscheearch at Cmabrigde Uinervtisy, it dseno’t mtaetr in waht oerdr the ltteres in a wrod are, the olny iproamtnt tihng is taht the frsit and lsat ltteer be in the rghit pclae. The rset cna be a taotl mses and yuo cna sitll raed it whotuit a pboerlm. Tihs is bcuseae the hmuan mnid deos not raed ervey lteter by istlef, but the wrod as a wlohe. Azanmig huh? Yaeh and I awlyas tghuhot slpeling was ipmorantt! Fi yuo cna raed tihs add tihs to yrou’e porflie." ],
-	[ 0.5, 0.5, "Put this as your status if you know or are related to someone who was killed on Alderaan when it was obliterated by the Death Star. Our wish is that people will understand that the Empire is a band of murdering scum. The Rebel Alliance wants to bring peace to the galaxy, but ……the…Galactic Empire continues to kill innocent civilians. (93% of people won’t copy/paste this into their status." ],
-	[ 0.5, 0.5, "Put this on your status if you know someone (or are related to someone) who has been attacked by ninjas. My wish is that people will understand that being attacked by ninjas is not something to be ashamed of. Ninjas are nearly unstoppable and are truly terrifying. 93% of people won’t copy and paste this – they have already been attacked by ninjas." ],
-
-	[ 0.5, 0.5, "This is not a joke...if you do not forward this message to 10 other people............. your computer will be a living hell thanks to one of our very own little ingenus viruses. I repeat this is not a joke this virus will come to you only a week after you open this piece of mail in a very undiscreet e-mail If you open this e-mail after opening others, it just might come as a letter from your \"buddy\" Watch out! You have one week.. starting now. If this virus gets in it won't come back out. It will slowly delete 1 file a day from system IRQ files, startup files and windows kernels for registery address {1593338-489h985} " ],
-	[ 0.5, 0.5, "This is not a scam or out of a science fiction novel, it is real. It is documented and confirmable. If you travel or someone close to you travels, please be careful. Sadly, this is very true. My husband is a Houston firefighter/EMT and they have received alerts regarding this crime ring. It is to be taken very seriously. The daughter of a friend of a fellow firefighter had this happen to her. Skilled doctor's are performing these crimes! (which, by the way have been highly noted in the Las Vegas area). Additionally, the military has received alerts regarding this. This story blew me away. I really want as many people to see this as possible so please bounce this to whoever you can." ],
-	[ 0.5, 0.5, "I wish to warn you about a new crime ring that is targeting business travelers. This ring is well organized, well funded, has very skilled personnel, and is currently in most major cities and recently very active in New Orleans. The crime begins when a business traveler goes to a lounge for a drink at the end of the work day. A person in the bar walks up as they sit alone and offers to buy them a drink. The last thing the traveler remembers until they wake up in a hotel room bath tub, their body submerged to their neck in ice, is sipping that drink. There is a note taped to the wall instructing them not to move and to call 911. A phone is on a small table next to the bathtub for them to call. The business traveler calls 911 who have become quite familiar with this crime. The business traveler is instructed by the 911 operator to very slowly and carefully reach behind them and feel if there is a tube protruding from their lower back. The business traveler finds the tube and answers, \"Yes.\" The 911 operator tells them to remain still, having already sent paramedics to help. The operator knows that both of the business traveler's kidneys have been harvested. This is not a scam or out of a science fiction novel, it is real. It is documented and confirmable. If you travel or someone close to you travels, please be careful." ],
-	[ 0.5, 0.5, "Please read the following carefully if you intend to stay online and continue using email: The last few months have revealed an alarming trend in the Government of the United States attempting to quietly push through legislation that will affect your use of the Internet. Under proposed legislation the US Postal Service will be attempting to bilk email users out of \"alternate postage fees\". Bill 602P will permit the Federal Govt to charge a 5 cent surcharge on every email delivered, by billing Internet Service Providers at source. The consumer would then be billed in turn by the ISP. Washington DC lawyer Richard Stepp is working without pay to prevent this legislation from becoming law. The US Postal Service is claiming that lost revenue due to the proliferation of email is costing nearly $230,000,000 in revenue per year. You may have noticed their recent ad campaign \"There is nothing like a letter.\" Since the average citizen received about 10 pieces of email per day in 1998, the cost to the typical individual would be an additional 50 cents per day, or over $180 dollars per year, above and beyond their regular Internet costs. Note that this would be money paid directly to the U.S. Postal Service for a service they do not even provide. The whole point of the Internet is democracy and non-interference. If the federal government is permitted to tamper with our liberties by adding a surcharge to email, who knows where it will end." ],
-	[ 0.5, 0.5, "In thirty days, I received my VISA statement from Neiman-Marcus and it was $285.00. I looked again and I remembered I had only spent $9.95 for two salads and about $20.00 for a scarf. As I glanced at the bottom of the statement, it said, \"Cookie Recipe - $250.00\" That's outrageous!! " ],
-	[ 0.5, 0.5, "Hotmail is overloading and we need to get rid of some people and we want to find out what user are actually using there hotmail. so please if you are using your user pass this letter to every person you can and if you do not pass this letter to anyone we will deleate you user. " ],
-	[ 0.5, 0.5, "Hello Disney fans, And thank you for signing up for Bill Gates' Beta Email Tracking My name is Walt Disney Jr. Here at Disney we are working with Microsoft which has just compiled an e-mail tracing program that tracks everyone to whom this message is forwarded to. It does this through an unique IP (Internet Protocol) address log book database. We are experimenting with this and need your help. Forward this to everyone you know and if it reaches 13,000 people, 1,300 of the people on the list will receive $5,000, and the rest will receive a free trip for two to Disney World for one week during the summer of 1999 at our expense. Enjoy." ],
-	[ 0.5, 0.5, "Please respond to it. It will just mean employing a little bit of time and won't cost you a penny. All it needs is the heart for you to send this mail. PLEASE pass this mail on to everybody you know. It is the request of little girl who will soon leave this world as she has been a victim of the terrible disease called CANCER. Thank you for your effort, this isn't a chain letter, but a choice for all of us to save a little girl that's dying of a serious and fatal form of cancer. " ],
-	[ 0.5, 0.5, "Please send this to everyone you know...or don't know. This little girl has 6 months left to live, and as her dying wish, she wanted to send a chain letter telling everyone to live their life to fullest, since she never will. She'll never make it to prom, graduate from high school, or get married and have a family of her own. By you sending this to as many people as possible, you can give her and her family a little hope, because with every name that this is sent to,The American Cancer Society will donate 3 cents per name to her treatment and recovery plan. " ],
-	[ 0.5, 0.5, "One guy sent this to 500 people !!!! So, I know that we can send it to at least 5 or 6. Come on you guys.... and if you're too selfish to take 10-15 minutes scrolling this and forwarding it to EVERYONE, then you are one sick person. Just think it could be you one day.It's not even your $money$, just your time!!!" ],
-	[ 0.5, 0.5, "WE URGE YOU TO MAKE COPIES OF THIS AND PASS IT ON TO AS MANY PEOPLE AS POSSIBLE. THIS NEEDS TO STOP. LIZ CLAIRBORNE ALSO PROFESSES TO WORSHIP SATAN AND RECENTLY OPENLY ADMITTED ON THE OPRAH WINFREY SHOW THAT HALF OF HER PROFITS GO TOWARDS THE CHURCH OF SATAN. " ],
-	[ 0.5, 0.5, "He stated that a large portion of his profits from Procter & Gamble Products goes to support this satanic church. When asked by Sally Jesse if stating this on t.v. would hurt his business, he replied, \"THERE ARE NOT ENOUGH CHRISTIANS IN THE UNITED STATES TO MAKE A DIFFERENCE.\"" ],
+	// Fun spread, no money
+	[ 1.0, 0.0, "Email messages fly to and fro, all over the world. Lots of jokes, cute sayings, etc. seem to take on a life of their own as they getforwarded to more and more email addresses. I've often thought that it is too bad we can't see where these well-traveled messages have been. I'll bet we'd be amazed at the list of addresses some have visited." ],
+	[ 1.0, 0.0, "There is a way to find out. Just add your first name, location,dateand maybe a very short comment to the bottom of this message and sendit out to your list of email friends.(Copy & Paste the message to a newe mail screen then add your name and send.)Eventually it may return to you. If it does, you'll be able to see all the places it has been since itfirst left your computer." ],
+	[ 1.0, 0.0, "You are walking through a field, and you find something to eat. It doesn't have bones, and it doesn't have meat. You pick it up and put it into your pocket. You take it home and put it on a shelf, but 3 day's later it walks away. What is it?\n\nIf you can't figure out this riddle and want to know the answer, you'll probally have to e-mail your friend and beg him/her for the answer." ],
+	[ 1.0, 0.0, "I can be created by humans, But they cannot control me. I suck on wood, paper and flesh alike. I can be more of a hindrance than help at times. To my creators, I seem to be everywhere at once. What am I?\n\nIf you can't figure out this riddle and want to know the answer, you'll probally have to e-mail your friend and beg him/her for the answer." ],
+	[ 1.0, 0.0, "░░░░░███████ ]▄▄▄▄▄▄▄▄ Bob is building an army.\n▂▄▅█████████▅▄▃▂ \☻ This tank & Bob are against Google+\nIl███████████████████]... ▌\︻╦╤─ Copy and Paste this email to all\n◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤.... /\nof your friends if you are with us" ],
+	[ 1.0, 0.0, "Scroll Down!\n*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n**************\n***************\n**************\n*************\n************\n***********\n**********\n*********\n********\n*******\n******\n*****\n****\n***\n**\n*\n*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n**************\n***************\n**************\n*************\n************\n***********\n**********\n*********\n********\n*******\n******\n*****\n****\n***\n**\n*\n*\n\nSTOP!"],
+	[ 1.0, 0.0, "GO!!!\n*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n**************\n***************\n****************\n*****************\n******************\n*******************\n********************\n*********************\n**********************\n***********************\n************************\n*************************\n**************************\n***************************\n****************************\n*****************************\n******************************\n*******************************\n********************************\n*********************************\n**********************************\n***********************************\n**********************************\n*********************************\n********************************\n*******************************\n*****************************\n****************************\n***************************\n**************************\n*************************\n************************\n***********************\n**********************\n*********************\n********************\n*******************\n******************\n*****************\n****************\n***************\n**************\n*************\n************\n***********\n**********\n*********\n********\n*******\n******\n*****\n****\n***\n**\n*\n*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n**************\n***************\n****************\n*****************\n******************\n*******************\n********************\n*********************\n**********************\n***********************\n************************\n*************************\n**************************\n***************************\n****************************\n*****************************\n******************************\n*******************************\n********************************\n*********************************\n**********************************\n***********************************\n**********************************\n*********************************\n********************************\n*******************************\n*****************************\n****************************\n***************************\n**************************\n*************************\n************************\n***********************\n**********************\n*********************\n********************\n*******************\n******************\n*****************\n****************\n***************\n**************\n*************\n************\n***********\n**********\n*********\n********\n*******\n******\n*****\n****\n***\n**\n*\n*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n**************\n***************\n****************\n*****************\n******************\n*******************\n********************\n*********************\n**********************\n***********************\n************************\n*************************\n**************************\n***************************\n****************************\n*****************************\n******************************\n*******************************\n********************************\n*********************************\n**********************************\n***********************************\n**********************************\n*********************************\n********************************\n*******************************\n*****************************\n****************************\n***************************\n**************************\n*************************\n************************\nIT'S ALIVE!!!!!!!!!!!!!!!!\n**********************\n*********************\n********************\n*******************\n******************\n*****************\n****************\n***************\n**************\n*************\n************\n***********\n**********\n*********\n********\n*******\n******\n*****\n****\n***\n**\n*\nSTOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nCONGRATULATIONS!!!!!!!!!!!!!\nYOUR WISH WILL NOW COME TRUE IN {Value} {Timeunit:Caps}!! NOW FOLLOW THIS CAREFULLY.... IT CAN BE VERY REWARDING!!!!!!!" ],
+	[ 1.0, 0.0, "********************Make A Wish********************\n\nY                                             3   \nYo\nYou\nYou A\nYou Ar\nYou Are\nYou Are L\nYou Are Lo\nYou Are Lov\nYou Are Love\nYou Are Loved\nYou Are Love\nYou Are Lov\nYou Are Lo\nYou Are L\nYou Are\nYou Ar\nYou A\nYou\nYo\nY\nYo\nYou\nYou A\nYou Ar\nYou Are\nYou Are L\nYou Are Lo\nYou Are Lov\nYou Are Love\nYou Are Loved\nYou Are Love\nYou Are Lov\nYou Are Lo\nYou Are L\nYou Are\nYou Ar\nYou A\nYou\nYo\nY\n  Yo                                       2\n   You\n    You A\n     You Ar\n      You Are\n       You Are L\n        You Are Lo  \n         You Are Lov\n          You Are Love\n           You Are Loved.........  \nY\nYo\nYou\nYou A\nYou Ar\nYou Are\nYou Are L\nYou Are Lo\nYou Are Lov\nYou Are Love\nYou Are Loved\nYou Are Love\nYou Are Lov\nYou Are Lo\nYou Are L\nYou Are\nYou Ar\nYou A\nYou\nYo\nY\n\n1\n\nYou are now loved!"],
+	[ 1.0, 0.0, "Please copy and share this email if you know someone, or have heard of someone who knows someone that may know someone who knows anyone. If you don’t know anyone, or even if you’ve heard of anyone who doesn’t know anyone that doesn’t know someone, then still copy this. It’s important to spread the message. Oh, and the hearts. <3 <3 <3 For crap’s sake, don’t forget the hearts. <3 <3 <3" ],
+	[ 1.0, 0.0, "PLEASE put this on your status if you know someone or are related to someone who has been eaten by dragons. {Person} is nearly unstoppable, and in case you didn’t know, they can breathe fire. {Percentage}% of people won’t copy and paste this, because they have already been eaten by {Person}. {Percentage}% of people are sitting in the shower, armed with fire extinguishers. The remaining {Percentage}% are {Adjective}, and will re-post this." ],
+	[ 1.0, 0.0, "So sad! Please share this email if you know someone or are related to someone who suffers from stupidity. We all need to understand that stupidity is real and should be taken seriously. You could be sitting next to a sufferer right now. There is still no known cure for stupidity & sympathy does not help. But we can raise awareness. {Percentage}% won’t send this mail to their friends because they don’t know how to copy & paste." ],
+	[ 1.0, 0.0, "Please copy and send this email if you know someone, or have been affected by someone, who needs a smack upside the head. People who need a smack upside the head effect the lives of many. There is still no known cure for someone who deserves a smack upside the head, except a smack upside the head, but we can raise awareness. Many won’t copy and paste this. I did. Will you?" ],
+	[ 1.0, 0.0, "ACCHOO!!!……..٩(̮̮̃•̃-̮̮̃•̃)۶.. Copy and paste this email if you’re allergic to bullcrap, drama, head games, liars, and fake people. Keep this sneeze going." ],
+	[ 1.0, 0.0, "If you have online friends that you’ve never met, but would just love to give a {Adjective} HUG to, cause they are always there for you, liking your emails, poking you, and just being on your friend list though you never ever met them in your life. I know I do. Please send this email to everyone you know and let them know they are {Adjective:Caps} and {Adjective}." ],
+	[ 1.0, 0.0, "Cna yuo raed tihs? Olny {Percentage} plepoe out of 100 can." ],
+	[ 1.0, 0.0, "I cdnuolt blveiee taht I cluod aulaclty uesdnatnrd waht I was rdanieg. The phaonmneal pweor of the hmuan mnid, aoccdrnig to a rscheearch at Cmabrigde Uinervtisy, it dseno’t mtaetr in waht oerdr the ltteres in a wrod are, the olny iproamtnt tihng is taht the frsit and lsat ltteer be in the rghit pclae. The rset cna be a taotl mses and yuo cna sitll raed it whotuit a pboerlm. Tihs is bcuseae the hmuan mnid deos not raed ervey lteter by istlef, but the wrod as a wlohe. Azanmig huh? Yaeh and I awlyas tghuhot slpeling was ipmorantt! Fi yuo cna raed tihs add tihs to yrou’e porflie." ],
+	[ 1.0, 0.0, "Please send this to all your contacts if you know or are related to someone who was killed on Alderaan when it was obliterated by the Death Star. Our wish is that people will understand that the Empire is a band of murdering scum. The Rebel Alliance wants to bring peace to the galaxy, but ……the…Galactic Empire continues to kill innocent civilians. ({Percentage}% of people won’t copy/paste this email." ],
+	[ 1.0, 0.0, "Forward this email if you know someone (or are related to someone) who has been attacked by ninjas. My wish is that people will understand that being attacked by ninjas is not something to be ashamed of. Ninjas are nearly unstoppable and are truly terrifying. {Percentage}% of people won’t copy and paste this – they have already been attacked by ninjas." ],
+	[ 1.0, 0.0, "WE URGE YOU TO MAKE COPIES OF THIS AND PASS IT ON TO AS MANY PEOPLE AS POSSIBLE. THIS NEEDS TO STOP. {Name-Female:Caps} ALSO PROFESSES TO WORSHIP SATAN AND RECENTLY OPENLY ADMITTED ON THE OPRAH WINFREY SHOW THAT HALF OF HER PROFITS GO TOWARDS THE CHURCH OF SATAN. " ],
 ];
 
 const chainEnding = [
-	[ 0.5, 0.5, "Now pass this on! If you don't, you'll never {Verb} ever again." ],
-	[ 0.5, 0.5, "Forward this for good luck!" ],
-	[ 0.5, 0.5, "Now forward this to everyone you know otherwise you'll find your balls missing tomorrow morning." ],
-	[ 0.5, 0.5, "Try this! ...It really works. If you take this e-mail and forward it to at least 5 people, including the person that sent it to you, a person will appear standing on this bridge. \ Let me know if you know the person? OKAY!" ],
-	[ 0.5, 0.5, "What we say is important... for in most cases the mouth speaks what the heart is full of." ],
-	[ 0.5, 0.5, "From Mr. Jon Henerd \ Hotmail Admin. Dept." ],
-	[ 0.5, 0.5, "Thank you for your time.......#:) hahahahaha!!!" ],
-	[ 0.5, 0.5, "Regards Jerry Mayfield Austin Ops Engineering Manager Telephone: {Tele} {Tele}" ],
-	[ 0.5, 0.5, "Please be careful." ],
-	[ 0.5, 0.5, "This is not a joke --- this is a true story. Ride free citizens!" ],
-	[ 0.5, 0.5, "From Mr. Jon, Henerd" ],
-	[ 0.5, 0.5, "Walt Disney Jr., Disney, Bill Gates, & The Microsoft Development Team." ],
-	[ 0.5, 0.5, "Note: Duplicate entries will not be counted. You will be notified by email with further instructions once this email has reached 13,000 people. Your friend, {Name}." ],
-	[ 0.5, 0.5, "Send this to 4 ppl or skelintons will eat you"]
+	// Serious
+	[ 0.2, 1.0, "From Mr. Jon Henerd\nHotmail Admin. Dept." ],
+	[ 0.2, 1.0, "From {Name}\nSuper CEO" ],
+	[ 0.2, 1.0, "Regards, {Name}, Executive Manager Inc." ],
+	[ 0.2, 1.0, "Sincerely, {Name}\nHead Debt." ],
+	[ 0.2, 1.0, "From Mr. {Name-Male}\n{Tele}" ],
+	[ 0.2, 1.0, "Yours Truly, {Person}" ],
+	[ 0.2, 1.0, "Best of luck,\n{Person}" ],
+	[ 0.2, 1.0, "Regards {Name} {Country} Ops Engineering Manager Telephone: {Tele} {Tele}" ],
+	[ 0.2, 1.0, "Walt Disney Jr., Disney, Bill Gates, & The Microsoft Development Team." ],
+
+	// Polite share
+	[ 0.7, 0.5, "Forward this for good luck!" ],
+	[ 0.7, 0.5, "What we say is important... for in most cases the mouth speaks what the heart is full of." ],
+	[ 0.7, 0.5, "Please be careful." ],
+	[ 0.7, 0.5, "Note: Duplicate entries will not be counted. You will be notified by email with further instructions once this email has reached {Value} people.\n\nYour friend, {Name}." ],
+
+	// Promises or threats
+	[ 1.0, 0.2, "Try this! ...It really works. If you take this e-mail and forward it to at least {Age} people, including the person that sent it to you, a person will appear standing on this bridge.\nLet me know if you know the person? OKAY!" ],
+	[ 1.0, 0.2, "Now pass this on! If you don't, you'll never {Verb} ever again." ],
+	[ 1.0, 0.2, "Now forward this to everyone you know otherwise you'll find your balls missing tomorrow morning." ],
+	[ 1.0, 0.2, "This is not a joke --- this is a true story. Ride free citizens!" ],
+	[ 1.0, 0.2, "Send this to 4 ppl or skelintons will eat you"],
+	[ 1.0, 0.2, "Send this to.....\n0 people~ You will have bad luck in love for 3 years\n5-10 people~ You will have a lucky week\n10-15 people~ Your crush will become friends with you\n15-20 people~ Your crush will ask you out\n20+ people~ Your wish will come true and you will have a wonderful life!\n~Good Luck!"],
+	[ 1.0, 0.2, "Have fun!! This is not a joke --- this is a true story. That's it. Please, pass it along to everyone you know, single people, mailing lists, etc..."],
+	[ 1.0, 0.2, "IF YOU SEND THIS TO 10 MORE PEOPLE, OTHER THAN THE 20 THAT YOU ALREADY HAVE TO SEND TO, SOMETHING MAJOR, THAT YOU'VE BEEN WANTING TO HAPPEN, WILL HAPPEN IN THE NEXT 10 SECONDS,MINUTES,HOURS,OR DAYS!! PROBABLY MINUTES OR DAYS.\n\nGOOD LUCK!!!!!!!!!"],
+	[ 1.0, 0.2, "Time's up!!!!!!!!!\nSend this to:\n2 peeps-it will come true in a year\n5 peeps-in 3 months\n7 peeps-1 month\n10 peeps-in a week\n15 or more-tomorrow=20"],
+	[ 1.0, 0.2, "Now, u r blessed, with the presence of your love's angel. In order to keep this blessing, u must send this to the following # of people:\n0 - 4 - u will be cursed, no love for 2 years.\n5 - 9 - you're crush will ask u out.\n10 - 19 - your crush/boyfriend will french u.\n20 + - your crush/boyfriend will make out with u, and will not dump u.\nNow, the choice is yours, make the right one."],
+
+	// Weird
+	[ 0.0, 0.0, "Thank you for your time.......#:) hahahahaha!!!" ],
+	[ 0.0, 0.0, "Hahahaha... ; )\nOk, goodbye!!1" ],
 ];

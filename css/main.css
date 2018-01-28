@@ -40,7 +40,7 @@ canvas {
 }
 
 #clock{
-	width: 100px;
+	width: 85px;
 	height: 100%;
 	float: right;
 	background: linear-gradient(
@@ -69,6 +69,7 @@ canvas {
 	color: white;
 	font-family: sans-serif;
 	text-align: right;
+	text-shadow: 1px 1px dimgrey;
 
 	margin: 0;
 }

@@ -3,14 +3,14 @@
 
 ChainMail = function() {
 	this.count = 3;
-	
+
 	// The available choices
 	this.choices = {
 		"opening":	[0, MultiChoose(chainOpening, this.count)],
 		"content":	[0, MultiChoose(chainContent, this.count)],
 		"ending":	[0, MultiChoose(chainEnding, this.count)],
 	};
-	
+
 	// Replace with Part objects with random tags
 	for (var key in this.choices) {
 		for (var i = 0; i < this.choices[key][1].length; i++) {
@@ -67,9 +67,11 @@ ChainMail.prototype.setStats = function() {
 	this.seriousFactor += this.getPart("content").seriousFactor;
 	this.seriousFactor += this.getPart("ending").seriousFactor
 	this.seriousFactor += RandFloat(0.0, 1.0);
-	this.seriousFactor /= 4;
+	this.seriousFactor /= 3;
 	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
 };
+
+const TRANSACTION_CHANCE = 0.005;
 
 ChainMail.prototype.tick = function() {
 	if (this.alive) {
@@ -77,12 +79,48 @@ ChainMail.prototype.tick = function() {
 
 		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.spreadFactor) * Math.pow(Math.E, -0.1*this.time) );
 
+		if (newPeople <= 0) {
+			this.alive = false;
+		}
+
+		newPeople = Math.floor( newPeople * Math.random() );
+
 		this.peopleReached += newPeople;
 		shares = Math.max(shares, this.peopleReached);
 		this.graphData.push(this.peopleReached);
 
-		if (newPeople <= 0) {
-			this.alive = false;
+		//Create money transactions
+		let newTrans = Math.ceil(this.seriousFactor*newPeople);
+		let transSent = Math.random()*newTrans;
+
+		for(let i = 0; i < transSent; ++i){
+			if(Math.random() < TRANSACTION_CHANCE){
+				//Make new transaction
+				let amount = 0;
+
+				amount = WeightedChoose([
+					WeightedChoose([1, 5, 10], 2),
+					WeightedChoose([50, 100, 500, 1000], 5)
+				], 10);
+
+				//if(rand < 0.8){
+				//	amount = 1;
+				//}
+				//else if(rand < 0.9){
+				//	amount = 5;
+				//}
+				//else if(rand < 0.96){
+				//	amount = 20;
+				//}
+				//else if(rand < 0.99){
+				//	amount = 50;
+				//}
+				//else{
+				//	amount = 100;
+				//}
+
+				addTransAction(amount);
+			}
 		}
 	}
 };
@@ -114,7 +152,6 @@ function sendMail() {
 		current_mail.startPeople = mail_addresses;
 		current_mail.startTime = globalTick;
 		current_mail.setStats();
-		console.log("Mail sent!", current_mail.spreadFactor, current_mail.seriousFactor);
 
 		sent_mails.push(current_mail);
 		current_mail = null;

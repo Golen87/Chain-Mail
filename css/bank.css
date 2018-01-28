@@ -1,6 +1,39 @@
 #bank_window{
     width: 500px;
-    height: 380px;
+    height: 370px;
     left: 80px;
     top: 50px;
+}
+
+#bank_list{
+    overflow: auto;
+    height: 250px;
+    margin-top: 20px;
+}
+
+.buy_btn{
+    display: inline-block;
+}
+
+
+.bank_btn{
+    display: inline-block;
+    float: right;
+}
+
+.transaction{
+    text-align: left;
+    display: block;
+    margin-bottom: 3px;
+}
+
+#accept_all{
+    display: inline-block;
+    margin-top: 10px;
+    width: auto;
+    height: auto;
+}
+
+#accept_all .inner{
+    padding: 0 5px 0 5px;
 }
