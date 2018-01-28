@@ -35,12 +35,20 @@
     cursor:pointer;
 }
 
+@font-face {
+    font-family: xp-window-title;
+    src: url(../assets/Franklin_Gothic_Medium_Regular.ttf);
+}
+
 .window_title {
-    color: white;
-    font-size: 14px;
     text-align: left;
     padding-top: 8px;
     padding-left: 25px;
+
+    font-family: xp-window-title, sans-serif;
+    font-size: 14px;
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 .window_body {
