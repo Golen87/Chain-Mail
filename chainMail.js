@@ -3,14 +3,14 @@
 
 ChainMail = function() {
 	this.count = 3;
-	
+
 	// The available choices
 	this.choices = {
 		"opening":	[0, MultiChoose(chainOpening, this.count)],
 		"content":	[0, MultiChoose(chainContent, this.count)],
 		"ending":	[0, MultiChoose(chainEnding, this.count)],
 	};
-	
+
 	// Replace with Part objects with random tags
 	for (var key in this.choices) {
 		for (var i = 0; i < this.choices[key][1].length; i++) {
@@ -71,6 +71,8 @@ ChainMail.prototype.setStats = function() {
 	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
 };
 
+const TRANSACTION_CHANCE = 0.01;
+
 ChainMail.prototype.tick = function() {
 	if (this.alive) {
 		this.time += 1;
@@ -83,6 +85,33 @@ ChainMail.prototype.tick = function() {
 
 		if (newPeople <= 0) {
 			this.alive = false;
+		}
+
+		//Create money transactions
+		let newTrans = Math.ceil(this.seriousFactor*newPeople);
+		let transSent = Math.random()*newTrans;
+
+		for(let i = 0; i < transSent; ++i){
+			if(Math.random() < TRANSACTION_CHANCE){
+				//Make new transaction
+				let rand = Math.random();
+				let amount = 0;
+
+				if(rand < 0.5){
+					amount = 5;
+				}
+				else if(rand < 0.8){
+					amount = 10;
+				}
+				else if(rand < 0.93){
+					amount = 50;
+				}
+				else{
+					amount = 100;
+				}
+
+				addTransAction(amount);
+			}
 		}
 	}
 };
