@@ -13,6 +13,14 @@
 .icon img:hover{
     width: 110%;
     left: -5%;
+    top: -5%;
+}
+
+.icon img:active{
+    width: 110%;
+    left: -5%;
+    top: -5%;
+    filter: brightness(0.45);
 }
 
 .icon{
@@ -34,4 +42,8 @@
 
 #icon3{
     top: 220px;
+}
+
+#icon4{
+    top: 320px;
 }

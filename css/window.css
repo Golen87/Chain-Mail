@@ -29,18 +29,28 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(#3f97ff, #0261ed, #0052e2, #004fe4, #0060fb, #0065fd, #0046e0); /* Blue XP Gradient */
+    background: linear-gradient(
+            #3f97ff, #0261ed, #0052e2, #004fe4,
+            #0060fb, #0065fd, #0046e0); /* Blue XP Gradient */
     border-radius: 6px 6px 0 0;
 
     cursor:pointer;
 }
 
+@font-face {
+    font-family: xp-window-title;
+    src: url(../assets/Franklin_Gothic_Medium_Regular.ttf);
+}
+
 .window_title {
-    color: white;
-    font-size: 14px;
     text-align: left;
     padding-top: 8px;
     padding-left: 25px;
+
+    font-family: xp-window-title, sans-serif;
+    font-size: 14px;
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 .window_body {

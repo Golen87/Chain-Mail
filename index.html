@@ -71,8 +71,13 @@
 		</div>
 
 		<div class="icon" id="icon3">
-			<img src="assets/market_icon.png">
+			<img src="assets/bank_icon.png">
 			<p>Bank Account</p>
+		</div>
+
+		<div class="icon" id="icon4">
+			<img src="assets/stats_icon.png">
+			<p>Scam Tracker</p>
 		</div>
 
 		<div class="window" id="mail_gen">
@@ -101,12 +106,14 @@
 					</div>
 				</div>
 				<div class="send_section choice">
-					<div class="send_button button" onclick="javascript:sendMail();">
-						<div class="inner">Send</div>
+					<div class="buttons">
+						<div class="send_button button" onclick="javascript:sendMail();">
+							<div class="inner">Send</div>
+						</div>
+						<div class="share_button button" id="shareButton" onclick="postToFacebook();">
+							<div class="inner">Share</div>
+						</div>
 					</div>
-                    <div class="share_button button" id="shareButton" onclick="postToFacebook();">
-                        <div class="inner">Share</div>
-                    </div>
 				</div>
 			</div>
 		</div>
@@ -181,7 +188,7 @@
 
 		<div class="window" id="bank_window">
 			<div class="window_top">
-				<div class="window_icon"><img src="assets/market_icon.png"></div>
+				<div class="window_icon"><img src="assets/bank_icon.png"></div>
 				<div class="window_title">Bank Account</div>
 				<img class="window_close" src="assets/close_button.png">
 			</div>
@@ -200,8 +207,9 @@
 
 		<div class="window" id="stats_window">
 			<div class="window_top">
-				<div class="window_icon"><img src="assets/market_icon.png"></div>
-				<div class="window_title">Statistics</div>
+				<div class="window_icon"><img src="assets/stats_icon.png"></div>
+				<div class="window_title">Scam Tracker</div>
+				<img class="window_close" src="assets/close_button.png">
 			</div>
 			<div class="window_body">
 				<p>Max People Reached: <span id="people_disp">0</span> </p>
