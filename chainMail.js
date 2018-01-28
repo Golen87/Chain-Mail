@@ -60,7 +60,7 @@ ChainMail.prototype.setStats = function() {
 	this.spreadFactor += this.getPart("ending").spreadFactor
 	this.spreadFactor += RandFloat(0.0, 1.0);
 	this.spreadFactor /= 4;
-	this.spreadFactor = Math.pow( this.spreadFactor, 4 );
+	this.spreadFactor = Math.pow( this.spreadFactor, 3 );
 
 	this.seriousFactor = 0;
 	this.seriousFactor += this.getPart("opening").seriousFactor;
@@ -68,7 +68,7 @@ ChainMail.prototype.setStats = function() {
 	this.seriousFactor += this.getPart("ending").seriousFactor
 	this.seriousFactor += RandFloat(0.0, 1.0);
 	this.seriousFactor /= 3;
-	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
+	this.seriousFactor = Math.pow( this.seriousFactor, 3 );
 };
 
 const TRANSACTION_CHANCE = 0.005;
