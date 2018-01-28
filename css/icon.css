@@ -13,13 +13,21 @@
 .icon img:hover{
     width: 110%;
     left: -5%;
+    top: -5%;
+}
+
+.icon img:active{
+    width: 110%;
+    left: -5%;
+    top: -5%;
+    filter: brightness(0.45);
 }
 
 .icon{
     position: absolute;
     left: 40px;
 
-    width: 50px;
+    width: 32px;
 
     cursor: pointer;
 }
@@ -34,4 +42,21 @@
 
 #icon3{
     top: 220px;
+}
+
+#icon4{
+    top: 320px;
+}
+
+#bank_alert{
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    padding: 2px 4px;
+    border-radius: 20px;
+    background-color: red;
+    color: white;
+
+    font-family: sans-serif;
+    font-size: 9px;
 }

@@ -8,20 +8,22 @@
 
     padding: 30px 3px 3px 3px;
 
-    border-radius: 11px 11px 0 0;
+    border-radius: 7px 7px 0 0;
     border: 1px solid #0019cf;
     border-top-color: #0058ed;
     background: linear-gradient(#0046e0, #003ddd);
 }
 
 .window .header{
-    font-size: 25px;
+    font-family: xp-window-title, sans-serif;
     font-weight: bolder;
+    font-size: 16px;
 }
 
 .window .subheader{
-    font-size: 20px;
+    font-size: 12px;
 }
+
 
 .window_top{
     height: 30px;
@@ -29,18 +31,28 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(#3f97ff, #0261ed, #0052e2, #004fe4, #0060fb, #0065fd, #0046e0); /* Blue XP Gradient */
-    border-radius: 5px 5px 0 0;
+    background: linear-gradient(
+            #3f97ff, #0261ed, #0052e2, #004fe4,
+            #0060fb, #0065fd, #0046e0); /* Blue XP Gradient */
+    border-radius: 6px 6px 0 0;
 
     cursor:pointer;
 }
 
+@font-face {
+    font-family: xp-window-title;
+    src: url(../assets/Franklin_Gothic_Medium_Regular.ttf);
+}
+
 .window_title {
-    color: white;
-    font-size: 15px;
     text-align: left;
-    padding-top: 6px;
-    padding-left: 4px;
+    padding-top: 8px;
+    padding-left: 25px;
+
+    font-family: xp-window-title, sans-serif;
+    font-size: 14px;
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 .window_body {
@@ -50,6 +62,23 @@
     position: absolute;
     background-color: #eceadc; /* XP Light Yellow/Grey */
 }
+
+.window_icon {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    align-items: center;
+}
+
+.window_icon img {
+    width: 100%;
+}
+
 
 .window_close{
     position: absolute;

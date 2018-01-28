@@ -69,10 +69,23 @@
 }
 
 #mail_gen .send_section {
-    height: 50px;
-    padding: 5px 162px 0 162px;
+    height: auto;
+    padding-top: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mail_gen .buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+#sendButton {
+    margin-right: 15px;
 }
 
 #shareButton {
-    margin-left: 30px;
+    margin-left: 15px;
 }

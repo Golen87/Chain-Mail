@@ -25,17 +25,33 @@ canvas {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 30px;
+	height: 29px;
 
 	border-top: 1px solid #3168d5;
-	background: linear-gradient(#4190f1, #357ee2, #2462da, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2157d5, #2158d4, #1a45ad);
+	background: linear-gradient(
+			#3888e9, #4993e6, #307be5, #286add,
+			#245dd7, #2157d5, #2157d5, #2157d5,
+			#2157d5, #2157d5, #2157d5, #2157d5,
+			#2157d5, #2157d5, #2157d5, #2157d5,
+			#245edc, #245edc, #245edc, #2662df,
+			#2662df, #2662df, #2662df, #2662df,
+			#2662df, #2662df, #235bd9, #1e50c4,
+			#1941a5);
 }
 
 #clock{
-	width: 100px;
+	width: 85px;
 	height: 100%;
 	float: right;
-	background: linear-gradient(#16b7fb, #15a7ee, #1399ed, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #1393e9, #0c9bef, #0d9ef0, #0d9ef0, #0d9ef0, #0d9ef0, #1499e5, #0d67ce);
+	background: linear-gradient(
+		#16abef, #19baf4, #15a5f0, #149ced,
+		#1396eb, #1396eb, #1396eb, #1396eb,
+		#1396eb, #1396eb, #1396eb, #1396eb,
+		#1396eb, #1396eb, #1396eb, #1396eb,
+		#1396eb, #1396eb, #1396eb, #0d9aef,
+		#0d9df0, #0d9df0, #11a4ee, #11a4ee,
+		#11a4ee, #11a4ee, #1396e7, #1585db,
+		#095bc9);
 }
 
 #clock_edge {

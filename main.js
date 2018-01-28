@@ -82,6 +82,11 @@ $(document).ready(() => {
         PutOnTop("#bank_window");
     });
 
+    $("#icon4").click(() => {
+        $("#stats_window").show();
+        PutOnTop("#stats_window");
+    });
+
     $("#mail_gen").mousedown(() => {
         PutOnTop("#mail_gen");
     });
@@ -118,8 +123,10 @@ $(document).ready(() => {
         }
 
         updateStats();
+    });
 
-
+    $("#accept_all").click(function(){
+        acceptAllTrans();
     });
 
     function postToFacebook(){
@@ -161,11 +168,11 @@ $(document).ready(() => {
 
     //update stats on page Preload
     updateStats();
+    updateGraph();
+    updateBankAlert();
 
     //Start clock
     setInterval(timeTick, tickTime);
-
-    updateGraph();
 });
 
 function setGameHeight(){
@@ -177,4 +184,50 @@ function updateStats(){
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
     $("#mail_receivers").text(mail_addresses);
+}
+
+function addTransAction(amount){
+    let trans_list = $("#bank_list");
+    let name = Name(); //Random name
+
+    let newObj = $('<div class="xp_field transaction"><span class="sent_amount">'+amount+'</span> $ from '+name+'<div class="bank_btn button"><div class="inner">Accept</div></div></div>');
+
+    newObj.click(function(){
+        let trans = $(this).closest(".transaction");
+        acceptTransaction(trans);
+    });
+
+    newObj.appendTo(trans_list);
+    updateBankAlert();
+}
+
+function updateBankAlert(){
+    let alert = $("#bank_alert");
+
+    let trans_c = $("#bank_list").children(".transaction").length;
+
+    alert.text(trans_c);
+
+    if(trans_c <= 0){
+        alert.hide();
+    }
+    else{
+        alert.show();
+    }
+}
+
+function acceptTransaction(transaction){
+    let amount = transaction.children('.sent_amount').text();
+
+    money += parseInt(amount);
+
+    transaction.remove();
+    updateStats();
+    updateBankAlert();
+}
+
+function acceptAllTrans(){
+    $(".transaction").each(function(){
+        acceptTransaction($(this));
+    });
 }
