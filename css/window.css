@@ -14,15 +14,6 @@
     background: linear-gradient(#0046e0, #003ddd);
 }
 
-.window .header{
-    font-size: 25px;
-    font-weight: bolder;
-}
-
-.window .subheader{
-    font-size: 20px;
-}
-
 .window_top{
     height: 30px;
     width: 100%;

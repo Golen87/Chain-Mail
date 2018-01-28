@@ -1,23 +1,38 @@
 #marketplace{
     width: 500px;
-    height: 380px;
+    height: 362px;
     left: 150px;
     top: 20px;
+}
+
+#marketplace .header{
+    font-family: xp-window-title, sans-serif;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+#marketplace .subheader{
+    font-size: 12px;
 }
 
 #shop_list{
     overflow: auto;
     height: 300px;
-    margin: 10px;
+    margin-top: 10px;
 }
 
 .shop_item{
     margin-bottom: 10px;
     display: block;
-    height: 100px;
+    height: 80px;
 
     padding: 5px;
     text-align: left;
+
+    font-size: 12px;
+}
+.shop_item:last-of-type {
+    margin-bottom: 0;
 }
 
 .buy_btn{
@@ -31,7 +46,8 @@
 
 .store_left{
     float:left;
-    width: 300px;
+    width: 350px;
+    padding-right: 20px;
 }
 
 .store_right p{
