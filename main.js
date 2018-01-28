@@ -168,11 +168,11 @@ $(document).ready(() => {
 
     //update stats on page Preload
     updateStats();
+    updateGraph();
+    updateBankAlert();
 
     //Start clock
     setInterval(timeTick, tickTime);
-
-    updateGraph();
 });
 
 function setGameHeight(){
