@@ -37,10 +37,10 @@
 
 .window_title {
     color: white;
-    font-size: 15px;
+    font-size: 14px;
     text-align: left;
-    padding-top: 6px;
-    padding-left: 4px;
+    padding-top: 8px;
+    padding-left: 25px;
 }
 
 .window_body {
@@ -50,6 +50,23 @@
     position: absolute;
     background-color: #eceadc; /* XP Light Yellow/Grey */
 }
+
+.window_icon {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    align-items: center;
+}
+
+.window_icon img {
+    width: 100%;
+}
+
 
 .window_close{
     position: absolute;
