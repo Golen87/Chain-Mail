@@ -82,6 +82,11 @@ $(document).ready(() => {
         PutOnTop("#bank_window");
     });
 
+    $("#icon4").click(() => {
+        $("#stats_window").show();
+        PutOnTop("#stats_window");
+    });
+
     $("#mail_gen").mousedown(() => {
         PutOnTop("#mail_gen");
     });
