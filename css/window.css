@@ -8,7 +8,7 @@
 
     padding: 30px 3px 3px 3px;
 
-    border-radius: 11px 11px 0 0;
+    border-radius: 7px 7px 0 0;
     border: 1px solid #0019cf;
     border-top-color: #0058ed;
     background: linear-gradient(#0046e0, #003ddd);
@@ -30,7 +30,7 @@
     top: 0;
     left: 0;
     background: linear-gradient(#3f97ff, #0261ed, #0052e2, #004fe4, #0060fb, #0065fd, #0046e0); /* Blue XP Gradient */
-    border-radius: 5px 5px 0 0;
+    border-radius: 6px 6px 0 0;
 
     cursor:pointer;
 }
