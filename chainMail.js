@@ -67,7 +67,7 @@ ChainMail.prototype.setStats = function() {
 	this.seriousFactor += this.getPart("content").seriousFactor;
 	this.seriousFactor += this.getPart("ending").seriousFactor
 	this.seriousFactor += RandFloat(0.0, 1.0);
-	this.seriousFactor /= 4;
+	this.seriousFactor /= 3;
 	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
 };
 
