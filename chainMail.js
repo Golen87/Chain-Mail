@@ -87,7 +87,7 @@ ChainMail.prototype.tick = function() {
 
 		this.peopleReached += newPeople;
 		shares = Math.max(shares, this.peopleReached);
-		this.graphData.push(this.peopleReached);
+		this.graphData.push(newPeople);
 
 		//Create money transactions
 		let newTrans = Math.ceil(this.seriousFactor*newPeople);
