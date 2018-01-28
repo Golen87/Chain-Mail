@@ -106,10 +106,10 @@ $(document).ready(() => {
         PutOnTop("#stats_window");
     });
 
-    //$("#help_icon").click(() => {
-    //    $("#stats_window").show();
-    //    PutOnTop("#stats_window");
-    //});
+    $("#help_icon").click(() => {
+        $("#help_window").show();
+        PutOnTop("#help_window");
+    });
 
     $("#mail_gen").mousedown(() => {
         PutOnTop("#mail_gen");
