@@ -17,10 +17,10 @@
 	<script src="Chart.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="main.js"></script>
-	<script src="graph.js"></script>
 	<script src="chainGenerator.js"></script>
 	<script src="chainMail.js"></script>
+	<script src="main.js"></script>
+	<script src="graph.js"></script>
 
 	<!-- Phaser -->
 	<!-- <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script> -->
@@ -32,24 +32,23 @@
 	<script src="js/main.js"></script> -->
 </head>
 <body>
-	 <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : '147277622586147',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v2.11'
-        });
-      };
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/all.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
+	 <script>window.twttr = (function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0],
+			t = window.twttr || {};
+		  if (d.getElementById(id)) return t;
+		  js = d.createElement(s);
+		  js.id = id;
+		  js.src = "https://platform.twitter.com/widgets.js";
+		  fjs.parentNode.insertBefore(js, fjs);
+
+		  t._e = [];
+		  t.ready = function(f) {
+			t._e.push(f);
+		  };
+
+		  return t;
+	}(document, "script", "twitter-wjs"));</script>
 
 	<div id="desktop" >
 		<img id="wallpaper" src="assets/wallpaper.jpg" />
@@ -91,19 +90,19 @@
 				<div class="xp_field receivers">Receivers: <span id="mail_receivers">0</span></div>
 				<div class="xp_field message">
 					<div class="choice" id="opening_choice">
-						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);"></div>
+						<div class="prev_button" onclick="javascript:nextChoice('opening', -1);tweetReady();"></div>
 						<div class="text">Empty</div>
-						<div class="next_button" onclick="javascript:nextChoice('opening', +1);"></div>
+						<div class="next_button" onclick="javascript:nextChoice('opening', +1);tweetReady();"></div>
 					</div>
 					<div class="choice" id="content_choice">
-						<div class="prev_button" onclick="javascript:nextChoice('content', -1);"></div>
+						<div class="prev_button" onclick="javascript:nextChoice('content', -1);tweetReady();"></div>
 						<div class="text">Empty</div>
-						<div class="next_button" onclick="javascript:nextChoice('content', +1);"></div>
+						<div class="next_button" onclick="javascript:nextChoice('content', +1);tweetReady();"></div>
 					</div>
 					<div class="choice" id="ending_choice">
-						<div class="prev_button" onclick="javascript:nextChoice('ending', -1);"></div>
+						<div class="prev_button" onclick="javascript:nextChoice('ending', -1);tweetReady();"></div>
 						<div class="text">Empty</div>
-						<div class="next_button" onclick="javascript:nextChoice('ending', +1);"></div>
+						<div class="next_button" onclick="javascript:nextChoice('ending', +1);tweetReady();"></div>
 					</div>
 				</div>
 				<div class="send_section choice">
@@ -111,8 +110,9 @@
 						<div class="send_button button" onclick="javascript:sendMail();">
 							<div class="inner">Send</div>
 						</div>
-						<div class="share_button button" id="shareButton" onclick="postToFacebook();">
-							<div class="inner">Share</div>
+						<div id="tweetBtn">
+							<a class="twitter-share-button" href="http://twitter.com/share" data-url="http://test.com" data-text="REPLACEME">Tweet</a>
+							<!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> -->
 						</div>
 					</div>
 				</div>
@@ -228,6 +228,10 @@
 				<p>E-Mail Addresses: <span id="mail_disp">0</span></p>
 				<div class="xp_field">
 					<canvas id="chart"></canvas>
+				</div>
+				<div id="graph_buttons">
+					<div class="button" onclick="setGraphType('sum');"><div class="inner">Sum</div></div>
+					<div class="button" onclick="setGraphType('acc');"><div class="inner">Acc</div></div>
 				</div>
 			</div>
 		</div>

@@ -67,7 +67,7 @@ ChainMail.prototype.setStats = function() {
 	this.seriousFactor += this.getPart("content").seriousFactor;
 	this.seriousFactor += this.getPart("ending").seriousFactor
 	this.seriousFactor += RandFloat(0.0, 1.0);
-	this.seriousFactor /= 4;
+	this.seriousFactor /= 3;
 	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
 };
 
@@ -79,13 +79,15 @@ ChainMail.prototype.tick = function() {
 
 		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.spreadFactor) * Math.pow(Math.E, -0.1*this.time) );
 
-		this.peopleReached += newPeople;
-		shares = Math.max(shares, this.peopleReached);
-		this.graphData.push(this.peopleReached);
-
 		if (newPeople <= 0) {
 			this.alive = false;
 		}
+
+		newPeople = Math.floor( newPeople * Math.random() );
+
+		this.peopleReached += newPeople;
+		shares = Math.max(shares, this.peopleReached);
+		this.graphData.push(newPeople);
 
 		//Create money transactions
 		let newTrans = Math.ceil(this.seriousFactor*newPeople);
@@ -94,24 +96,28 @@ ChainMail.prototype.tick = function() {
 		for(let i = 0; i < transSent; ++i){
 			if(Math.random() < TRANSACTION_CHANCE){
 				//Make new transaction
-				let rand = Math.random();
 				let amount = 0;
 
-				if(rand < 0.8){
-					amount = 1;
-				}
-				else if(rand < 0.9){
-					amount = 5;
-				}
-				else if(rand < 0.96){
-					amount = 20;
-				}
-				else if(rand < 0.99){
-					amount = 50;
-				}
-				else{
-					amount = 100;
-				}
+				amount = WeightedChoose([
+					WeightedChoose([1, 5, 10], 2),
+					WeightedChoose([50, 100, 500, 1000], 5)
+				], 10);
+
+				//if(rand < 0.8){
+				//	amount = 1;
+				//}
+				//else if(rand < 0.9){
+				//	amount = 5;
+				//}
+				//else if(rand < 0.96){
+				//	amount = 20;
+				//}
+				//else if(rand < 0.99){
+				//	amount = 50;
+				//}
+				//else{
+				//	amount = 100;
+				//}
 
 				addTransAction(amount);
 			}

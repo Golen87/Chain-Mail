@@ -161,6 +161,10 @@ function Value() {
 			100000 + 10000000 * Math.random(),
 		], 3)
 	);
+	return addDots(n);
+}
+
+function addDots(n) {
 	return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 

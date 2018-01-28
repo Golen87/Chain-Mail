@@ -1,6 +1,6 @@
-let money = 0;
+let money = 10;
 let shares = 0;
-let mail_addresses = 10;
+let mail_addresses = 50;
 var current_mail = null;
 var sent_mails = [];
 
@@ -22,6 +22,25 @@ function PutOnTop(windowId) {
 
     // Put new window on top
     newTop.css('z-index', WINDOWS.length);
+};
+
+function tweetReady() {
+    $('#tweetBtn iframe').remove();
+    // Generate new markup
+    current_mail.finish();
+    var message = current_mail.message.replace(/<p>/gi, "");
+    message = message.replace(/<.+p>/gi, "");
+    url = encodeURI("https://golen87.github.io/Chain-Mail/showMessage.html?message=" + current_mail.message);
+
+    var tweetBtn = $('<a></a>')
+        .addClass('twitter-share-button')
+        .attr('href', 'http://twitter.com/tweet')
+        .attr('data-url', url)
+        .attr('data-hashtags', "ChainMailGenerator")
+        .attr('data-text', message);
+    $('#tweetBtn').append(tweetBtn);
+    twttr.widgets.load();
+
 };
 
 
@@ -70,6 +89,7 @@ $(document).ready(() => {
         $("#mail_gen").show();
         PutOnTop("#mail_gen");
         createChainMail();
+        tweetReady();
     });
 
     $("#icon2").click(() => {
@@ -129,35 +149,6 @@ $(document).ready(() => {
         acceptAllTrans();
     });
 
-    function postToFacebook(){
-        var url = "https://golen87.github.io/Chain-Mail/facebookApiExample.html?message=";
-        if(current_mail) {
-            current_mail.finish();
-
-            var message = current_mail.message.replace(/<p>/gi, "");
-            message = message.replace(/<.+p>/gi, "");
-
-
-            console.log(message);
-            FB.ui({
-                method: 'share',
-                display: 'popup',
-                quote: message,
-                href: url + current_mail.message,
-            }, function (response) {
-            });
-        }
-    }
-
-    var shareButton = document.getElementById('shareButton');
-
-    if (shareButton){
-        shareButton.onclick = postToFacebook;
-    }else {
-        alert("No button");
-    }
-
-
 
     window.onresize = function(event) {
         setGameHeight();
@@ -180,10 +171,10 @@ function setGameHeight(){
 }
 
 function updateStats(){
-    $("#people_disp").text(shares);
-    $("#money_disp").text(money);
-    $("#mail_disp").text(mail_addresses);
-    $("#mail_receivers").text(mail_addresses);
+    $("#people_disp").text(addDots(shares));
+    $("#money_disp").text(addDots(money));
+    $("#mail_disp").text(addDots(mail_addresses));
+    $("#mail_receivers").text(addDots(mail_addresses));
 }
 
 function addTransAction(amount){
