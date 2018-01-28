@@ -1,15 +1,21 @@
 #help_window{
-    display: block;
     width: 300px;
-    height: 268px;
+    height: 288px;
     text-align: left;
 
     font-size: 12px;
 
-    top: 20px;
-    right: 20px;
+    top: 200px;
+    right: 160px;
 }
 
 #help_window p{
     margin-top: 0;
+}
+
+#help_icon {
+    width: 29px;
+    float: right;
+
+    cursor: pointer;
 }

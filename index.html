@@ -12,6 +12,7 @@
 	<link href="css/market.css" type="text/css" rel="stylesheet" />
 	<link href="css/bank.css" type="text/css" rel="stylesheet" />
 	<link href="css/stats.css" type="text/css" rel="stylesheet" />
+	<link href="css/help.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -52,6 +53,7 @@
 				<div id="clock_edge"></div>
 				<p id="time"><span id="hour">00</span>:<span id="minute">00</span></p>
 			</div>
+			<img id="help_icon" src="assets/help_icon.png">
 		</div>
 
 		<div class="icon" id="icon1">
@@ -226,7 +228,7 @@
 				</div>
 				<div id="graph_buttons">
 					<div class="button" onclick="setGraphType('sum');"><div class="inner">Sum</div></div>
-					<div class="button" onclick="setGraphType('acc');"><div class="inner">Acc</div></div>
+					<div class="button" onclick="setGraphType('acc');"><div class="inner">Diff</div></div>
 				</div>
 			</div>
 		</div>
@@ -234,11 +236,25 @@
 		<div class="window" id="help_window">
 			<div class="window_top">
 				<div class="window_icon"><img src="assets/help_icon.png"></div>
-				<div class="window_title">Scam Tracker</div>
+				<div class="window_title">Scamming For Dummies</div>
 				<img class="window_close" src="assets/close_button.png">
 			</div>
 			<div class="window_body">
-				<p>Hello</p>
+				<h3 style="margin-top:0;">How to play</h3>
+				<p>Writing chain mails is hard work. The success of a mail depends on its <b>spread rate</b> and how much <b>money</b> it scams. Here are some tips and tricks:</p>
+				<ul style="padding-left:1.5em;">
+					<li><b>Spread:</b> Eye catching, trendy, or tells a horror story.</li>
+					<li><b>Money:</b> Serious, well-written, or warns of viruses.</li>
+				</ul>
+
+				<h3>Credits</h3>
+				<p>Global Game Jam, 2018.</p>
+				<ul style="padding-left:1.5em;">
+					<li>Axel Nordanskog</li>
+					<li>Joakim Nilsson</li>
+					<li>Joel Oskarsson</li>
+					<li>Måns Gezelius</li>
+				</ul>
 			</div>
 		</div>
 	</div>

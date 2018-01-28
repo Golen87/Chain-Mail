@@ -32,9 +32,10 @@ function updateGraph() {
                     datapoints.push(null);
                 } else {
                     let index = time - sent_mails[i].startTime;
-                    datapoints.push( sent_mails[i].graphData[index] );
-                    if (graphType == "sum" && datapoints.length > 1) {
-                        datapoints[datapoints.length-1] += datapoints[datapoints.length-2];
+                    if (graphType == "sum") {
+                        datapoints.push( sent_mails[i].graphDataSum[index] );
+                    } else {
+                        datapoints.push( sent_mails[i].graphDataAcc[index] );
                     }
                 }
             }

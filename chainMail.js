@@ -30,7 +30,8 @@ ChainMail = function() {
 	this.spreadFactor = null;
 	this.seriousFactor = null;
 
-	this.graphData = [];
+	this.graphDataAcc = [];
+	this.graphDataSum = [];
 	this.graphColor = takeGraphColor();
 };
 
@@ -87,7 +88,8 @@ ChainMail.prototype.tick = function() {
 
 		this.peopleReached += newPeople;
 		shares = Math.max(shares, this.peopleReached);
-		this.graphData.push(newPeople);
+		this.graphDataSum.push(this.peopleReached);
+		this.graphDataAcc.push(newPeople);
 
 		//Create money transactions
 		let newTrans = Math.ceil(this.seriousFactor*newPeople);
