@@ -15,13 +15,15 @@
 }
 
 .window .header{
-    font-size: 25px;
+    font-family: xp-window-title, sans-serif;
     font-weight: bolder;
+    font-size: 16px;
 }
 
 .window .subheader{
-    font-size: 20px;
+    font-size: 12px;
 }
+
 
 .window_top{
     height: 30px;

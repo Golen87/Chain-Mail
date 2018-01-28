@@ -1,6 +1,6 @@
 #bank_window{
     width: 500px;
-    height: 390px;
+    height: 370px;
     left: 80px;
     top: 50px;
 }
@@ -9,9 +9,6 @@
     overflow: auto;
     height: 250px;
     margin-top: 20px;
-
-    padding: 3px;
-    background-color: white;
 }
 
 .buy_btn{
@@ -38,5 +35,5 @@
 }
 
 #accept_all .inner{
-    padding: 5px;
+    padding: 0 5px 0 5px;
 }
