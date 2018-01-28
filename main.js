@@ -123,8 +123,10 @@ $(document).ready(() => {
         }
 
         updateStats();
+    });
 
-
+    $("#accept_all").click(function(){
+        acceptAllTrans();
     });
 
     function postToFacebook(){
@@ -182,4 +184,33 @@ function updateStats(){
     $("#money_disp").text(money);
     $("#mail_disp").text(mail_addresses);
     $("#mail_receivers").text(mail_addresses);
+}
+
+function addTransAction(amount){
+    let trans_list = $("#bank_list");
+    let name = Name(); //Random name
+
+    let newObj = $('<div class="xp_field transaction"><span class="sent_amount">'+amount+'</span> $ from '+name+'<div class="bank_btn button"><div class="inner">Accept</div></div></div>');
+
+    newObj.click(function(){
+        let trans = $(this).closest(".transaction");
+        acceptTransaction(trans);
+    });
+
+    newObj.appendTo(trans_list);
+}
+
+function acceptTransaction(transaction){
+    let amount = transaction.children('.sent_amount').text();
+
+    money += parseInt(amount);
+
+    transaction.remove();
+    updateStats();
+}
+
+function acceptAllTrans(){
+    $(".transaction").each(function(){
+        acceptTransaction($(this));
+    });
 }
