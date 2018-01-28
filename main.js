@@ -28,8 +28,7 @@ function tweetReady() {
     $('#tweetBtn iframe').remove();
     // Generate new markup
     current_mail.finish();
-    var message = current_mail.message.replace(/<p>/gi, "");
-    message = message.replace(/<.+p>/gi, "");
+    var message = current_mail.getPart("opening").text;
     url = encodeURI("https://golen87.github.io/Chain-Mail/showMessage.html?message=" + current_mail.message);
 
     var tweetBtn = $('<a></a>')

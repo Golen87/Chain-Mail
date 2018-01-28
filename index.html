@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chain Mail</title>
+	<title>Chain Mail Generator</title>
 	<meta charset="utf-8">
 
 	<link href="css/main.css" type="text/css" rel="stylesheet" />
@@ -14,13 +14,17 @@
 	<link href="css/stats.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
 	<script src="Chart.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="main.js"></script>
-	<script src="graph.js"></script>
 	<script src="chainGenerator.js"></script>
 	<script src="chainMail.js"></script>
+	<script src="main.js"></script>
+	<script src="graph.js"></script>
 
 	<!-- Phaser -->
 	<!-- <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script> -->
@@ -164,22 +168,32 @@
 						</div>
 					</div>
 					<div class="xp_field shop_item">
-						<h4><span class="adresses">1000</span> E-Mail Addresses!</h4>
+						<h4><span class="adresses">1500</span> E-Mail Addresses!</h4>
 						<div class="store_left">
-							<p>1000 e-mail addresses from hacked databases. Perfect for spreading your important messages!</p>
+							<p>1500 e-mail addresses from hacked databases. Perfect for spreading your important messages!</p>
 						</div>
 						<div class="store_right">
-							<p>$<span class="cost">350</span></p>
+							<p>$<span class="cost">500</span></p>
 							<div class="buy_btn button"><div class="inner">Buy!</div></div>
 						</div>
 					</div>
 					<div class="xp_field shop_item">
-						<h4><span class="adresses">3000</span> E-Mail Addresses</h4>
+						<h4><span class="adresses">5000</span> E-Mail Addresses</h4>
 						<div class="store_left">
-							<p>3000 e-mail addresses fresh off NSA's servers. Remember, with great spamming comes great responsibility.</p>
+							<p>5000 e-mail addresses fresh off NSA's servers. Remember, with great spamming comes great responsibility.</p>
 						</div>
 						<div class="store_right">
-							<p>$<span class="cost">1000</span></p>
+							<p>$<span class="cost">1500</span></p>
+							<div class="buy_btn button"><div class="inner">Buy!</div></div>
+						</div>
+					</div>
+					<div class="xp_field shop_item">
+						<h4><span class="adresses">20000</span> E-Mail Addresses</h4>
+						<div class="store_left">
+							<p>List of 20000 e-mail addresses that I "found". No questions please.</p>
+						</div>
+						<div class="store_right">
+							<p>$<span class="cost">5000</span></p>
 							<div class="buy_btn button"><div class="inner">Buy!</div></div>
 						</div>
 					</div>
@@ -218,6 +232,10 @@
 				<p>E-Mail Addresses: <span id="mail_disp">0</span></p>
 				<div class="xp_field">
 					<canvas id="chart"></canvas>
+				</div>
+				<div id="graph_buttons">
+					<div class="button" onclick="setGraphType('sum');"><div class="inner">Sum</div></div>
+					<div class="button" onclick="setGraphType('acc');"><div class="inner">Acc</div></div>
 				</div>
 			</div>
 		</div>

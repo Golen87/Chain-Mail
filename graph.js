@@ -1,14 +1,26 @@
 
 const graphColors = ["#607D8B", "#9E9E9E", "#795548", "#FF5722", "#FF9800", "#FFC107", "#FFEB3B", "#CDDC39", "#8BC34A", "#4CAF50", "#009688", "#00BCD4", "#03A9F4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336"];
 
-function takeGraphColor() { return graphColors.pop(); } // array.splice(Math.floor(Math.random()*array.length), 1);
-function returnGraphColor(color) { return graphColors.push(color); }
+let graphType = "sum";
+let currentColor = 0;
+
+function takeGraphColor() {
+    currentColor += 1;
+    return graphColors[currentColor % graphColors.length];
+}
+function returnGraphColor(color) {
+    //return graphColors.push(color);
+}
 
 
 
+function setGraphType(type) {
+    graphType = type;
+    updateGraph();
+}
 
 function updateGraph() {
-    const historyLength = 100;
+    const historyLength = 50;
 
     let datasets = [];
     for (let i = sent_mails.length - 1; i >= 0; i--) {
@@ -21,6 +33,9 @@ function updateGraph() {
                 } else {
                     let index = time - sent_mails[i].startTime;
                     datapoints.push( sent_mails[i].graphData[index] );
+                    if (graphType == "sum" && datapoints.length > 1) {
+                        datapoints[datapoints.length-1] += datapoints[datapoints.length-2];
+                    }
                 }
             }
         }
@@ -85,3 +100,25 @@ function makeGraph(datasets, labels) {
         }
     });
 }
+
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+graphColors = shuffle(graphColors);

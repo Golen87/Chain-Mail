@@ -15,6 +15,7 @@
     height: 19px;
     width: 62px;
     text-align:center;
+    white-space: nowrap;
 
     cursor:pointer;
 }

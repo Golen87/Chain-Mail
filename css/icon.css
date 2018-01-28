@@ -24,9 +24,7 @@
 }
 
 .icon:hover img {
-    width: 110%;
-    left: -5%;
-    top: -5%;
+    filter: brightness(1.2);
 }
 
 .icon:active img {
