@@ -52,7 +52,7 @@
     font-family: xp-window-title, sans-serif;
     font-size: 14px;
     color: white;
-    text-shadow: 1px 1px black;
+    text-shadow: 1px 1px black, 0 0 1px black;
 }
 
 .window_body {

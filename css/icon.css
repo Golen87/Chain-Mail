@@ -1,35 +1,36 @@
-.icon p{
-    font-size: 10px;
-    font-family: sans-serif;
+.icon{
+    position: absolute;
+    left: 10px;
 
-    margin-top: 5px;
+    width: 64px;
+
+    cursor: pointer;
+}
+
+.icon p {
+    font-size: 11px;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: white;
+    text-shadow: 1px 1px black, 0 0 1px black;
+
+    margin-top: 0;
+    text-align: center;
 }
 
 .icon img{
-    width: 100%;
+    width: 50%;
     position: relative;
 }
 
 .icon img:hover{
-    width: 110%;
-    left: -5%;
-    top: -5%;
+    width: 54%;
+    left: -2%;
+    top: -2%;
 }
 
 .icon img:active{
-    width: 110%;
-    left: -5%;
-    top: -5%;
     filter: brightness(0.45);
-}
-
-.icon{
-    position: absolute;
-    left: 40px;
-
-    width: 32px;
-
-    cursor: pointer;
 }
 
 #icon1{
@@ -37,15 +38,15 @@
 }
 
 #icon2{
-    top: 120px;
+    top: 100px;
 }
 
 #icon3{
-    top: 220px;
+    top: 180px;
 }
 
 #icon4{
-    top: 320px;
+    top: 260px;
 }
 
 #bank_alert{
