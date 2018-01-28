@@ -40,6 +40,8 @@ window.onload = function () {
 
     //document.getElementById("message").innerHTML = a;
 
+    $(".window").draggable({handle: ".window_top"});
+
     window.onresize = function(event) {
         setGameHeight();
     };
