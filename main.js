@@ -198,6 +198,22 @@ function addTransAction(amount){
     });
 
     newObj.appendTo(trans_list);
+    updateBankAlert();
+}
+
+function updateBankAlert(){
+    let alert = $("#bank_alert");
+
+    let trans_c = $("#bank_list").children(".transaction").length;
+
+    alert.text(trans_c);
+
+    if(trans_c <= 0){
+        alert.hide();
+    }
+    else{
+        alert.show();
+    }
 }
 
 function acceptTransaction(transaction){
@@ -207,6 +223,7 @@ function acceptTransaction(transaction){
 
     transaction.remove();
     updateStats();
+    updateBankAlert();
 }
 
 function acceptAllTrans(){
