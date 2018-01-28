@@ -24,6 +24,25 @@ function PutOnTop(windowId) {
     newTop.css('z-index', WINDOWS.length);
 };
 
+function tweetReady() {
+    $('#tweetBtn iframe').remove();
+    // Generate new markup
+    current_mail.finish();
+    var message = current_mail.message.replace(/<p>/gi, "");
+    message = message.replace(/<.+p>/gi, "");
+    url = encodeURI("https://golen87.github.io/Chain-Mail/showMessage.html?message=" + current_mail.message);
+
+    var tweetBtn = $('<a></a>')
+        .addClass('twitter-share-button')
+        .attr('href', 'http://twitter.com/tweet')
+        .attr('data-url', url)
+        .attr('data-hashtags', "ChainMailGenerator")
+        .attr('data-text', message);
+    $('#tweetBtn').append(tweetBtn);
+    twttr.widgets.load();
+
+};
+
 
 const tickTime = 100;
 let globalTick = 0;
@@ -70,6 +89,7 @@ $(document).ready(() => {
         $("#mail_gen").show();
         PutOnTop("#mail_gen");
         createChainMail();
+        tweetReady();
     });
 
     $("#icon2").click(() => {
@@ -128,35 +148,6 @@ $(document).ready(() => {
     $("#accept_all").click(function(){
         acceptAllTrans();
     });
-
-    function postToFacebook(){
-        var url = "https://golen87.github.io/Chain-Mail/facebookApiExample.html?message=";
-        if(current_mail) {
-            current_mail.finish();
-
-            var message = current_mail.message.replace(/<p>/gi, "");
-            message = message.replace(/<.+p>/gi, "");
-
-
-            console.log(message);
-            FB.ui({
-                method: 'share',
-                display: 'popup',
-                quote: message,
-                href: url + current_mail.message,
-            }, function (response) {
-            });
-        }
-    }
-
-    var shareButton = document.getElementById('shareButton');
-
-    if (shareButton){
-        shareButton.onclick = postToFacebook;
-    }else {
-        alert("No button");
-    }
-
 
 
     window.onresize = function(event) {
