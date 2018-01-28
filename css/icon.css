@@ -18,18 +18,18 @@
     text-align: center;
 }
 
-.icon img{
+.icon img {
     width: 50%;
     position: relative;
 }
 
-.icon img:hover{
+.icon:hover img {
     width: 54%;
     left: -2%;
     top: -2%;
 }
 
-.icon img:active{
+.icon:active img {
     filter: brightness(0.45);
 }
 
