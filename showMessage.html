@@ -1,16 +1,81 @@
-<!-- https://golen87.github.io/Chain-Mail/facebookApiExample.html -->
+<!-- https://golen87.github.io/Chain-Mail/showMessage.html -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>ChainMessageGenerator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+	<link href="css/xp.css" type="text/css" rel="stylesheet" />
+	<link href="css/icon.css" type="text/css" rel="stylesheet" />
+	<link href="css/window.css" type="text/css" rel="stylesheet" />
+	<link href="css/mailgen.css" type="text/css" rel="stylesheet" />
     <script src="showMessage.js"></script>
 </head>
 <body>
+    <div id="desktop" >
+		<img id="wallpaper" src="assets/wallpaper.jpg" />
+		<div id="taskbar">
+			<div id="clock">
+				<div id="clock_edge"></div>
+				<p id="time"><span id="hour">00</span>:<span id="minute">00</span></p>
+			</div>
+		</div>
 
-    <div id="message"></div>
+		<div class="icon" id="icon1">
+			<img src="assets/mail_icon.png">
+			<p>Chain Mail Generator</p>
+		</div>
 
-    <div><a href="https://golen87.github.io/Chain-Mail/">To play the game and generate your own chain mails, click here!</a> </div>
+		<div class="icon" id="icon2">
+			<img src="assets/market_icon.png">
+			<p>Dark Web Marketplace</p>
+		</div>
+
+		<div class="icon" id="icon3">
+			<div id="bank_alert">0</div>
+			<img src="assets/bank_icon.png">
+			<p>Bank Account</p>
+		</div>
+
+		<div class="icon" id="icon4">
+			<img src="assets/stats_icon.png">
+			<p>Scam Tracker</p>
+		</div>
+
+		<div class="window" id="mail_gen">
+			<div class="window_top">
+				<div class="window_icon"><img src="assets/mail_icon.png"></div>
+				<div class="window_title">Chain Mail Generator</div>
+				<img class="window_close" src="assets/close_button.png">
+			</div>
+			<div class="window_body" id="selection_body">
+				<!--<div class="xp_field receivers">Receivers: <span id="mail_receivers">0</span></div>-->
+				<div class="xp_field message">
+					<div class="choice" id="opening_choice">
+						<div class="text" id="opening">Hello</div>
+					</div>
+					<div class="choice" id="content_choice">
+						<div class="text" id="content">Content</div>
+					</div>
+					<div class="choice" id="ending_choice">
+						<div class="text" id="closing">Closing</div>
+					</div>
+				</div>
+                <div class="send_section choice">
+                    <div class="buttons">
+                        <div><a href="https://golen87.github.io/Chain-Mail/">To play the game and generate your own Chain Email, click here!</a> </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+
+	</div>
+
+
+    <!--<div id="message"></div>
+
+    <div><a href="https://golen87.github.io/Chain-Mail/">To play the game and generate your own chain mails, click here!</a> </div>-->
 </body>
 </html>
