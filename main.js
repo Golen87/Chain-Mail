@@ -1,6 +1,6 @@
-let money = 0;
+let money = 10;
 let shares = 0;
-let mail_addresses = 10;
+let mail_addresses = 50;
 var current_mail = null;
 var sent_mails = [];
 
