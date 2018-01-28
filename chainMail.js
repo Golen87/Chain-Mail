@@ -71,7 +71,7 @@ ChainMail.prototype.setStats = function() {
 	this.seriousFactor = Math.pow( this.seriousFactor, 4 );
 };
 
-const TRANSACTION_CHANCE = 0.01;
+const TRANSACTION_CHANCE = 0.005;
 
 ChainMail.prototype.tick = function() {
 	if (this.alive) {
@@ -97,13 +97,16 @@ ChainMail.prototype.tick = function() {
 				let rand = Math.random();
 				let amount = 0;
 
-				if(rand < 0.5){
+				if(rand < 0.8){
+					amount = 1;
+				}
+				else if(rand < 0.9){
 					amount = 5;
 				}
-				else if(rand < 0.8){
-					amount = 10;
+				else if(rand < 0.96){
+					amount = 20;
 				}
-				else if(rand < 0.93){
+				else if(rand < 0.99){
 					amount = 50;
 				}
 				else{

@@ -192,12 +192,12 @@ function addTransAction(amount){
 
     let newObj = $('<div class="xp_field transaction"><span class="sent_amount">'+amount+'</span> $ from '+name+'<div class="bank_btn button"><div class="inner">Accept</div></div></div>');
 
-    newObj.click(function(){
+    newObj.appendTo(trans_list);
+    newObj.find('.bank_btn').click(function(){
         let trans = $(this).closest(".transaction");
         acceptTransaction(trans);
     });
 
-    newObj.appendTo(trans_list);
     updateBankAlert();
 }
 
