@@ -82,10 +82,6 @@
     flex-direction: row;
 }
 
-#sendButton {
-    margin-right: 15px;
-}
-
-#shareButton {
-    margin-left: 15px;
+#tweetBtn {
+    margin-left: 40px;
 }
