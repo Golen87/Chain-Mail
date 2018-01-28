@@ -82,7 +82,7 @@
     flex-direction: row;
 }
 
-#sendButton {
+.send_button{
     margin-right: 15px;
 }
 
