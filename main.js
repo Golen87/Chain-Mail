@@ -180,10 +180,10 @@ function setGameHeight(){
 }
 
 function updateStats(){
-    $("#people_disp").text(shares);
-    $("#money_disp").text(money);
-    $("#mail_disp").text(mail_addresses);
-    $("#mail_receivers").text(mail_addresses);
+    $("#people_disp").text(addDots(shares));
+    $("#money_disp").text(addDots(money));
+    $("#mail_disp").text(addDots(mail_addresses));
+    $("#mail_receivers").text(addDots(mail_addresses));
 }
 
 function addTransAction(amount){
