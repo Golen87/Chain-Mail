@@ -8,7 +8,7 @@
 }
 
 .icon p {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     font-family: sans-serif;
     color: white;
@@ -19,14 +19,14 @@
 }
 
 .icon img {
-    width: 50%;
+    width: 100%;
     position: relative;
 }
 
 .icon:hover img {
-    width: 54%;
-    left: -2%;
-    top: -2%;
+    width: 110%;
+    left: -5%;
+    top: -5%;
 }
 
 .icon:active img {
@@ -38,15 +38,15 @@
 }
 
 #icon2{
-    top: 100px;
+    top: 130px;
 }
 
 #icon3{
-    top: 180px;
+    top: 240px;
 }
 
 #icon4{
-    top: 260px;
+    top: 350px;
 }
 
 #bank_alert{
