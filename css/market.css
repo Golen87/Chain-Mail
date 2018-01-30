@@ -48,3 +48,7 @@
 .shop_item h4{
     margin: 3px;
 }
+
+.cost {
+    overflow: auto;
+}

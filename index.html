@@ -24,6 +24,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="chainGenerator.js"></script>
 	<script src="chainMail.js"></script>
+	<script src="shop.js"></script>
 	<script src="main.js"></script>
 	<script src="graph.js"></script>
 </head>
@@ -129,68 +130,7 @@
 				<div class="subheader">
 					- We always reach a compromise -
 				</div>
-				<div id="shop_list">
-					<div class="xp_field shop_item">
-						<h4><span class="adresses">20</span> E-Mail Addresses</h4>
-						<div class="store_left">
-							<p>20 e-mail addresses I stole from my friend. Do what you want with them.</p>
-						</div>
-						<div class="store_right">
-							<p>$<span class="cost">15</span></p>
-							<div class="buy_btn button"><div class="inner">Buy!</div></div>
-						</div>
-					</div>
-					<div class="xp_field shop_item">
-						<h4><span class="adresses">100</span> E-Mail Addresses</h4>
-						<div class="store_left">
-							<p>100 e-mail addresses I found on some forum. Pls no spam.</p>
-						</div>
-						<div class="store_right">
-							<p>$<span class="cost">50</span></p>
-							<div class="buy_btn button"><div class="inner">Buy!</div></div>
-						</div>
-					</div>
-					<div class="xp_field shop_item">
-						<h4><span class="adresses">500</span> E-Mail Addresses</h4>
-						<div class="store_left">
-							<p>500 e-mail addresses from a big data breach. Use with care!</p>
-						</div>
-						<div class="store_right">
-							<p>$<span class="cost">200</span></p>
-							<div class="buy_btn button"><div class="inner">Buy!</div></div>
-						</div>
-					</div>
-					<div class="xp_field shop_item">
-						<h4><span class="adresses">1500</span> E-Mail Addresses!</h4>
-						<div class="store_left">
-							<p>1500 e-mail addresses from hacked databases. Perfect for spreading your important messages!</p>
-						</div>
-						<div class="store_right">
-							<p>$<span class="cost">500</span></p>
-							<div class="buy_btn button"><div class="inner">Buy!</div></div>
-						</div>
-					</div>
-					<div class="xp_field shop_item">
-						<h4><span class="adresses">5000</span> E-Mail Addresses</h4>
-						<div class="store_left">
-							<p>5000 e-mail addresses fresh off NSA's servers. Remember, with great spamming comes great responsibility.</p>
-						</div>
-						<div class="store_right">
-							<p>$<span class="cost">1500</span></p>
-							<div class="buy_btn button"><div class="inner">Buy!</div></div>
-						</div>
-					</div>
-					<div class="xp_field shop_item">
-						<h4><span class="adresses">20000</span> E-Mail Addresses</h4>
-						<div class="store_left">
-							<p>List of 20000 e-mail addresses that I "found". No questions please.</p>
-						</div>
-						<div class="store_right">
-							<p>$<span class="cost">5000</span></p>
-							<div class="buy_btn button"><div class="inner">Buy!</div></div>
-						</div>
-					</div>
-				</div>
+				<div id="shop_list"></div>
 			</div>
 		</div>
 
@@ -258,5 +198,19 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- One shop box -->
+	<script type="text/view" id="shop_item_template">
+		<div class="xp_field shop_item">
+			<h4><span class="addresses">{addresses}</span> E-Mail Addresses</h4>
+			<div class="store_left">
+				<p>{addresses} {message}</p>
+			</div>
+			<div class="store_right">
+				<p class="cost">${cost}</p>
+				<div class="buy_btn button" onclick="{purchase}"><div class="inner">Buy!</div></div>
+			</div>
+		</div>
+	</script>
 </body>
 </html>

@@ -83,7 +83,6 @@ function timeTick(){
         tickMails();
         updateGraph();
         updateStats();
-        updateBankAlert();
     }
 }
 
@@ -141,22 +140,6 @@ $(document).ready(() => {
 
     $(".window").draggable({handle: ".window_top"});
 
-    $(".buy_btn").click(function(){
-        let parent = $(this).closest(".shop_item");
-        let cost = parent.find(".cost").html();
-        let adress_c = parent.find(".adresses").html();
-
-        cost = parseInt(cost);
-        adress_c = parseInt(adress_c);
-
-        if(money >= cost){
-            money -= cost;
-            mail_addresses += adress_c;
-        }
-
-        updateStats();
-    });
-
     $("#accept_all").click(function(){
         acceptAllTrans();
     });
@@ -172,7 +155,6 @@ $(document).ready(() => {
     //update stats on page Preload
     updateStats();
     updateGraph();
-    updateBankAlert();
 
     //Start clock
     setInterval(timeTick, tickTime);
@@ -187,11 +169,26 @@ function setGameHeight(){
     $("#desktop").css("height", Math.max(document.documentElement.clientHeight, window.innerHeight || 0));
 }
 
+function updateStat(divId, newText) {
+    if ($(divId).text() != newText) {
+        $(divId).text(newText);
+
+        $(divId).css({
+            opacity: 0.0
+        });
+        $(divId).stop().animate({
+            opacity: 1.0
+        }, 200, "swing");
+    }
+}
+
 function updateStats(){
-    $("#people_disp").text(addDots(shares));
-    $("#money_disp").text(addDots(money));
-    $("#mail_disp").text(addDots(mail_addresses));
-    $("#mail_receivers").text(addDots(mail_addresses));
+    updateStat("#people_disp", addDots(shares));
+    updateStat("#money_disp", addDots(money));
+    updateStat("#mail_disp", addDots(mail_addresses));
+    updateStat("#mail_receivers", addDots(mail_addresses));
+    updateBankAlert();
+    updateShop();
 }
 
 function addTransAction(amount){
@@ -204,21 +201,20 @@ function addTransAction(amount){
     let trans_list = $("#bank_list");
     let name = Name(); //Random name
 
-    let newObj = $('<div class="xp_field transaction"><span class="sent_amount">'+amount+'</span> $ from '+name+'<div class="bank_btn button"><div class="inner">Accept</div></div></div>');
+    let newObj = $('<div class="xp_field transaction"><span class="sent_amount">'+addDots(amount)+'</span> $ from '+name+'<div class="bank_btn button"><div class="inner">Accept</div></div></div>');
 
     newObj.appendTo(trans_list);
     newObj.find('.bank_btn').click(function(){
         let trans = $(this).closest(".transaction");
         acceptTransaction(trans);
         updateStats();
-        updateBankAlert();
     });
 }
 
 function updateBankAlert(){
     let alert = $("#bank_alert");
 
-    alert.text(trans_count);
+    alert.text(addDots(trans_count));
 
     if(trans_count <= 0){
         alert.hide();
@@ -229,7 +225,7 @@ function updateBankAlert(){
 }
 
 function acceptTransaction(transaction){
-    let amount = transaction.children('.sent_amount').text();
+    let amount = removeDots(transaction.children('.sent_amount').text());
     trans_count -= 1;
 
     money += parseInt(amount);
@@ -247,5 +243,4 @@ function acceptAllTrans(){
     trans_buffer = 0;
 
     updateStats();
-    updateBankAlert();
 }

@@ -168,6 +168,10 @@ function addDots(n) {
 	return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function removeDots(s) {
+	return s.replace(/,/g, "");
+}
+
 
 
 /* Section of a chain mail. */

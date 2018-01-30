@@ -80,7 +80,7 @@ ChainMail.prototype.tick = function() {
 
 		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.spreadFactor) * Math.pow(Math.E, -0.1*this.time) );
 
-		if (newPeople <= this.startPeople * 0.05) {
+		if (newPeople <= this.startPeople * 0.03) {
 			this.alive = false;
 		}
 
@@ -96,9 +96,9 @@ ChainMail.prototype.tick = function() {
 		let transSent = Math.floor( Math.random()*newTrans );
 
 		var multiplier = 1;
-		while (transSent > 100) {
-			transSent = Math.floor(transSent / 10);
-			multiplier *= 10;
+		while (transSent > 1000) {
+			transSent = Math.ceil(transSent / 100);
+			multiplier *= 100;
 		}
 
 		for(let i = 0; i < transSent; ++i){
