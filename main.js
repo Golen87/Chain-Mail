@@ -24,7 +24,7 @@ function PutOnTop(windowId) {
     });
 
     // Put new window on top
-    newTop.css('z-index', WINDOWS.length);
+    newTop.css('z-index', WINDOWS.length + 1);
 };
 
 function tweetReady() {
