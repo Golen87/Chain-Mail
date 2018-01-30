@@ -80,7 +80,7 @@ ChainMail.prototype.tick = function() {
 
 		let newPeople = Math.floor( this.startPeople * Math.pow(this.time, this.spreadFactor) * Math.pow(Math.E, -0.1*this.time) );
 
-		if (newPeople <= 0) {
+		if (newPeople <= this.startPeople * 0.05) {
 			this.alive = false;
 		}
 
@@ -93,7 +93,13 @@ ChainMail.prototype.tick = function() {
 
 		//Create money transactions
 		let newTrans = Math.ceil(this.seriousFactor*newPeople);
-		let transSent = Math.random()*newTrans;
+		let transSent = Math.floor( Math.random()*newTrans );
+
+		var multiplier = 1;
+		while (transSent > 100) {
+			transSent = Math.floor(transSent / 10);
+			multiplier *= 10;
+		}
 
 		for(let i = 0; i < transSent; ++i){
 			if(Math.random() < TRANSACTION_CHANCE){
@@ -102,8 +108,8 @@ ChainMail.prototype.tick = function() {
 
 				amount = WeightedChoose([
 					WeightedChoose([1, 5, 10], 2),
-					WeightedChoose([50, 100, 500, 1000], 5)
-				], 10);
+					WeightedChoose([50, 100, 500, 1000], 7)
+				], 10) * multiplier;
 
 				//if(rand < 0.8){
 				//	amount = 1;
@@ -168,8 +174,3 @@ function tickMails() {
 		sent_mails[i].tick();
 	}
 }
-
-//for (var i = 0; i < 10; i++) {
-//	createChainMail();
-//	sendMail();
-//}

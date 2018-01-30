@@ -1,8 +1,11 @@
 let money = 10;
 let shares = 0;
 let mail_addresses = 50;
-var current_mail = null;
-var sent_mails = [];
+let current_mail = null;
+let sent_mails = [];
+
+let trans_count = 0;
+let trans_buffer = 0;
 
 
 function PutOnTop(windowId) {
@@ -80,6 +83,7 @@ function timeTick(){
         tickMails();
         updateGraph();
         updateStats();
+        updateBankAlert();
     }
 }
 
@@ -172,6 +176,11 @@ $(document).ready(() => {
 
     //Start clock
     setInterval(timeTick, tickTime);
+
+    for (var i = 0; i < 0; i++) {
+        createChainMail();
+        sendMail();
+    }
 });
 
 function setGameHeight(){
@@ -186,6 +195,12 @@ function updateStats(){
 }
 
 function addTransAction(amount){
+    trans_count += 1;
+    if (trans_count > 100) {
+        trans_buffer += amount;
+        return;
+    }
+
     let trans_list = $("#bank_list");
     let name = Name(); //Random name
 
@@ -195,19 +210,17 @@ function addTransAction(amount){
     newObj.find('.bank_btn').click(function(){
         let trans = $(this).closest(".transaction");
         acceptTransaction(trans);
+        updateStats();
+        updateBankAlert();
     });
-
-    updateBankAlert();
 }
 
 function updateBankAlert(){
     let alert = $("#bank_alert");
 
-    let trans_c = $("#bank_list").children(".transaction").length;
+    alert.text(trans_count);
 
-    alert.text(trans_c);
-
-    if(trans_c <= 0){
+    if(trans_count <= 0){
         alert.hide();
     }
     else{
@@ -217,16 +230,22 @@ function updateBankAlert(){
 
 function acceptTransaction(transaction){
     let amount = transaction.children('.sent_amount').text();
+    trans_count -= 1;
 
     money += parseInt(amount);
 
     transaction.remove();
-    updateStats();
-    updateBankAlert();
 }
 
 function acceptAllTrans(){
     $(".transaction").each(function(){
         acceptTransaction($(this));
     });
+
+    trans_count = 0;
+    money += trans_buffer;
+    trans_buffer = 0;
+
+    updateStats();
+    updateBankAlert();
 }
